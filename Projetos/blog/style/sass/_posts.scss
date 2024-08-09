@@ -1,0 +1,28 @@
+#posts {
+   max-width: 80%;
+   margin: auto;
+
+   .page-title{
+      width: 100%;
+      margin: 20px auto;
+      font-size: 25px;
+      font-weight: 700;
+      color: rgb(108, 108, 108);
+      border-bottom: 2px solid rgb(177, 177, 177);
+
+   }
+   .blog-post {
+      flex-direction: column;
+      gap: 10px;
+      max-width: 500px;
+
+      .post-image {
+         max-width: 500px;
+
+         img{
+            max-width: 100%;
+            object-fit: cover;
+         }
+      }
+   }
+}

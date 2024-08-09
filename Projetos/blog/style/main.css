@@ -99,5 +99,29 @@ header .logo {
     margin-top: 0;
   }
 }
+#posts {
+  max-width: 80%;
+  margin: auto;
+}
+#posts .page-title {
+  width: 100%;
+  margin: 20px auto;
+  font-size: 25px;
+  font-weight: 700;
+  color: rgb(108, 108, 108);
+  border-bottom: 2px solid rgb(177, 177, 177);
+}
+#posts .blog-post {
+  flex-direction: column;
+  gap: 10px;
+  max-width: 500px;
+}
+#posts .blog-post .post-image {
+  max-width: 500px;
+}
+#posts .blog-post .post-image img {
+  max-width: 100%;
+  object-fit: cover;
+}
 
 /*# sourceMappingURL=main.css.map */
