@@ -1,0 +1,70 @@
+.material-symbols-outlined {
+   font-variation-settings:
+   'FILL' 0,
+   'wght' 200,
+   'GRAD' 0,
+   'opsz' 48
+ }
+ 
+
+#home{
+   position: relative;
+   background-color: black;
+   height: 100vh;
+   max-width: 100%;
+   overflow: hidden;
+   
+   .home-backgroundimage{
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      object-position: bottom;
+      opacity: 0.3;
+   }
+
+   .content{
+      position: absolute;
+      color: white;
+      z-index: 10;
+      top:50%;
+      left:50%;
+      transform: translate(-50%, -65%);
+      flex-direction: column;
+
+      h1{
+         font-size: 40px;
+      }
+      h2{
+         font-size: 20px;
+         font-weight: 100;
+      }
+   }
+
+   .scrolldown{
+      position: absolute;
+      flex-direction: column;
+      gap: 5px;
+      left: 50%;
+      top: 85%;
+      color: white;
+      transform: translate(-50%);
+      cursor: pointer;
+
+      .arrow{
+         font-size: 60px;
+         animation: buttonScrollAnimation 1.5s infinite;
+      }
+   }
+}
+
+@keyframes buttonScrollAnimation {
+   0%{
+      margin-top: 0;
+   }
+   50%{
+      margin-top: 10px;
+   }
+   100%{
+      margin-top: 0;
+   }
+}

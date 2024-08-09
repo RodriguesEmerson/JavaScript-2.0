@@ -67,3 +67,4 @@
 
 // console.log(pessoa.getNome()); // Maria
 // console.log(pessoa.getIdade()); // 25
+// console.log(pessoa._nome); // undefined (tentativa de acesso direto falha)
