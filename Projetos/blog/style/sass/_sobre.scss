@@ -1,0 +1,21 @@
+#about{
+    h3{
+        text-align: center;
+        margin: 10px;
+    }
+
+    .about-box{
+        flex-direction: row;
+        flex-wrap: wrap;
+        .about-content{
+            flex: 1;
+            min-width: 400px;
+            width: 50%;
+        }
+        img{
+            max-width: 50%;
+            min-width: 400px;
+            margin: auto;
+        }
+    }
+}
