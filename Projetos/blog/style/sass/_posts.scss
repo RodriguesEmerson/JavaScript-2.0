@@ -1,27 +1,83 @@
+$cor-padrao: rgb(28, 89, 169);
+
 #posts {
-   max-width: 80%;
+   position: relative;
+   max-width: 70%;
+   min-height: 98vh;
+   padding-top: 60px;
    margin: auto;
 
-   .page-title{
+   .page-title {
+      top: -10px;
       width: 100%;
       margin: 20px auto;
       font-size: 25px;
       font-weight: 700;
-      color: rgb(108, 108, 108);
+      color: $cor-padrao;
       border-bottom: 2px solid rgb(177, 177, 177);
 
    }
-   .blog-post {
-      flex-direction: column;
+
+   .posts {
+      flex-direction: row;
+      flex-wrap: wrap;
       gap: 10px;
-      max-width: 500px;
 
-      .post-image {
-         max-width: 500px;
+      .blog-post {
+         flex: 1;
+         flex-direction: column;
+         gap: 10px;
+         max-width: 350px;
+         min-width: 345px;
+         border-radius: 3px;
+         box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.138);
 
-         img{
-            max-width: 100%;
-            object-fit: cover;
+         .post-image {
+            max-width: 350px;
+            height: 250px;
+            overflow: hidden;
+            border-radius: 3px 3px 0 0;
+
+            img {
+               max-width: 100%;
+               object-fit: cover;
+            }
+         }
+
+         .post-header {
+            width: 100%;
+            padding-left: 15px;
+         }
+
+         .post-content {
+            padding: 0 10px;
+            text-indent: 20px;
+            text-align: justify;
+         }
+
+         .post-footer {
+            margin-top: 20px;
+            font-size: 12px;
+            padding: 0 10px 10px;
+            width: 100%;
+            align-items: end;
+            justify-content: space-between;
+            color: gray;
+
+            .read-more {
+               text-decoration: none;
+               height: 30px;
+               width: 90px;
+               text-align: center;
+               line-height: 28px;
+               border: 1px solid $cor-padrao;
+               transition: 0.4s;
+
+               &:hover {
+                  background-color: $cor-padrao;
+                  color: white;
+               }
+            }
          }
       }
    }

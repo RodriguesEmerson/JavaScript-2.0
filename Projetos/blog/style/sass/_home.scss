@@ -19,13 +19,13 @@
       height: 100vh;
       object-fit: cover;
       object-position: bottom;
-      opacity: 0.3;
+      opacity: 0.25;
    }
 
    .content{
       position: absolute;
       color: white;
-      z-index: 10;
+      z-index: 2;
       top:50%;
       left:50%;
       transform: translate(-50%, -65%);
@@ -33,10 +33,12 @@
 
       h1{
          font-size: 40px;
+         text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.619);
       }
       h2{
          font-size: 20px;
          font-weight: 100;
+         text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.619);
       }
    }
 

@@ -1,5 +1,5 @@
 * {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Mulish", Arial, Helvetica, sans-serif;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -10,16 +10,17 @@
   align-items: center;
 }
 
-header {
+.header {
   position: fixed;
   width: 100%;
   height: 50px;
   color: white;
   padding: 0 10px;
   z-index: 10;
-  justify-content: space-between;
+  justify-content: space-around;
+  border-bottom: 1px solid gray;
 }
-header .logo {
+.header .logo {
   font-weight: 600;
   font-size: 20px;
 }
@@ -28,7 +29,7 @@ header .logo {
   list-style-type: none;
 }
 .nav-bar ul li:not(:last-child), .redes-sociais ul li:not(:last-child) {
-  margin-right: 15px;
+  margin-right: 20px;
 }
 .nav-bar ul .nav-link, .nav-bar ul .rs-link, .redes-sociais ul .nav-link, .redes-sociais ul .rs-link {
   color: white;
@@ -36,7 +37,7 @@ header .logo {
   transition: 0.4s;
 }
 .nav-bar ul .nav-link:hover, .nav-bar ul .rs-link:hover, .redes-sociais ul .nav-link:hover, .redes-sociais ul .rs-link:hover {
-  color: pink;
+  color: rgb(125, 125, 125);
 }
 
 .material-symbols-outlined {
@@ -55,12 +56,12 @@ header .logo {
   height: 100vh;
   object-fit: cover;
   object-position: bottom;
-  opacity: 0.3;
+  opacity: 0.25;
 }
 #home .content {
   position: absolute;
   color: white;
-  z-index: 10;
+  z-index: 2;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -65%);
@@ -68,10 +69,12 @@ header .logo {
 }
 #home .content h1 {
   font-size: 40px;
+  text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.619);
 }
 #home .content h2 {
   font-size: 20px;
   font-weight: 100;
+  text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.619);
 }
 #home .scrolldown {
   position: absolute;
@@ -100,28 +103,81 @@ header .logo {
   }
 }
 #posts {
-  max-width: 80%;
+  position: relative;
+  max-width: 70%;
+  min-height: 98vh;
+  padding-top: 60px;
   margin: auto;
 }
 #posts .page-title {
+  top: -10px;
   width: 100%;
   margin: 20px auto;
   font-size: 25px;
   font-weight: 700;
-  color: rgb(108, 108, 108);
+  color: rgb(28, 89, 169);
   border-bottom: 2px solid rgb(177, 177, 177);
 }
-#posts .blog-post {
+#posts .posts {
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+#posts .posts .blog-post {
+  flex: 1;
   flex-direction: column;
   gap: 10px;
-  max-width: 500px;
+  max-width: 350px;
+  min-width: 345px;
+  border-radius: 3px;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.138);
 }
-#posts .blog-post .post-image {
-  max-width: 500px;
+#posts .posts .blog-post .post-image {
+  max-width: 350px;
+  height: 250px;
+  overflow: hidden;
+  border-radius: 3px 3px 0 0;
 }
-#posts .blog-post .post-image img {
+#posts .posts .blog-post .post-image img {
   max-width: 100%;
   object-fit: cover;
+}
+#posts .posts .blog-post .post-header {
+  width: 100%;
+  padding-left: 15px;
+}
+#posts .posts .blog-post .post-content {
+  padding: 0 10px;
+  text-indent: 20px;
+  text-align: justify;
+}
+#posts .posts .blog-post .post-footer {
+  margin-top: 20px;
+  font-size: 12px;
+  padding: 0 10px 10px;
+  width: 100%;
+  align-items: end;
+  justify-content: space-between;
+  color: gray;
+}
+#posts .posts .blog-post .post-footer .read-more {
+  text-decoration: none;
+  height: 30px;
+  width: 90px;
+  text-align: center;
+  line-height: 28px;
+  border: 1px solid rgb(28, 89, 169);
+  transition: 0.4s;
+}
+#posts .posts .blog-post .post-footer .read-more:hover {
+  background-color: rgb(28, 89, 169);
+  color: white;
+}
+
+#footer {
+  height: 50px;
+  color: white;
+  background-color: rgb(36, 36, 36);
 }
 
 /*# sourceMappingURL=main.css.map */
