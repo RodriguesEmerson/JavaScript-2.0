@@ -1,10 +1,21 @@
 $cor-padrao: rgb(28, 89, 169);
 
+body{
+   background-color: rgba(231, 231, 231, 0.479);
+}
+
 .post-view {
-   margin-top: 70px;
+   background-color: white;   
+   margin-top: 50px;
+   flex-direction: column !important;
+   width: 75% !important;
+   padding: 0 20px;
+   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.066);
+
+   
    .blog-post{
+      width: 100% !important;
       box-shadow: none !important;
-      max-width: 70% !important;
 
       .post-header{
          color: gray;
@@ -20,7 +31,7 @@ $cor-padrao: rgb(28, 89, 169);
       .post-body{
          box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.138);
       }
-      .post-image{
+      .post-image{   
          height: 370px !important;
       }
       .post-content{
@@ -30,23 +41,26 @@ $cor-padrao: rgb(28, 89, 169);
    }
 } 
 
+// .aside{
+//    width: 29%;
+// }
 .posts-relacionados{
    .blog-post{
       flex-direction: column !important;
       min-width: 210px !important;
-      max-width: 210px;
+      max-width: 250px;
       
       .post-header{
          padding: 0 !important;
       }
-      h2{
+      h2{   
          text-align: center;
          font-size: 20px;
       }
 
       .post-image{
          background-color: black;
-         width: 100% !important;
+         min-width: 100% !important;
          max-height: 150px !important;
          img{
             width: 100% !important;

@@ -63,11 +63,71 @@
                   </div>
                </div>
             </article>
-            <aside class="aside">
-               
-            </aside>
-            <section class="coments">
-   
+
+            <!-- Caixa de Comentários -->
+            <section class="coments-box flex">
+               <form class="new-coment">
+                  <textarea name="new-coment" id="new-coment" placeholder="Insira um comentário..."></textarea>
+                  <div class="new-coment-buttons">
+                     <button class="btn-new-coment-cancel">Cancelar</button>
+                     <button class="btn-new-coment-submit" type="submit">Publicar</button>
+                  </div>
+               </form>
+               <!-- Comentário -->
+               <div class="coment">
+                  <div class="coment-header flex">
+                     <img class="coment-img" src="./images/user-icon-1.png" alt="">
+                     <div class="flex">
+                        <span class="coment-autor">Emerson-1</span>
+                        <time datetime="11/08/2024">11 de agosto de 2024</time>
+                     </div>
+                  </div>
+
+                  <div class="coment-body">
+                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis temporibus laudantium ad velit, dignissimos maiores, tempora vero eos saepe quisquam mollitia odio ex nesciunt odit iusto voluptates inventore adipisci cumque!</p>
+                  </div>
+                  
+                  <div class="coment-footer flex">
+                     <div class="like-icon flex">
+                        <span class="material-symbols-outlined like-heart">favorite</span>
+                        <span class="like-number">0 likes</span></div>
+                     <div class="reply-icon flex">
+                        <span class="material-symbols-outlined">reply</span>
+                        <span>Responder</span>
+                     </div>
+                     <div class="reply-box">
+
+                     </div>
+                  </div>
+
+                  <!-- Respostas ao comentário -->
+                  <div class="coment-answers">
+                     <div class="coment-answer">
+                        <div class="coment-header flex">
+                           <img class="coment-img" src="./images/user-icon-2.png" alt="">
+                           <div class="flex">
+                              <span class="coment-autor">Emerson-2</span>
+                              <time datetime="11/08/2024">11 de agosto de 2024</time>
+                              <span class="replying-to-name">Resposta à Emerson-1</span>
+                           </div>
+                        </div>
+                        <div class="coment-body">
+                           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam, error voluptatum! Beatae aliquid eveniet fugit pariatur, aspernatur soluta!</p>
+                        </div>
+                        <div class="coment-footer flex">
+                           <div class="like-icon flex">
+                              <span class="material-symbols-outlined like-heart">favorite</span>
+                              <span class="like-number">0 likes</span></div>
+                           <div class="reply-icon flex">
+                              <span class="material-symbols-outlined">reply</span>
+                              <span>Responder</span>
+                           </div>
+                           <div class="reply-box"></div>
+                        </div>
+                     </div>
+                     
+                  </div>
+               </div>
             </section>
          </section>
          <section class="outros-posts posts-relacionados">
@@ -83,7 +143,7 @@
                </header>
                <!--Rodapé do Post-->
                <footer class="post-footer flex">
-                  <p><time datetime="09/08/2024">09/08/2024</time></p>
+                  <p><time datetime="09/08/2024">09 de agosto de 2024</time></p>
                   <a class="read-more" href="#" target="_self" rel="noopener noreferrer">Ler Mais</a>
                </footer>
             </article>
