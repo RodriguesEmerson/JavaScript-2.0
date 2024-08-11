@@ -5,13 +5,15 @@
    box-sizing: border-box;
 }
 
-// sass --watch Projetos/blog/style/sass/main.scss:Projetos/blog/style/main.css
+// sass --watch Projetos/blog/style/index/main.scss:Projetos/blog/style/index/main.css
 .flex{
    display: flex;
    align-items: center;
 }
 
-
+main{
+   margin-top: 50px
+}
 
 @import "./header";
 @import "./home";
