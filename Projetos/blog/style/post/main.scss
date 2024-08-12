@@ -1,5 +1,9 @@
 @import "./post-view";
 @import "./comentarios";
 
+.hidden{
+    display: none;
+}
+
 
 // sass --watch Projetos/blog/style/post/main.scss:Projetos/blog/style/post/main.css

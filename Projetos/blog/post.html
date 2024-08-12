@@ -66,13 +66,16 @@
 
             <!-- Caixa de Comentários -->
             <section class="coments-box flex">
-               <form class="new-coment">
-                  <textarea name="new-coment" id="new-coment" placeholder="Insira um comentário..."></textarea>
-                  <div class="new-coment-buttons flex">
-                     <button class="btn-new-coment-cancel" type="button">Cancelar</button>
-                     <button class="btn-new-coment-submit" type="submit">Publicar</button>
-                  </div>
-               </form>
+               <div class="new-coment-box">
+                  <input class="btn-new-coment-open" type="button" value="Comentar">
+                  <form class="new-coment">
+                     <textarea name="new-coment" id="new-coment" placeholder="Insira um comentário..."></textarea>
+                     <div class="new-coment-buttons flex">
+                        <button class="btn-new-coment-cancel" type="button">Cancelar</button>
+                        <button class="btn-new-coment-submit" type="submit">Publicar</button>
+                     </div>
+                  </form>
+               </div>
                <!-- Comentário -->
                <div class="coment">
                   <div class="coment-header flex">
@@ -95,13 +98,11 @@
                         <span class="material-symbols-outlined">reply</span>
                         <span>Responder</span>
                      </div>
-                     <div class="reply-box">
-
-                     </div>
                   </div>
 
                   <!-- Respostas ao comentário -->
                   <div class="coment-answers">
+                     
                      <div class="coment-answer">
                         <div class="coment-header flex">
                            <img class="coment-img" src="./images/user-icon-2.png" alt="">
@@ -111,21 +112,35 @@
                               <span class="replying-to-name">Resposta à Emerson-1</span>
                            </div>
                         </div>
+
                         <div class="coment-body">
                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam, error voluptatum! Beatae aliquid eveniet fugit pariatur, aspernatur soluta!</p>
                         </div>
+
                         <div class="coment-footer flex">
-                           <div class="like-icon flex">
-                              <span class="material-symbols-outlined like-heart">favorite</span>
-                              <span class="like-number">0 likes</span></div>
-                           <div class="reply-icon flex">
-                              <span class="material-symbols-outlined">reply</span>
-                              <span>Responder</span>
+
+                           <div class="buttons-answers flex">
+                              <div class="like-icon flex">
+                                 <span class="material-symbols-outlined like-heart">favorite</span>   
+                                 <span class="like-number">0 likes</span></div>
+                              <div class="reply-icon flex">
+                                 <span class="material-symbols-outlined">reply</span>
+                                 <span>Responder</span>
+                              </div>
                            </div>
-                           <div class="reply-box"></div>
+
+                           <div class="reply-box">
+                              <form class="new-coment">
+                                 <textarea name="new-coment" id="new-coment-answer" class="new-coment" placeholder="Insira um comentário..."></textarea>
+                                 <div class="new-coment-buttons flex">
+                                    <button class="btn-new-coment-cancel" type="button">Cancelar</button>
+                                    <button class="btn-new-coment-submit" type="submit">Publicar</button>
+                                 </div>
+                              </form>
+                           </div>
                         </div>
                      </div>
-                     
+
                   </div>
                </div>
             </section>

@@ -65,20 +65,36 @@ body {
   padding: 10px;
   flex-direction: column;
 }
+.coments-box .new-coment-box {
+  width: 100%;
+}
+.coments-box .new-coment-box .btn-new-coment-open {
+  height: 30px;
+  width: 100px;
+  color: white;
+  background: rgb(28, 89, 169);
+  border: none;
+  cursor: pointer;
+  margin-bottom: 5px;
+  transition: 0.4s;
+}
+.coments-box .new-coment-box .btn-new-coment-open:hover {
+  background-color: #154482;
+}
 .coments-box .new-coment {
   width: 100%;
   min-height: 90px;
   border: 1px solid rgb(28, 89, 169);
   padding: 5px;
 }
-.coments-box .new-coment #new-coment {
+.coments-box .new-coment #new-coment, .coments-box .new-coment #new-coment-answer {
   border: none;
   width: 100%;
   min-height: 70px;
   resize: none;
   outline: none;
 }
-.coments-box .new-coment #new-coment:focus-within {
+.coments-box .new-coment #new-coment:focus-within, .coments-box .new-coment #new-coment-answer:focus-within {
   border: none !important;
 }
 .coments-box .new-coment .new-coment-buttons {
@@ -157,6 +173,21 @@ body {
 }
 .coment-answers .coment-header .replying-to-name {
   color: gray;
+}
+.coment-answers .coment-footer {
+  width: calc(100% - 40px);
+  flex-direction: column;
+}
+.coment-answers .coment-footer .buttons-answers {
+  margin-bottom: 5px;
+  width: 98%;
+}
+.coment-answers .coment-footer .reply-box {
+  width: 100%;
+}
+
+.hidden {
+  display: none;
 }
 
 /*# sourceMappingURL=main.css.map */

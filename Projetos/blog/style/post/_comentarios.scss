@@ -1,5 +1,6 @@
 
 $cor-padrao: rgb(28, 89, 169);
+$btn-coment: rgb(161, 73, 0);
 $background-gradient: linear-gradient(90deg, rgba(47,130,205,1) 0%, rgba(34,34,140,1) 70%, rgba(43,38,133,1) 100%);
 
 #posts{
@@ -10,13 +11,30 @@ $background-gradient: linear-gradient(90deg, rgba(47,130,205,1) 0%, rgba(34,34,1
    padding: 10px;
    flex-direction: column;
 
+   .new-coment-box{
+      width: 100%;
+      .btn-new-coment-open{
+         height: 30px;
+         width: 100px;
+         color: white;
+         background: $cor-padrao;
+         border: none;
+         cursor: pointer;
+         margin-bottom: 5px;
+         transition: 0.4s;
+
+            &:hover{
+               background-color: darken($cor-padrao, 9)
+            }
+      }
+   }
    .new-coment{
       width: 100%;
       min-height: 90px;
       border: 1px solid $cor-padrao;
       padding: 5px;
 
-      #new-coment{
+      #new-coment, #new-coment-answer{
          border: none;
          width: 100%;
          min-height: 70px;
@@ -92,7 +110,7 @@ $background-gradient: linear-gradient(90deg, rgba(47,130,205,1) 0%, rgba(34,34,1
       margin: 5px 0  0 40px;
       margin-bottom: 20px;
 
-      .flex{
+      .flex{   
          margin-right: 15px;
       }
       .like-icon, .reply-icon{
@@ -119,6 +137,19 @@ $background-gradient: linear-gradient(90deg, rgba(47,130,205,1) 0%, rgba(34,34,1
 
       .replying-to-name{
          color: gray;
+      }
+   }
+   .coment-footer{
+      width: calc(100% - 40px);
+      flex-direction: column;
+
+      .buttons-answers{
+         margin-bottom: 5px;
+         width: 98%;
+      }
+
+      .reply-box{
+         width: 100%
       }
    }
 
