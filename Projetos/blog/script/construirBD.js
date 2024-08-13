@@ -30,6 +30,8 @@ const post1 = new NewPost(
             Os filhotes de cães são uma bênção e uma alegria para quem os recebe. Com cuidados adequados e muito amor, você garantirá que eles cresçam saudáveis e felizes, tornando-se companheiros leais e amorosos por toda a vida. Aproveite cada momento com esses pequenos amigos e desfrute das maravilhas que eles trazem para sua vida! 🐶💖`,
     {},
     '12/08/2024',
+    ['Filhotes', 'cachorros', 'dicas'],
+    'P02983092'
 )
 
 const comentarioPost1 = new Comentario(
@@ -37,15 +39,31 @@ const comentarioPost1 = new Comentario(
     'Usuário-1',
     false,
     `"Adorei o post! 🐶✨ Os filhotes realmente trazem tanta alegria e energia positiva para nossas vidas. As dicas são ótimas e muito úteis. Já estou colocando em prática algumas sugestões, como a socialização e a escolha da ração certa. Obrigada por compartilhar essas informações valiosas! 💖"`,
-    23,
     {},
     '12/08/2024',
+    false,
+    'C098340923',
+    23,
 )
 
 const respostaParaComentario1 = new RespostaComentario(
+    'img-2',
     'Usuário-2',
+    false,
+    'Concordo',
+    {},
+    '12/08/2024',
+    false,
+    'P023092834',
+    23,
+    'Usuario-1',
 )
 
+console.log(post1)
+console.log('***************************')
+console.log(comentarioPost1)
+console.log('***************************')
+console.log(respostaParaComentario1)
 //Post
 // constructor(imagem, autor, titulo, conteudo, comentario, data, tags, id)
 
