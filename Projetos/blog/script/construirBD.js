@@ -1,38 +1,12 @@
-/**
- * imagem
- * titulo
- * conteudo
- * --comentarios
- * ----autor
- * ----data
- * ----qnt likes
- * ----respostas ao comentario
- * ------autor
- * ------data
- * ------qnt likes
- * ------respostas as respostas
- * data
- * tags
- * link(id)
- */
+//Esse script serve apenas para crir a BD com seus getters e setters,
+import { NewPost, Comentario, RespostaComentario, gerarUUID } from "./index/novoPost.js"
+import { SettersBD } from "./BD.js"
 
-export const SettersBD = {
-   setPost(post){
-      baseDeDados.posts[novoPost] = novoPost;
-   },
-   // setComentarios(post, comentario){
-   //    baseDeDados.posts[post][comentario] = comentario;
-   // }
-   // set
-}
-
-export const baseDeDados = {
-   posts: {
-      P9842938: {
-         img: 'images/post-1.jpg',
-         titulo: 'A Alegria dos Filhotes de Cães',
-         autor: 'Emerson Rodrigues',
-         conteudo: `
+const post1 = new NewPost(
+    'images/post-1.jpg',
+    'A Alegria dos Filhotes de Cães',
+    'Emerson Rodrigues',
+    `
          Os filhotes de cães são verdadeiros pacotes de alegria que podem iluminar qualquer ambiente com suas travessuras e       carinhos. Eles não só trazem um brilho nos olhos dos seus donos, mas também exigem cuidados especiais para garantir que cresçam     saudáveis e felizes. Aqui estão algumas dicas e informações valiosas para ajudá-lo a aproveitar ao máximo a companhia desses pequenos tesouros:
 
             1. Criação de um Ambiente Aconchegante
@@ -54,37 +28,26 @@ export const baseDeDados = {
             Por fim, lembre-se de que os filhotes precisam de muito amor e atenção. Eles são muito sensíveis e formam fortes laços com seus donos. Dedique tempo para interagir com eles, mostrando carinho e afeto. Esse vínculo é essencial para seu bem-estar emocional e para o desenvolvimento de uma relação sólida e confiável.
 
             Os filhotes de cães são uma bênção e uma alegria para quem os recebe. Com cuidados adequados e muito amor, você garantirá que eles cresçam saudáveis e felizes, tornando-se companheiros leais e amorosos por toda a vida. Aproveite cada momento com esses pequenos amigos e desfrute das maravilhas que eles trazem para sua vida! 🐶💖`,
+    {},
+    '12/08/2024',
+)
 
-         comentarios: {
-            C84293903: {
-               img: '',
-               autor: 'Usuário-1',
-               titulo: false,
-               conteudo: `"Adorei o post! 🐶✨ Os filhotes realmente trazem tanta alegria e energia positiva para nossas vidas. As dicas são ótimas e muito úteis. Já estou colocando em prática algumas sugestões, como a socialização e a escolha da ração certa. Obrigada por compartilhar essas informações valiosas! 💖"`,
-               comentarios: {
-                  CC98273948: {
-                     img: '',
-                     autor: 'Usuário-2',
-                     titulo: false,
-                     conteudo: 'Concordo!!!',
-                     data: '12/08/2024',
-                     tags: false,
-                     id: 'P029384293',
-                     likes: 23,
-                     respostaPara: 'Usuário-1',
-                  }
-               },
-               data: '12/08/2024',
-               tags: false,
-               id: 'P029384293',
-               likes: 23,
-            },
-         },
-         data: '12/08/2024',
-         tags: 'Filhotes, cachorros, dicas',
-         id: 'P12309841',
-      }
-   }
-}
+const comentarioPost1 = new Comentario(
+    'img-1',
+    'Usuário-1',
+    false,
+    `"Adorei o post! 🐶✨ Os filhotes realmente trazem tanta alegria e energia positiva para nossas vidas. As dicas são ótimas e muito úteis. Já estou colocando em prática algumas sugestões, como a socialização e a escolha da ração certa. Obrigada por compartilhar essas informações valiosas! 💖"`,
+    23,
+    {},
+    '12/08/2024',
+)
 
+const respostaParaComentario1 = new RespostaComentario(
+    'Usuário-2',
+)
 
+//Post
+// constructor(imagem, autor, titulo, conteudo, comentario, data, tags, id)
+
+//Comentarios
+//constructor(imagem, autor, titulo, conteudo, comentario, data, tags, id, likes)

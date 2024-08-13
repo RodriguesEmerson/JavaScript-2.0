@@ -89,6 +89,22 @@ class NewPost {
  }
 
  class RespostaComentario extends Comentario{
+   constructor(imagem, autor, titulo, conteudo, comentario, data, tags, id, likes, respComentario) {
+      super(imagem, autor, titulo, conteudo, comentario, data, tags, id, likes);
+
+      this._respComentario = respComentario;
+
+   }
+
+   getrespComentario(){
+      return this._respComentario;
+   }
+   alterarrespComentario(respComentario){
+      this._respComentario = respComentario;
+   }
+   addrespComentario(respComentario){
+      this._respComentario[respComentario] = respComentario;
+   }
 
  }
 
@@ -105,6 +121,7 @@ class NewPost {
     });
  }
 
+export { NewPost, Comentario, RespostaComentario, gerarUUID }
 
 // Aplicativo de blog onde você pode criar, editar e excluir posts, e adicionar comentários.
 // Objetos/Classes:
