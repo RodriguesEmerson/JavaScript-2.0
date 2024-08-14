@@ -58,16 +58,79 @@ const respostaParaComentario1 = new RespostaComentario(
     'Usuario-1',
 )
 
+const post2 = new NewPost(
+    'images/post-2.jpg', 'Emerson Rodrigues',
+    'O Belo Mundo dos Gatos',
+    `Os gatos são criaturas enigmáticas que cativam a humanidade há milênios. Com sua graça, independência e personalidades únicas, eles conquistam o coração de milhões de pessoas ao redor do mundo. Seja você um amante dos felinos ou alguém que está considerando adotar um gatinho, este blog vai te guiar pelo fascinante mundo dos gatos, abordando desde o comportamento até os cuidados essenciais e curiosidades sobre esses adoráveis companheiros.
+
+Comportamento dos Gatos: Entendendo Seu Amigo Felino
+Os gatos têm uma reputação de serem independentes e, às vezes, distantes. No entanto, eles também podem ser incrivelmente afetuosos e leais aos seus donos. Cada gato tem sua própria personalidade, mas existem alguns comportamentos comuns que ajudam a entender melhor esses animais:
+
+Ronronar: Geralmente, o ronronar é um sinal de que o gato está relaxado e contente. No entanto, os gatos também ronronam quando estão com dor ou desconforto, usando esse som como uma forma de se acalmar.
+
+Amassar com as Patas: Quando um gato "amassa" você ou sua cama com as patas, ele está mostrando que se sente seguro e confortável. Este comportamento remonta aos tempos de filhote, quando os gatos amassavam a barriga da mãe para estimular a produção de leite.
+
+Miar: O miado é a forma como os gatos se comunicam com os humanos. Cada gato tem seu próprio "vocabulário" de miados, que pode expressar desde fome até o desejo de brincar ou simplesmente pedir atenção.
+
+Cuidados Essenciais com Gatos
+Cuidar de um gato é relativamente simples, mas requer atenção a alguns aspectos importantes para garantir que ele viva uma vida longa e saudável:
+
+Alimentação: Gatos precisam de uma dieta equilibrada e rica em proteínas. A alimentação deve ser adequada à idade, peso e condições de saúde do gato. Evite oferecer alimentos destinados a cães ou alimentos humanos que possam ser tóxicos para os gatos, como chocolate e cebola.
+
+Higiene: Embora os gatos sejam notoriamente limpos e cuidem da própria higiene, é importante escová-los regularmente, especialmente se tiverem pelo longo, para evitar bolas de pelo. Além disso, mantenha a caixa de areia sempre limpa para garantir que o gato a use adequadamente.
+
+Saúde: Visitas regulares ao veterinário são essenciais para manter a saúde do seu gato em dia. Vacinas, vermifugação e controle de pulgas e carrapatos devem estar em dia. Também é importante considerar a castração, que traz vários benefícios para a saúde e comportamento dos gatos.
+
+Ambiente: Gatos adoram explorar, então é importante proporcionar um ambiente enriquecido. Arranhadores, brinquedos, e locais elevados para eles subirem ajudam a manter a mente e o corpo do gato ativos. Se possível, um espaço seguro ao ar livre, como um jardim ou uma varanda telada, pode ser um ótimo local para o gato explorar.
+
+Curiosidades Sobre os Gatos
+Visão Noturna: Gatos têm uma visão noturna excepcional. Eles podem ver em ambientes com pouca luz até seis vezes melhor que os humanos, graças à alta concentração de bastonetes em seus olhos.
+
+Sentido de Orientação: Os gatos possuem um incrível senso de direção. Existem relatos de gatos que viajaram centenas de quilômetros para retornar aos seus lares. Embora o mecanismo exato não seja totalmente compreendido, acredita-se que eles usem pistas visuais, olfativas e até magnéticas para se orientar.
+
+História Antiga: Os gatos foram venerados no antigo Egito, onde eram vistos como símbolos de graça e proteção. A deusa Bastet, representada com cabeça de gato, era a deusa da casa, do amor, da fertilidade e da proteção.
+
+Gatos e Tecnologia: Muitos gatos hoje em dia se tornaram estrelas da internet, com milhões de seguidores em redes sociais e vídeos virais. Gatos como Grumpy Cat e Nyan Cat se tornaram ícones culturais, provando que esses animais continuam a fascinar e entreter pessoas de todas as idades.
+
+Conclusão: A Magia de Ter um Gato em Casa
+Ter um gato é uma experiência única e gratificante. Eles oferecem companhia, afeto e muitas risadas com suas travessuras. Com os cuidados certos e um ambiente amoroso, seu gato será um companheiro leal e encantador por muitos anos. Se você ainda não tem um gato, considere adotar um e descobrir por si mesmo a alegria de viver com esses incríveis animais! 🐱❤️
+    `,
+    {},
+    '14/08/2024',
+    ['gatos', 'cuidados', 'pets'],
+    gerarUUID(),
+)
+
+const comentario2 = new Comentario(
+    'imagens/user-icon-1.png',
+    'Usuário-3',
+    false,
+    'Adorei o artigo! Muito informativo e bem explicado, especialmente para quem é apaixonado por gatos. As dicas de cuidados e curiosidades são realmente úteis. 🐾',
+    {},
+    '14/08/2024',
+    false,
+    gerarUUID(),
+    7
+)
+
+const respostaParaComentario2 = new RespostaComentario(
+    'imagens/user-icon-2.png',
+    'Usuário-4',
+    false,
+    ':)',
+    {},
+    '14/08/2024',
+    false,
+    gerarUUID(),
+    7,
+    'Usuário-3'
+)
+
 post1.setComentario(comentarioPost1)
 comentarioPost1.setComentario(respostaParaComentario1)
 
-console.log('***************************')
-// console.log(post1)
+post2.setComentario(comentario2)
+comentario2.setComentario(respostaParaComentario2)
 
 SetPostBD.setPost(post1)
-
-//Post
-// constructor(imagem, autor, titulo, conteudo, comentario, data, tags, id)
-
-//Comentarios
-//constructor(imagem, autor, titulo, conteudo, comentario, data, tags, id, likes)
+SetPostBD.setPost(post2)
