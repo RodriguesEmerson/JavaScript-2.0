@@ -4,24 +4,25 @@ const postsRecentes = document.querySelector('.posts-recents');
 postsRecentes.innerHTML = '';
 let article
 for (const post in baseDeDados.posts) {
-   console.log(baseDeDados.posts[post]);
+   const blog = baseDeDados.posts[post];
+   console.log(blog)
    article = criarElemento('article', { class: 'blog-post flex' }, false, false);
    article.innerHTML = `
       <figure class="post-image">
-         <img src="${baseDeDados.posts[post]['img']}" alt="">
+         <img src="${blog.getImagem()}" alt="">
       </figure>
       <header class="post-header">
-         <h2 class="post-title">${baseDeDados.posts[post]['titulo']}</h2>
+         <h2 class="post-title">${blog.getTitulo()}</h2>
       </header>
       <!--Conteúdo do Post-->
       <div class="post-content">
-         <p>${baseDeDados.posts[post]['conteudo']}</p>
+         <p>${blog.getConteudo()}</p>
       </div>
       <!--Rodapé do Post-->
       <footer class="post-footer flex">
          <p>
-            Publicado em <time datetime="${baseDeDados.posts[post]['data']}">
-            ${dataPorExtenso(baseDeDados.posts[post]['data'])}</time>
+            Publicado em <time datetime="${blog.getData()}">
+            ${dataPorExtenso(blog.getData())}</time>
          </p>
          <a class="read-more" 
             href="http://127.0.0.1:5500/Projetos/blog/post.html?${post}" 
@@ -29,9 +30,8 @@ for (const post in baseDeDados.posts) {
          </a>
       </footer>
    `
+   postsRecentes.appendChild(article)
 }
-postsRecentes.appendChild(article)
-
 
 function dataPorExtenso(data){
    let d = data.split('/')

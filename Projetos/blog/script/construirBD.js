@@ -1,13 +1,12 @@
 //Esse script serve apenas para crir a BD com seus getters e setters,
 import { NewPost, Comentario, RespostaComentario, gerarUUID } from "./index/novoPost.js"
-import { SettersBD } from "./BD.js"
+import { SetPostBD } from "./BD.js"
 
 const post1 = new NewPost(
     'images/post-1.jpg',
-    'A Alegria dos Filhotes de Cães',
     'Emerson Rodrigues',
-    `
-         Os filhotes de cães são verdadeiros pacotes de alegria que podem iluminar qualquer ambiente com suas travessuras e       carinhos. Eles não só trazem um brilho nos olhos dos seus donos, mas também exigem cuidados especiais para garantir que cresçam     saudáveis e felizes. Aqui estão algumas dicas e informações valiosas para ajudá-lo a aproveitar ao máximo a companhia desses pequenos tesouros:
+    'A Alegria dos Filhotes de Cães',
+    `Os filhotes de cães são verdadeiros pacotes de alegria que podem iluminar qualquer ambiente com suas travessuras e       carinhos. Eles não só trazem um brilho nos olhos dos seus donos, mas também exigem cuidados especiais para garantir que cresçam     saudáveis e felizes. Aqui estão algumas dicas e informações valiosas para ajudá-lo a aproveitar ao máximo a companhia desses pequenos tesouros:
 
             1. Criação de um Ambiente Aconchegante
             Filhotes precisam de um espaço seguro e confortável para se sentirem protegidos. Prepare uma área tranquila com uma cama macia e brinquedos apropriados para a idade deles. Certifique-se de que a área esteja livre de perigos, como fios expostos e pequenos objetos que possam ser engolidos.
@@ -31,7 +30,7 @@ const post1 = new NewPost(
     {},
     '12/08/2024',
     ['Filhotes', 'cachorros', 'dicas'],
-    'P02983092'
+    gerarUUID(),
 )
 
 const comentarioPost1 = new Comentario(
@@ -42,7 +41,7 @@ const comentarioPost1 = new Comentario(
     {},
     '12/08/2024',
     false,
-    'C098340923',
+    gerarUUID(),
     23,
 )
 
@@ -54,16 +53,19 @@ const respostaParaComentario1 = new RespostaComentario(
     {},
     '12/08/2024',
     false,
-    'P023092834',
+    gerarUUID(),
     23,
     'Usuario-1',
 )
 
-console.log(post1)
+post1.setComentario(comentarioPost1)
+comentarioPost1.setComentario(respostaParaComentario1)
+
 console.log('***************************')
-console.log(comentarioPost1)
-console.log('***************************')
-console.log(respostaParaComentario1)
+// console.log(post1)
+
+SetPostBD.setPost(post1)
+
 //Post
 // constructor(imagem, autor, titulo, conteudo, comentario, data, tags, id)
 
