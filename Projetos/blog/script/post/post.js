@@ -1,4 +1,5 @@
 import { baseDeDados, SetPostBD } from "../modules/BD.js";
+import { NewPost, Comentario, RespostaComentario, gerarUUID } from "../index/novoPost.js"
 
 let BDLocalStorange = localStorage.getItem('dataBase');
 BDLocalStorange = JSON.parse(BDLocalStorange)
@@ -13,9 +14,27 @@ console.log(urlParam)
 const postView = document.querySelector('.post-view');
 console.log(baseDeDados)
 
-const post = baseDeDados.posts['4a296087-2d74-44e2-be08-61966e3fd74a']
-console.log(post)
+const postBase = new NewPost();
 
+const post = baseDeDados.posts['4a296087-2d74-44e2-be08-61966e3fd74a']
+Object.assign(postBase, baseDeDados.posts['4a296087-2d74-44e2-be08-61966e3fd74a'])
+
+
+// Object.setPrototypeOf(post, NewPost);
+
+const comentario3 = new Comentario(
+   'img-1',
+    'Usuário-1',
+    false,
+    `"Adorei o post! 🐶✨ Os filhotes realmente trazem tanta alegria e energia positiva para nossas vidas. As dicas são ótimas e muito úteis. Já estou colocando em prática algumas sugestões, como a socialização e a escolha da ração certa. Obrigada por compartilhar essas informações valiosas! 💖"`,
+    {},
+    '12/08/2024',
+    false,
+    gerarUUID(),
+    23,
+)
+
+post.setComentario(comentario3)
 
 // `
 // <article class="blog-post flex">
