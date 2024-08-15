@@ -1,6 +1,6 @@
 //Esse script serve apenas para crir a BD com seus getters e setters,
 import { NewPost, Comentario, RespostaComentario, gerarUUID } from "./index/novoPost.js"
-import { SetPostBD } from "./BD.js"
+import { SetPostBD } from "./modules/BD.js"
 
 const post1 = new NewPost(
     'images/post-1.jpg',
