@@ -30,7 +30,7 @@ const post1 = new NewPost(
     {},
     '12/08/2024',
     ['Filhotes', 'cachorros', 'dicas'],
-    gerarUUID(),
+    '4b190d63-32cb-4807-a5ba-9b650d0953ce',
 )
 
 const comentarioPost1 = new Comentario(
@@ -53,7 +53,7 @@ const respostaParaComentario1 = new RespostaComentario(
     {},
     '12/08/2024',
     false,
-    gerarUUID(),
+    '4b190d63-32cb-4807-a5ba-9b650d0953ce',
     23,
     'Usuario-1',
 )

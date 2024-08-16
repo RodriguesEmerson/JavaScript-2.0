@@ -1,40 +1,44 @@
 import { baseDeDados, SetPostBD } from "../modules/BD.js";
 import { NewPost, Comentario, RespostaComentario, gerarUUID } from "../index/novoPost.js"
-
-let BDLocalStorange = localStorage.getItem('dataBase');
-BDLocalStorange = JSON.parse(BDLocalStorange)
-SetPostBD.setTodosOsPosts(BDLocalStorange)
-console.log(BDLocalStorange)
-
-
-const url = new URLSearchParams(window.location.search)
-const urlParam = url.get('id')
-console.log(urlParam)
-
 const postView = document.querySelector('.post-view');
-console.log(baseDeDados)
 
-const postBase = new NewPost();
+const carregaPost = {
+   post: '',
+   pegarBDLocalStorange: () =>{
+      let BDLocalStorange = localStorage.getItem('dataBase');
+      BDLocalStorange = JSON.parse(BDLocalStorange);
+      SetPostBD.setTodosOsPosts(BDLocalStorange);
+   },
+   pegarIdURL: () => {
+      const url = new URLSearchParams(window.location.search);
+      const urlParam = url.get('id');
+      return urlParam;
+   },
+   setarPrototype: () =>{
+      this.post = baseDeDados.posts[this.pegarIdURL];
+      Object.setPrototypeOf(this.post, NewPost.prototype);
+   }
+}
 
-const post = baseDeDados.posts['4a296087-2d74-44e2-be08-61966e3fd74a']
-Object.assign(postBase, baseDeDados.posts['4a296087-2d74-44e2-be08-61966e3fd74a'])
-
-
-// Object.setPrototypeOf(post, NewPost);
-
-const comentario3 = new Comentario(
+const criarNovoComentario = {
+   comentario: (imagem, autor, titulo, conteudo, comentario, data, tags, id, likes)=>{
+      return new Comentario(imagem, autor, titulo, conteudo, comentario, data, tags, id, likes)
+   }
+}
+const comentario3 = criarNovoComentario.comentario(
    'img-1',
-    'Usuário-1',
-    false,
-    `"Adorei o post! 🐶✨ Os filhotes realmente trazem tanta alegria e energia positiva para nossas vidas. As dicas são ótimas e muito úteis. Já estou colocando em prática algumas sugestões, como a socialização e a escolha da ração certa. Obrigada por compartilhar essas informações valiosas! 💖"`,
-    {},
-    '12/08/2024',
-    false,
-    gerarUUID(),
-    23,
+   'Usuário-1',
+   false,
+   `"Adorei o post! 🐶✨ Os filhotes realmente trazem tanta alegria e energia positiva para nossas vidas. As dicas são ótimas e muito úteis. Já estou colocando em prática algumas sugestões, como a socialização e a escolha da ração certa. Obrigada por compartilhar essas informações valiosas! 💖"`,
+   {},
+   '12/08/2024',
+   false,
+   gerarUUID(),
+   23,
 )
+console.log(comentario3)
 
-post.setComentario(comentario3)
+
 
 // `
 // <article class="blog-post flex">

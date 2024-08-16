@@ -46,7 +46,7 @@ class NewPost {
       this._data = data;
    }
 
-   getComentarios() {
+   getComentario() {
       return this._comentario;
    }
    setComentario(comentario) {
