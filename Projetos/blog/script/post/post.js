@@ -1,42 +1,62 @@
 import { baseDeDados, SetPostBD } from "../modules/BD.js";
 import { NewPost, Comentario, RespostaComentario, gerarUUID } from "../index/novoPost.js"
+import { utils } from "../modules/utils.js"
 const postView = document.querySelector('.post-view');
+const article = document.querySelector('.blog-post')
 
 const carregaPost = {
    post: '',
-   pegarBDLocalStorange: () =>{
+   pegarBDLocalStorange: ()=> {
       let BDLocalStorange = localStorage.getItem('dataBase');
       BDLocalStorange = JSON.parse(BDLocalStorange);
       SetPostBD.setTodosOsPosts(BDLocalStorange);
    },
-   pegarIdURL: () => {
+   idDoPost: ()=> {
       const url = new URLSearchParams(window.location.search);
       const urlParam = url.get('id');
       return urlParam;
    },
-   setarPrototype: () =>{
-      this.post = baseDeDados.posts[this.pegarIdURL];
+   setarPrototypes: function() {
+      this.pegarBDLocalStorange();
+      this.post = baseDeDados.posts[this.idDoPost()];
       Object.setPrototypeOf(this.post, NewPost.prototype);
+   },
+
+   criarArticle: function() {
+    return  `
+         <header class="post-header">
+            <h2 class="post-title">${this.post.getTitulo()}</h2>
+            <p>Escrito por <strong class="post-autor">Emerson R</strong>, 
+               <time datetime="${this.post.getData()}">${utils.dataPorExtenso(this.post.getData())}</time>
+            </p>
+         </header>
+         <div class="post-body">
+            <!--Imagem do Post-->
+            <figure class="post-image">
+               <img src="${this.post.getImagem()}" alt="">
+            </figure>
+            <!--Conteúdo do Post-->
+            <div class="post-content">
+               ${this.post.getConteudo()}
+            </div>
+         </div>
+      `
+   },
+
+   renderizarArticle: function(){
+      article.innerHTML = '';
+      article.innerHTML = this.criarArticle();
    }
+
 }
 
+carregaPost.setarPrototypes()
+carregaPost.renderizarArticle()
 const criarNovoComentario = {
    comentario: (imagem, autor, titulo, conteudo, comentario, data, tags, id, likes)=>{
       return new Comentario(imagem, autor, titulo, conteudo, comentario, data, tags, id, likes)
    }
 }
-const comentario3 = criarNovoComentario.comentario(
-   'img-1',
-   'Usuário-1',
-   false,
-   `"Adorei o post! 🐶✨ Os filhotes realmente trazem tanta alegria e energia positiva para nossas vidas. As dicas são ótimas e muito úteis. Já estou colocando em prática algumas sugestões, como a socialização e a escolha da ração certa. Obrigada por compartilhar essas informações valiosas! 💖"`,
-   {},
-   '12/08/2024',
-   false,
-   gerarUUID(),
-   23,
-)
-console.log(comentario3)
 
 
 
