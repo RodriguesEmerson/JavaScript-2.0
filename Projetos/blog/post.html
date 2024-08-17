@@ -78,27 +78,39 @@
                </div>
                <!-- Comentário -->
                <div class="coment">
-                  <div class="coment-header flex">
-                     <img class="coment-img" src="./images/user-icon-1.png" alt="">
-                     <div class="flex">
-                        <span class="coment-autor">Emerson-1</span>
-                        <time datetime="11/08/2024">11 de agosto de 2024</time>
+                  <div>
+                     <div class="coment-header flex">
+                        <img class="coment-img" src="./images/user-icon-1.png" alt="">
+                        <div class="flex">
+                           <span class="coment-autor">Emerson-1</span>
+                           <time datetime="11/08/2024">11 de agosto de 2024</time>
+                        </div>
+                     </div>
+                     <div class="coment-body">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis temporibus laudantium ad velit, dignissimos maiores, tempora vero eos saepe quisquam mollitia odio ex nesciunt odit iusto voluptates inventore adipisci cumque!</p>
+                     </div>
+                     
+                     <div class="coment-footer flex">
+                        <div class="like-icon flex">
+                           <span class="material-symbols-outlined like-heart">favorite</span>
+                           <span class="like-number">0 likes</span></div>
+                        <div class="reply-icon flex">
+                           <span class="material-symbols-outlined">reply</span>
+                           <span>Responder</span>
+                        </div>
+                     </div>
+
+                     <div class="reply-box">
+                        <form class="new-coment">
+                           <textarea name="new-coment" id="new-coment-answer" class="new-coment" placeholder="Insira um comentário..."></textarea>
+                           <div class="new-coment-buttons flex">
+                              <button class="btn-new-coment-cancel" type="button">Cancelar</button>
+                              <button class="btn-new-coment-submit" type="submit">Publicar</button>
+                           </div>
+                        </form>
                      </div>
                   </div>
 
-                  <div class="coment-body">
-                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis temporibus laudantium ad velit, dignissimos maiores, tempora vero eos saepe quisquam mollitia odio ex nesciunt odit iusto voluptates inventore adipisci cumque!</p>
-                  </div>
-                  
-                  <div class="coment-footer flex">
-                     <div class="like-icon flex">
-                        <span class="material-symbols-outlined like-heart">favorite</span>
-                        <span class="like-number">0 likes</span></div>
-                     <div class="reply-icon flex">
-                        <span class="material-symbols-outlined">reply</span>
-                        <span>Responder</span>
-                     </div>
-                  </div>
 
                   <!-- Respostas ao comentário -->
                   <div class="coment-answers">
@@ -118,7 +130,6 @@
                         </div>
 
                         <div class="coment-footer flex">
-
                            <div class="buttons-answers flex">
                               <div class="like-icon flex">
                                  <span class="material-symbols-outlined like-heart">favorite</span>   

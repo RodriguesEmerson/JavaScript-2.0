@@ -33,30 +33,7 @@ const post1 = new NewPost(
     '4b190d63-32cb-4807-a5ba-9b650d0953ce',
 )
 
-const comentarioPost1 = new Comentario(
-    'img-1',
-    'Usuário-1',
-    false,
-    `"Adorei o post! 🐶✨ Os filhotes realmente trazem tanta alegria e energia positiva para nossas vidas. As dicas são ótimas e muito úteis. Já estou colocando em prática algumas sugestões, como a socialização e a escolha da ração certa. Obrigada por compartilhar essas informações valiosas! 💖"`,
-    {},
-    '12/08/2024',
-    false,
-    gerarUUID(),
-    23,
-)
 
-const respostaParaComentario1 = new RespostaComentario(
-    'img-2',
-    'Usuário-2',
-    false,
-    'Concordo',
-    {},
-    '12/08/2024',
-    false,
-    '4b190d63-32cb-4807-a5ba-9b650d0953ce',
-    23,
-    'Usuario-1',
-)
 
 const post2 = new NewPost(
     'images/post-2.jpg', 'Emerson Rodrigues',
@@ -100,37 +77,6 @@ Ter um gato é uma experiência única e gratificante. Eles oferecem companhia, 
     ['gatos', 'cuidados', 'pets'],
     gerarUUID(),
 )
-
-const comentario2 = new Comentario(
-    'imagens/user-icon-1.png',
-    'Usuário-3',
-    false,
-    'Adorei o artigo! Muito informativo e bem explicado, especialmente para quem é apaixonado por gatos. As dicas de cuidados e curiosidades são realmente úteis. 🐾',
-    {},
-    '14/08/2024',
-    false,
-    gerarUUID(),
-    7
-)
-
-const respostaParaComentario2 = new RespostaComentario(
-    'imagens/user-icon-2.png',
-    'Usuário-4',
-    false,
-    ':)',
-    {},
-    '14/08/2024',
-    false,
-    gerarUUID(),
-    7,
-    'Usuário-3'
-)
-
-post1.setComentario(comentarioPost1)
-comentarioPost1.setComentario(respostaParaComentario1)
-
-post2.setComentario(comentario2)
-comentario2.setComentario(respostaParaComentario2)
 
 SetPostBD.setPost(post1)
 SetPostBD.setPost(post2)
