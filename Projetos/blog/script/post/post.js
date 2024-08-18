@@ -52,8 +52,26 @@ const carregaPost = {
       for(const key in comentarios){
          const comentario = comentarios[key];
          const htmlComent = utils.criarElemento('div', {class: 'coment'}, false, false);
+
+         const likeButton = utils.criarElemento(
+            'div', 
+            {class: 'like-icon flex'},
+            `<span class="material-symbols-outlined like-heart">favorite</span>
+            <span class="like-number">${comentario.getLikes()} likes</span>`,
+            false,   
+            true
+         )
+         const answerButton = utils.criarElemento(
+            'div', 
+            {class: 'reply-icon flex'},
+            `<span class="material-symbols-outlined">reply</span>
+            <span>Responder</span>`,
+            false, 
+            true
+         )
+
          const component = `
-            <div class="coment-content">
+            <div class="coment-content" id="${comentario.getId()}">
                <div class="coment-header flex">
                   <img class="coment-img" src="${comentario.getImagem()}" alt="">
                   <div class="flex">
@@ -67,13 +85,8 @@ const carregaPost = {
                </div>
                
                <div class="coment-footer flex">
-                  <div class="like-icon flex">
-                     <span class="material-symbols-outlined like-heart">favorite</span>
-                     <span class="like-number">${comentario.getLikes()}</span></div>
-                  <div class="reply-icon flex"   onclick="${interacoesComComentarios.mostrarCaixaDeResposta()}">
-                     <span class="material-symbols-outlined">reply</span>
-                     <span>Responder</span>
-                  </div>
+                  ${likeButton}
+                  ${answerButton}
                </div>
             </div>
 
@@ -98,10 +111,28 @@ const carregaPost = {
 
    carregaRespostaDoComentario: function(comentario, htmlComent){
       const comentAnswers = utils.criarElemento('div', {class: 'coment-answers'}, false, false);
-      const comentAnswer = utils.criarElemento('div', {class: 'coment-answer'}, false, false);
-
+      
       for (const key in comentario.getComentario()){
          const answer = comentario.getComentario()[key];
+         const comentAnswer = utils.criarElemento('div', {class: 'coment-answer', id: `${answer.getId()}`}, false, false);
+         
+         const likeButton = utils.criarElemento(
+            'div', 
+            {class: 'like-icon flex'},
+            `<span class="material-symbols-outlined like-heart">favorite</span>
+            <span class="like-number">${answer.getLikes()} likes</span>`,
+            false,   
+            true
+         )
+         const answerButton = utils.criarElemento(
+            'div', 
+            {class: 'reply-icon flex'},
+            `<span class="material-symbols-outlined">reply</span>
+            <span>Responder</span>`,
+            false, 
+            true
+         )
+
          const component = `
          <div class="coment-header flex">
             <img class="coment-img" src="${answer.getImagem()}" alt="">
@@ -118,14 +149,8 @@ const carregaPost = {
          
          <div class="coment-footer flex">
             <div class="buttons-answers flex">
-               <div class="like-icon flex">
-                  <span class="material-symbols-outlined like-heart">favorite</span>
-                  <span class="like-number">${answer.getLikes()} likes</span>
-               </div>
-               <div class="reply-icon flex">
-                  <span class="material-symbols-outlined" >reply</span>
-                  <span>Responder</span>
-               </div>
+               ${likeButton}
+               ${answerButton}
             </div>
          </div>
          
@@ -143,17 +168,20 @@ const carregaPost = {
          `
          comentAnswer.innerHTML += component;
          comentAnswers.appendChild(comentAnswer);
+         answerButton.addEventListener('click', ()=>{
+            eventosDosComentarios.abrirCaixaReply(comentario.getId())
+         })
       }
       htmlComent.appendChild(comentAnswers);
    }
 }
 
-const interacoesComComentarios = {
-   mostrarCaixaDeResposta: function(event){
-      console.log('event')
+const eventosDosComentarios = {
+   abrirCaixaReply: function(comentarioId){
+      const caixaReply = document.querySelector (`#${comentarioId} .reply-box`);
+      caixaReply.classList.remove('hidden')
    }
 }
-
 
 
 const comentarioPost1 = new Comentario(
@@ -188,8 +216,8 @@ const respostaParaComentario2 = new RespostaComentario(
    {},
    '13/08/2024',
    false,
-   '4b190d63-32db-4807-a5ba-9b650d0953ce',
-   8,
+   'f0s9df8-32db-4807-a5ba-9b650d0953ce',
+   5,
    'Usuario-2',
 )
 carregaPost.setarPrototypes();

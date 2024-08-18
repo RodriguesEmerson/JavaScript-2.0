@@ -6,7 +6,7 @@ export const utils = {
       return date
    },
 
-   criarElemento: (tipo, atributos, conteudo, elementoPai) => {
+   criarElemento: (tipo, atributos, conteudo, elementoPai, returInnerHTML) => {
       const elemento = document.createElement(tipo);
 
       for (const att in atributos) {
@@ -18,7 +18,12 @@ export const utils = {
       if (elementoPai) {
          elementoPai.appendChild(elemento)
       }
-      return elemento
-   }
 
+      if(returInnerHTML){
+         const parent = document.createElement('span')
+         parent.appendChild(elemento)
+         return parent.innerHTML;
+      }
+      return elemento
+   },
 }
