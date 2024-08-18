@@ -70,14 +70,14 @@ const carregaPost = {
                   <div class="like-icon flex">
                      <span class="material-symbols-outlined like-heart">favorite</span>
                      <span class="like-number">${comentario.getLikes()}</span></div>
-                  <div class="reply-icon flex">
+                  <div class="reply-icon flex"   onclick="${interacoesComComentarios.mostrarCaixaDeResposta(Event)}">
                      <span class="material-symbols-outlined">reply</span>
                      <span>Responder</span>
                   </div>
                </div>
             </div>
 
-            <div class="reply-box reply-coment">
+            <div class="reply-box reply-coment hidden">
                <form class="new-coment">
                   <textarea name="new-coment" id="new-coment-answer" class="new-coment"
                      placeholder="Insira um comentário..."></textarea>
@@ -123,13 +123,13 @@ const carregaPost = {
                   <span class="like-number">${answer.getLikes()} likes</span>
                </div>
                <div class="reply-icon flex">
-                  <span class="material-symbols-outlined">reply</span>
+                  <span class="material-symbols-outlined" >reply</span>
                   <span>Responder</span>
                </div>
             </div>
          </div>
          
-         <div class="reply-box">
+         <div class="reply-box hidden">
             <form class="new-coment">
                <textarea name="new-coment" id="new-coment-answer" class="new-coment"
                placeholder="Insira um comentário..."></textarea>
@@ -144,10 +144,17 @@ const carregaPost = {
          comentAnswer.innerHTML += component;
          comentAnswers.appendChild(comentAnswer);
       }
-      console.log(comentAnswers.innerHTML)
       htmlComent.appendChild(comentAnswers);
    }
 }
+
+const interacoesComComentarios = {
+   mostrarCaixaDeResposta: function(event){
+      console.log('event')
+   }
+}
+
+
 
 const comentarioPost1 = new Comentario(
    './images/user-icon-1.png',
