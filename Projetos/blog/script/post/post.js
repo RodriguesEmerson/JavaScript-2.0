@@ -70,7 +70,7 @@ const carregaPost = {
                   <div class="like-icon flex">
                      <span class="material-symbols-outlined like-heart">favorite</span>
                      <span class="like-number">${comentario.getLikes()}</span></div>
-                  <div class="reply-icon flex"   onclick="${interacoesComComentarios.mostrarCaixaDeResposta(Event)}">
+                  <div class="reply-icon flex"   onclick="${interacoesComComentarios.mostrarCaixaDeResposta()}">
                      <span class="material-symbols-outlined">reply</span>
                      <span>Responder</span>
                   </div>
