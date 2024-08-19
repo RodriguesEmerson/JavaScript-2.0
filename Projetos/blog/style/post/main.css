@@ -190,6 +190,10 @@ body {
   width: 100%;
 }
 
+.liked {
+  font-variation-settings: "FILL" 1;
+}
+
 .hidden {
   display: none;
 }

@@ -160,7 +160,7 @@ const comentarioPost1 = new Comentario(
    {},
    '12/08/2024',
    false,
-   gerarUUID(),
+   `C${gerarUUID()}`,
    23,
 )
 
@@ -172,7 +172,7 @@ const respostaParaComentario1 = new RespostaComentario(
    {},
    '13/08/2024',
    false,
-   '4b190d63-32cb-4807-a5ba-9b650d0953ce',
+   'CC3b190d63-32cb-4807-a5ba-9b650d0953ce',
    8,
    'Usuario-1',
 )
@@ -184,7 +184,7 @@ const respostaParaComentario2 = new RespostaComentario(
    {},
    '13/08/2024',
    false,
-   'f0s9df8-32db-4807-a5ba-9b650d0953ce',
+   'CCf0s9df8-32db-4807-a5ba-9b653d0953ce',
    5,
    'Usuario-2',
 )
@@ -196,41 +196,84 @@ carregaPost.carregarArticle();
 
 
 const eventos = {
+
+   /******Ações do botão 'like' de cada comentário******/
    getButtonsLike: function () {
       const btnLike = document.querySelectorAll('.like-icon');
       const self = this;
       btnLike.forEach(element => {
          element.addEventListener('click', function (){
-            const dataId = (element.getAttribute('data-id'))
-            self.buttonLikeEventoHTML(dataId)
+            const comentId = (element.getAttribute('data-id'))
+            self.buttonLikeEventoHTML(comentId);
          })
       })
    },
-   buttonLikeEventoHTML: function (dataId) {
-      const like = document.querySelector(`[data-id="${dataId}"] .like-number`);
-      const likeHeart = document.querySelector(`[data-id="${dataId}"] .like-heart`);
-      like.classList.toggle('liked');
+   buttonLikeEventoHTML: function (comentId) {
+      const comentario = (document.querySelector(`#${comentId}`))
+      const likeNumber = document.querySelector(`[data-id="${comentId}"] .like-number`);
+      const likeHeart = document.querySelector(`[data-id="${comentId}"] .like-heart`);
+      let incrementarLikes = false
+      let isComent = false
 
-      if(like.classList.contains('liked')){
-         like.innerHTML = Number(like.innerHTML) + 1;
-         likeHeart.style.fontVariationSettings = "'FILL' 1";
-         return
+
+      if(comentario.classList.contains('coment-content')){
+         isComent = true
+      } 
+
+      likeHeart.classList.toggle('liked');
+      
+      if(likeHeart.classList.contains('liked')){
+         Number(likeNumber.innerHTML++);
+         incrementarLikes = true
+      }else{
+         Number(likeNumber.innerHTML--)
       }
-      like.innerHTML = Number(like.innerHTML) - 1;
-      likeHeart.style.fontVariationSettings = "'FILL' 0";
-
+      this.buttonLikeEventoBD(comentId, isComent, incrementarLikes)
+   },
+   buttonLikeEventoBD: function(comentId, isComent, incrementarLikes){
+      //Se for um comentário principal**************
+      if(isComent){
+         if(incrementarLikes){
+            carregaPost.post.getComentario()[comentId]
+               .incrementarLikes();
+            return
+         }
+         carregaPost.post.getComentario()[comentId]
+            .retirarLikes();
+            return
+      }
+      
+      //Se for a resposta de um comentário;************
+      const comentarios = carregaPost.post.getComentario();
+      Object.setPrototypeOf(comentarios, Comentario.prototype);
+      let reply;
+      //procura qual foi a resposta de comentário clicada em cada comentário pelo id
+      for(const comentario in comentarios){
+         try {
+            reply =comentarios[comentario].getComentario()[comentId]
+         } catch (error) {
+            
+         }      
+      }
+      
+      if(incrementarLikes){
+         reply.incrementarLikes();
+      }else{
+         reply.retirarLikes();
+      }
    },
 
+   /******Ações do botão 'responder' de cada comentário******/
    getButtonsReply: function () {
       const btnReply = document.querySelectorAll('.reply-icon');
       btnReply.forEach(element => {
-         element.addEventListener('click', function () { })
+         element.addEventListener('click', function () { });
       })
    },
 
    callMetodos: function () {
       this.getButtonsLike();
-      this.getButtonsReply()
+      this.getButtonsReply();
    }
 
 }
