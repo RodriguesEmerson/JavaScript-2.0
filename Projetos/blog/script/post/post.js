@@ -51,10 +51,10 @@ const carregaPost = {
       const comentarios = this.post.getComentario();
       for (const key in comentarios) {
          const comentario = comentarios[key];
-         const htmlComent = utils.criarElemento('div', { class: 'coment' }, false, false);
+         const htmlComent = utils.criarElemento('div', { class: 'coment', id: `${comentario.getId()}` }, false, false);
 
          const component = `
-            <div class="coment-content" id="${comentario.getId()}">
+            <div class="coment-content">
                <div class="coment-header flex">
                   <img class="coment-img" src="${comentario.getImagem()}" alt="">
                   <div class="flex">
@@ -77,19 +77,20 @@ const carregaPost = {
                      <span>Responder</span>
                   </div>
                </div>
-            </div>
 
-            <div class="reply-box reply-coment hidden">
-               <form class="new-coment">
-                  <textarea name="new-coment" id="new-coment-answer" class="new-coment"
-                     placeholder="Insira um comentário..."></textarea>
-                  <div class="new-coment-buttons flex">
+               <div class="reply-box reply-coment hidden" data-id="${comentario.getId()}>
+                  <form class="new-answer-form">
+                      <textarea name="new-coment" class="new-answer"
+                        placeholder="Insira um comentário..."></textarea>
+                        <div class="new-answer-buttons flex">
                      <button class="btn-new-coment-cancel" type="button">Cancelar</button>
                      <button class="btn-new-coment-submit" type="submit">Publicar</button>
                   </div>
-               </form>
+                  </form>
+               </div>
             </div>
-         `
+            
+            `
          htmlComent.innerHTML = component;
          this.carregaRespostaDoComentario(comentario, htmlComent)
          comentBox.appendChild(htmlComent);
@@ -132,17 +133,17 @@ const carregaPost = {
             </div>
          </div>
          
-         <div class="reply-box hidden">
-            <form class="new-coment">
-               <textarea name="new-coment" id="new-coment-answer" class="new-coment"
+         <div class="reply-box hidden" data-id="${answer.getId()}">
+            <form class="new-answer-form">
+               <textarea name="new-coment" class="new-answer"
                placeholder="Insira um comentário..."></textarea>
-               <div class="new-coment-buttons flex">
+               <div class="new-answer-buttons flex">
                   <button class="btn-new-coment-cancel" type="button">Cancelar</button>
                   <button class="btn-new-coment-submit" type="submit">Publicar</button>
                </div>
             </form>
          </div>
-         </div>
+         
          `
          comentAnswer.innerHTML += component;
          comentAnswers.appendChild(comentAnswer);
@@ -202,7 +203,7 @@ const eventos = {
       const btnLike = document.querySelectorAll('.like-icon');
       const self = this;
       btnLike.forEach(element => {
-         element.addEventListener('click', function (){
+         element.addEventListener('click', function () {
             const comentId = (element.getAttribute('data-id'))
             self.buttonLikeEventoHTML(comentId);
          })
@@ -216,59 +217,67 @@ const eventos = {
       let isComent = false
 
 
-      if(comentario.classList.contains('coment-content')){
+      if (comentario.classList.contains('coment')) {
          isComent = true
-      } 
+      }
 
       likeHeart.classList.toggle('liked');
-      
-      if(likeHeart.classList.contains('liked')){
+
+      if (likeHeart.classList.contains('liked')) {
          Number(likeNumber.innerHTML++);
          incrementarLikes = true
-      }else{
+      } else {
          Number(likeNumber.innerHTML--)
       }
       this.buttonLikeEventoBD(comentId, isComent, incrementarLikes)
    },
-   buttonLikeEventoBD: function(comentId, isComent, incrementarLikes){
+   buttonLikeEventoBD: function (comentId, isComent, incrementarLikes) {
       //Se for um comentário principal**************
-      if(isComent){
-         if(incrementarLikes){
+      if (isComent) {
+         if (incrementarLikes) {
             carregaPost.post.getComentario()[comentId]
                .incrementarLikes();
             return
          }
          carregaPost.post.getComentario()[comentId]
             .retirarLikes();
-            return
+         return
       }
-      
+
       //Se for a resposta de um comentário;************
       const comentarios = carregaPost.post.getComentario();
       Object.setPrototypeOf(comentarios, Comentario.prototype);
       let reply;
       //procura qual foi a resposta de comentário clicada em cada comentário pelo id
-      for(const comentario in comentarios){
+      for (const comentario in comentarios) {
          try {
-            reply =comentarios[comentario].getComentario()[comentId]
+            reply = comentarios[comentario].getComentario()[comentId]
          } catch (error) {
-            
-         }      
-      }
-      
-      if(incrementarLikes){
+            console.log(error)
+         }
+      };
+
+      if (incrementarLikes) {
          reply.incrementarLikes();
-      }else{
+      } else {
          reply.retirarLikes();
-      }
+      };
    },
 
    /******Ações do botão 'responder' de cada comentário******/
    getButtonsReply: function () {
       const btnReply = document.querySelectorAll('.reply-icon');
+      const self = this;
       btnReply.forEach(element => {
-         element.addEventListener('click', function () { });
+         element.addEventListener('click', function () {
+            const comentId = element.getAttribute(['data-id']);
+            self.buttonReplyEventoHTML(comentId);
+         });
       })
+   },
+   buttonReplyEventoHTML: function (comentId) {
+      const replyBox = document.querySelector(`#${comentId} .reply-box`);
+      replyBox.classList.toggle('hidden');
    },
 
    callMetodos: function () {

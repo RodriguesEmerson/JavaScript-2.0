@@ -13,11 +13,13 @@ $background-gradient: linear-gradient(90deg, rgba(47,130,205,1) 0%, rgba(34,34,1
 #posts{
    
 }
+//Todos os comentários
 .coments-box {
    width: 100%;
    padding: 10px;
    flex-direction: column;
 
+   //caixa de comentário principal 
    .new-coment-box{
       width: 100%;
       .btn-new-coment-open{
@@ -34,57 +36,54 @@ $background-gradient: linear-gradient(90deg, rgba(47,130,205,1) 0%, rgba(34,34,1
                background-color: darken($cor-padrao, 9)
             }
       }
-   }
-   .new-coment{
-      width: 100%;
-      min-height: 90px;
-      border: 1px solid $cor-padrao;
-      padding: 5px;
-
-      #new-coment, #new-coment-answer{
-         border: none;
+      .principal-new-coment-form{
          width: 100%;
-         min-height: 70px;
-         resize: none;
-         outline: none;
+         min-height: 90px;
+         border: 1px solid $cor-padrao;
+         padding: 5px;
 
-         &:focus-within{
-            border: none !important; 
-         }
-      }
-
-      .new-coment-buttons{  
-         margin-top: 5px; 
-         justify-content: end;
-         
-         .btn-new-coment-cancel{
-            margin-right: 10px;
+         #new-coment{
             border: none;
-            background-color: white;
-            color: rgb(99, 1, 1);
-            text-decoration: underline;
-            cursor: pointer;
-         }
-
-         .btn-new-coment-submit{
-            height: 30px;
-            width: 70px;
-            color: white;
-            background: $cor-padrao;
-            border: none;
-            cursor: pointer;
-            transition: 0.4s;
-
-            &:hover{
-               background-color: darken($cor-padrao, 9)
+            width: 100%;
+            min-height: 70px;
+            resize: none;
+            outline: none;
+   
+            &:focus-within{
+               border: none !important; 
             }
          }
-
-
-      } 
-
+         .new-coment-buttons{  
+            margin-top: 5px; 
+            justify-content: end;
+            
+            .btn-new-coment-cancel{
+               margin-right: 10px;
+               border: none;
+               background-color: white;
+               color: rgb(99, 1, 1);
+               text-decoration: underline;
+               cursor: pointer;
+            }
+   
+            .btn-new-coment-submit{
+               height: 30px;
+               width: 70px;
+               color: white;
+               background: $cor-padrao;
+               border: none;
+               cursor: pointer;
+               transition: 0.4s;
+   
+               &:hover{
+                  background-color: darken($cor-padrao, 9)
+               }
+            }
+         }
+      }
    }
 
+ 
 
    .coment-header{
       height: 50px;
@@ -160,9 +159,60 @@ $background-gradient: linear-gradient(90deg, rgba(47,130,205,1) 0%, rgba(34,34,1
       }
    }
 
+   .new-answer-form{
+      width: 100%;
+      min-height: 90px;
+      border: 1px solid $cor-padrao;
+      padding: 5px;
+
+      .new-answer{
+         border: none;
+         width: 100%;
+         min-height: 70px;
+         resize: none;
+         outline: none;
+
+         &:focus-within{
+            border: none !important; 
+         }
+      }
+
+      .new-answer-buttons{  
+         margin-top: 5px; 
+         justify-content: end;
+         
+         .btn-new-coment-cancel{
+            margin-right: 10px;
+            border: none;
+            background-color: white;
+            color: rgb(99, 1, 1);
+            text-decoration: underline;
+            cursor: pointer;
+         }
+
+         .btn-new-coment-submit{
+            height: 30px;
+            width: 70px;
+            color: white;
+            background: $cor-padrao;
+            border: none;
+            cursor: pointer;
+            transition: 0.4s;
+
+            &:hover{
+               background-color: darken($cor-padrao, 9)
+            }
+         }
+
+
+      } 
+
+   }
+
+
 }
 
 .liked{
    font-variation-settings:
-   'FILL' 1;
+   'FILL' 1; 
 }

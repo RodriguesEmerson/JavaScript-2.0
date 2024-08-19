@@ -85,27 +85,27 @@ body {
 .coments-box .new-coment-box .btn-new-coment-open:hover {
   background-color: #154482;
 }
-.coments-box .new-coment {
+.coments-box .new-coment-box .principal-new-coment-form {
   width: 100%;
   min-height: 90px;
   border: 1px solid rgb(28, 89, 169);
   padding: 5px;
 }
-.coments-box .new-coment #new-coment, .coments-box .new-coment #new-coment-answer {
+.coments-box .new-coment-box .principal-new-coment-form #new-coment {
   border: none;
   width: 100%;
   min-height: 70px;
   resize: none;
   outline: none;
 }
-.coments-box .new-coment #new-coment:focus-within, .coments-box .new-coment #new-coment-answer:focus-within {
+.coments-box .new-coment-box .principal-new-coment-form #new-coment:focus-within {
   border: none !important;
 }
-.coments-box .new-coment .new-coment-buttons {
+.coments-box .new-coment-box .principal-new-coment-form .new-coment-buttons {
   margin-top: 5px;
   justify-content: end;
 }
-.coments-box .new-coment .new-coment-buttons .btn-new-coment-cancel {
+.coments-box .new-coment-box .principal-new-coment-form .new-coment-buttons .btn-new-coment-cancel {
   margin-right: 10px;
   border: none;
   background-color: white;
@@ -113,7 +113,7 @@ body {
   text-decoration: underline;
   cursor: pointer;
 }
-.coments-box .new-coment .new-coment-buttons .btn-new-coment-submit {
+.coments-box .new-coment-box .principal-new-coment-form .new-coment-buttons .btn-new-coment-submit {
   height: 30px;
   width: 70px;
   color: white;
@@ -122,7 +122,7 @@ body {
   cursor: pointer;
   transition: 0.4s;
 }
-.coments-box .new-coment .new-coment-buttons .btn-new-coment-submit:hover {
+.coments-box .new-coment-box .principal-new-coment-form .new-coment-buttons .btn-new-coment-submit:hover {
   background-color: #154482;
 }
 .coments-box .coment-header {
@@ -188,6 +188,46 @@ body {
 }
 .coment-answers .coment-footer .reply-box {
   width: 100%;
+}
+.coment-answers .new-answer-form {
+  width: 100%;
+  min-height: 90px;
+  border: 1px solid rgb(28, 89, 169);
+  padding: 5px;
+}
+.coment-answers .new-answer-form .new-answer {
+  border: none;
+  width: 100%;
+  min-height: 70px;
+  resize: none;
+  outline: none;
+}
+.coment-answers .new-answer-form .new-answer:focus-within {
+  border: none !important;
+}
+.coment-answers .new-answer-form .new-answer-buttons {
+  margin-top: 5px;
+  justify-content: end;
+}
+.coment-answers .new-answer-form .new-answer-buttons .btn-new-coment-cancel {
+  margin-right: 10px;
+  border: none;
+  background-color: white;
+  color: rgb(99, 1, 1);
+  text-decoration: underline;
+  cursor: pointer;
+}
+.coment-answers .new-answer-form .new-answer-buttons .btn-new-coment-submit {
+  height: 30px;
+  width: 70px;
+  color: white;
+  background: rgb(28, 89, 169);
+  border: none;
+  cursor: pointer;
+  transition: 0.4s;
+}
+.coment-answers .new-answer-form .new-answer-buttons .btn-new-coment-submit:hover {
+  background-color: #154482;
 }
 
 .liked {
