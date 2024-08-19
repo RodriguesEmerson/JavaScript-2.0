@@ -78,14 +78,13 @@ const carregaPost = {
                   </div>
                </div>
 
-               <div class="reply-box reply-coment hidden" data-id="${comentario.getId()}>
+               <div class="reply-box hidden" data-id="${comentario.getId()}">
                   <form class="new-answer-form">
-                      <textarea name="new-coment" class="new-answer"
-                        placeholder="Insira um comentário..."></textarea>
-                        <div class="new-answer-buttons flex">
-                     <button class="btn-new-coment-cancel" type="button">Cancelar</button>
-                     <button class="btn-new-coment-submit" type="submit">Publicar</button>
-                  </div>
+                     <textarea name="new-coment" class="new-answer"placeholder="Insira um comentário..."></textarea>
+                     <div class="new-answer-buttons flex">
+                        <button class="btn-new-coment-cancel" type="button">Cancelar</button>
+                        <button class="btn-new-coment-submit" type="submit">Publicar</button>
+                     </div>
                   </form>
                </div>
             </div>

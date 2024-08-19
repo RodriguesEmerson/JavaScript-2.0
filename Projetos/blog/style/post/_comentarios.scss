@@ -133,37 +133,13 @@ $background-gradient: linear-gradient(90deg, rgba(47,130,205,1) 0%, rgba(34,34,1
    }
 }
 
-.coment-answers{
-   margin-left: 40px;
-   padding-left: 10px;
-   border-left: 1px solid rgb(165, 165, 165);
-
-   .coment-header{
-      margin-bottom: 10px;
-
-      .replying-to-name{
-         color: gray;
-      }
-   }
-   .coment-footer{
-      width: calc(100% - 40px);
-      flex-direction: column;
-
-      .buttons-answers{
-         margin-bottom: 5px;
-         width: 98%;
-      }
-
-      .reply-box{
-         width: 100%
-      }
-   }
-
+.coment{
    .new-answer-form{
       width: 100%;
       min-height: 90px;
       border: 1px solid $cor-padrao;
       padding: 5px;
+      margin-bottom: 5px;
 
       .new-answer{
          border: none;
@@ -203,11 +179,38 @@ $background-gradient: linear-gradient(90deg, rgba(47,130,205,1) 0%, rgba(34,34,1
                background-color: darken($cor-padrao, 9)
             }
          }
-
-
       } 
 
    }
+}
+
+.coment-answers{
+   margin-left: 40px;
+   padding-left: 10px;
+   border-left: 1px solid rgb(165, 165, 165);
+
+   .coment-header{
+      margin-bottom: 10px;
+
+      .replying-to-name{
+         color: gray;
+      }
+   }
+   .coment-footer{
+      width: calc(100% - 40px);
+      flex-direction: column;
+
+      .buttons-answers{
+         margin-bottom: 5px;
+         width: 98%;
+      }
+
+      .reply-box{
+         width: 100%
+      }
+   }
+
+   
 
 
 }

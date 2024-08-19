@@ -167,6 +167,48 @@ body {
   font-size: 18px;
 }
 
+.coment .new-answer-form {
+  width: 100%;
+  min-height: 90px;
+  border: 1px solid rgb(28, 89, 169);
+  padding: 5px;
+  margin-bottom: 5px;
+}
+.coment .new-answer-form .new-answer {
+  border: none;
+  width: 100%;
+  min-height: 70px;
+  resize: none;
+  outline: none;
+}
+.coment .new-answer-form .new-answer:focus-within {
+  border: none !important;
+}
+.coment .new-answer-form .new-answer-buttons {
+  margin-top: 5px;
+  justify-content: end;
+}
+.coment .new-answer-form .new-answer-buttons .btn-new-coment-cancel {
+  margin-right: 10px;
+  border: none;
+  background-color: white;
+  color: rgb(99, 1, 1);
+  text-decoration: underline;
+  cursor: pointer;
+}
+.coment .new-answer-form .new-answer-buttons .btn-new-coment-submit {
+  height: 30px;
+  width: 70px;
+  color: white;
+  background: rgb(28, 89, 169);
+  border: none;
+  cursor: pointer;
+  transition: 0.4s;
+}
+.coment .new-answer-form .new-answer-buttons .btn-new-coment-submit:hover {
+  background-color: #154482;
+}
+
 .coment-answers {
   margin-left: 40px;
   padding-left: 10px;
@@ -188,46 +230,6 @@ body {
 }
 .coment-answers .coment-footer .reply-box {
   width: 100%;
-}
-.coment-answers .new-answer-form {
-  width: 100%;
-  min-height: 90px;
-  border: 1px solid rgb(28, 89, 169);
-  padding: 5px;
-}
-.coment-answers .new-answer-form .new-answer {
-  border: none;
-  width: 100%;
-  min-height: 70px;
-  resize: none;
-  outline: none;
-}
-.coment-answers .new-answer-form .new-answer:focus-within {
-  border: none !important;
-}
-.coment-answers .new-answer-form .new-answer-buttons {
-  margin-top: 5px;
-  justify-content: end;
-}
-.coment-answers .new-answer-form .new-answer-buttons .btn-new-coment-cancel {
-  margin-right: 10px;
-  border: none;
-  background-color: white;
-  color: rgb(99, 1, 1);
-  text-decoration: underline;
-  cursor: pointer;
-}
-.coment-answers .new-answer-form .new-answer-buttons .btn-new-coment-submit {
-  height: 30px;
-  width: 70px;
-  color: white;
-  background: rgb(28, 89, 169);
-  border: none;
-  cursor: pointer;
-  transition: 0.4s;
-}
-.coment-answers .new-answer-form .new-answer-buttons .btn-new-coment-submit:hover {
-  background-color: #154482;
 }
 
 .liked {
