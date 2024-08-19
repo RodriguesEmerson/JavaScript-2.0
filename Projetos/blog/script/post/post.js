@@ -24,7 +24,7 @@ const carregaPost = {
    },
 
    carregarArticle: function () {
-      const component =  `
+      const component = `
          <header class="post-header">
             <h2 class="post-title">${this.post.getTitulo()}</h2>
             <p>Escrito por <strong class="post-autor">Emerson R</strong>, 
@@ -41,7 +41,7 @@ const carregaPost = {
                ${this.post.getConteudo()}
             </div>
          </div>
-      `  
+      `
       article.innerHTML = '';
       article.innerHTML = component;
       this.carregarComentarios();
@@ -49,26 +49,9 @@ const carregaPost = {
 
    carregarComentarios: function () {
       const comentarios = this.post.getComentario();
-      for(const key in comentarios){
+      for (const key in comentarios) {
          const comentario = comentarios[key];
-         const htmlComent = utils.criarElemento('div', {class: 'coment'}, false, false);
-
-         const likeButton = utils.criarElemento(
-            'div', 
-            {class: 'like-icon flex'},
-            `<span class="material-symbols-outlined like-heart">favorite</span>
-            <span class="like-number">${comentario.getLikes()} likes</span>`,
-            false,   
-            true
-         )
-         const answerButton = utils.criarElemento(
-            'div', 
-            {class: 'reply-icon flex'},
-            `<span class="material-symbols-outlined">reply</span>
-            <span>Responder</span>`,
-            false, 
-            true
-         )
+         const htmlComent = utils.criarElemento('div', { class: 'coment' }, false, false);
 
          const component = `
             <div class="coment-content" id="${comentario.getId()}">
@@ -85,8 +68,14 @@ const carregaPost = {
                </div>
                
                <div class="coment-footer flex">
-                  ${likeButton}
-                  ${answerButton}
+                   <div class="like-icon flex" data-id="${comentario.getId()}">
+                     <span class="material-symbols-outlined like-heart">favorite</span>
+                     <span class="like-number">${comentario.getLikes()}</span>
+                  </div>
+                  <div class="reply-icon flex" data-id="${comentario.getId()}">
+                     <span class="material-symbols-outlined">reply</span>
+                     <span>Responder</span>
+                  </div>
                </div>
             </div>
 
@@ -106,32 +95,15 @@ const carregaPost = {
          comentBox.appendChild(htmlComent);
 
       }
-      
+
    },
 
-   carregaRespostaDoComentario: function(comentario, htmlComent){
-      const comentAnswers = utils.criarElemento('div', {class: 'coment-answers'}, false, false);
-      
-      for (const key in comentario.getComentario()){
+   carregaRespostaDoComentario: function (comentario, htmlComent) {
+      const comentAnswers = utils.criarElemento('div', { class: 'coment-answers' }, false, false);
+
+      for (const key in comentario.getComentario()) {
          const answer = comentario.getComentario()[key];
-         const comentAnswer = utils.criarElemento('div', {class: 'coment-answer', id: `${answer.getId()}`}, false, false);
-         
-         const likeButton = utils.criarElemento(
-            'div', 
-            {class: 'like-icon flex'},
-            `<span class="material-symbols-outlined like-heart">favorite</span>
-            <span class="like-number">${answer.getLikes()} likes</span>`,
-            false,   
-            true
-         )
-         const answerButton = utils.criarElemento(
-            'div', 
-            {class: 'reply-icon flex'},
-            `<span class="material-symbols-outlined">reply</span>
-            <span>Responder</span>`,
-            false, 
-            true
-         )
+         const comentAnswer = utils.criarElemento('div', { class: 'coment-answer', id: `${answer.getId()}` }, false, false);
 
          const component = `
          <div class="coment-header flex">
@@ -149,8 +121,14 @@ const carregaPost = {
          
          <div class="coment-footer flex">
             <div class="buttons-answers flex">
-               ${likeButton}
-               ${answerButton}
+               <div class="like-icon flex" data-id="${answer.getId()}">
+                  <span class="material-symbols-outlined like-heart">favorite</span>
+                  <span class="like-number">${answer.getLikes()}</span>
+               </div>
+               <div class="reply-icon flex" data-id="${answer.getId()}">
+                  <span class="material-symbols-outlined">reply</span>
+                  <span>Responder</span>
+               </div>
             </div>
          </div>
          
@@ -168,18 +146,8 @@ const carregaPost = {
          `
          comentAnswer.innerHTML += component;
          comentAnswers.appendChild(comentAnswer);
-         answerButton.addEventListener('click', ()=>{
-            eventosDosComentarios.abrirCaixaReply(comentario.getId())
-         })
       }
       htmlComent.appendChild(comentAnswers);
-   }
-}
-
-const eventosDosComentarios = {
-   abrirCaixaReply: function(comentarioId){
-      const caixaReply = document.querySelector (`#${comentarioId} .reply-box`);
-      caixaReply.classList.remove('hidden')
    }
 }
 
@@ -224,7 +192,46 @@ carregaPost.setarPrototypes();
 comentarioPost1.setComentario(respostaParaComentario1)
 comentarioPost1.setComentario(respostaParaComentario2)
 carregaPost.post.setComentario(comentarioPost1);
-
-
 carregaPost.carregarArticle();
 
+
+const eventos = {
+   getButtonsLike: function () {
+      const btnLike = document.querySelectorAll('.like-icon');
+      const self = this;
+      btnLike.forEach(element => {
+         element.addEventListener('click', function (){
+            const dataId = (element.getAttribute('data-id'))
+            self.buttonLikeEventoHTML(dataId)
+         })
+      })
+   },
+   buttonLikeEventoHTML: function (dataId) {
+      const like = document.querySelector(`[data-id="${dataId}"] .like-number`);
+      const likeHeart = document.querySelector(`[data-id="${dataId}"] .like-heart`);
+      like.classList.toggle('liked');
+
+      if(like.classList.contains('liked')){
+         like.innerHTML = Number(like.innerHTML) + 1;
+         likeHeart.style.fontVariationSettings = "'FILL' 1";
+         return
+      }
+      like.innerHTML = Number(like.innerHTML) - 1;
+      likeHeart.style.fontVariationSettings = "'FILL' 0";
+
+   },
+
+   getButtonsReply: function () {
+      const btnReply = document.querySelectorAll('.reply-icon');
+      btnReply.forEach(element => {
+         element.addEventListener('click', function () { })
+      })
+   },
+
+   callMetodos: function () {
+      this.getButtonsLike();
+      this.getButtonsReply()
+   }
+
+}
+eventos.callMetodos()

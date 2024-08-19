@@ -60,6 +60,10 @@ body {
   flex-direction: row !important;
 }
 
+.material-symbols-outlined {
+  font-variation-settings: "FILL" 0, "wght" 600, "GRAD" 1, "opsz" 48;
+}
+
 .coments-box {
   width: 100%;
   padding: 10px;
