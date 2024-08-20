@@ -78,7 +78,7 @@ const carregaPost = {
                   </div>
                </div>
 
-               <div class="reply-box hidden" data-id="${comentario.getId()}">
+               <div class="reply-box principal hidden" data-id="${comentario.getId()}">
                   <form class="new-answer-form">
                      <textarea name="new-coment" class="new-answer"placeholder="Insira um comentário..."></textarea>
                      <div class="new-answer-buttons flex">
@@ -91,19 +91,25 @@ const carregaPost = {
             
             `
          htmlComent.innerHTML = component;
-         this.carregaRespostaDoComentario(comentario, htmlComent)
+         this.carregaRespostaDoComentario(comentario, htmlComent, comentario.getId())
          comentBox.appendChild(htmlComent);
 
       }
 
    },
 
-   carregaRespostaDoComentario: function (comentario, htmlComent) {
+   carregaRespostaDoComentario: function (comentario, htmlComent, dataParentId) {
       const comentAnswers = utils.criarElemento('div', { class: 'coment-answers' }, false, false);
 
       for (const key in comentario.getComentario()) {
          const answer = comentario.getComentario()[key];
-         const comentAnswer = utils.criarElemento('div', { class: 'coment-answer', id: `${answer.getId()}` }, false, false);
+         const comentAnswer = utils.criarElemento('div', 
+            { class: 'coment-answer', 
+              id: `${answer.getId()}` 
+            }, 
+            false, 
+            false
+         );
 
          const component = `
          <div class="coment-header flex">
@@ -132,7 +138,7 @@ const carregaPost = {
             </div>
          </div>
          
-         <div class="reply-box hidden" data-id="${answer.getId()}">
+         <div class="reply-box hidden" data-id="${answer.getId()}" data-parent-id="${dataParentId}">
             <form class="new-answer-form">
                <textarea name="new-coment" class="new-answer"
                placeholder="Insira um comentário..."></textarea>
@@ -235,7 +241,7 @@ const eventos = {
       if (isComent) {
          if (incrementarLikes) {
             carregaPost.post.getComentario()[comentId]
-               .incrementarLikes();
+            .incrementarLikes();
             return
          }
          carregaPost.post.getComentario()[comentId]
@@ -264,6 +270,7 @@ const eventos = {
    },
 
    /******Ações do botão 'responder' de cada comentário******/
+   openReplyBox: false,
    getButtonsReply: function () {
       const btnReply = document.querySelectorAll('.reply-icon');
       const self = this;
@@ -272,11 +279,22 @@ const eventos = {
             const comentId = element.getAttribute(['data-id']);
             self.buttonReplyEventoHTML(comentId);
          });
-      })
+      });
    },
    buttonReplyEventoHTML: function (comentId) {
+      //Fecha a caixa de resposta, se tiver, aberta ateriormente;
+      if(this.replyBoxAnterior){
+         this.replyBoxAnterior.classList.add('hidden');
+      }
       const replyBox = document.querySelector(`#${comentId} .reply-box`);
       replyBox.classList.toggle('hidden');
+      const replyTextArea = document.querySelector(`#${comentId} .new-answer`);
+      
+      replyTextArea.focus();
+      this.replyBoxAnterior = replyBox;
+   },
+   buttonPublicarEventoBD: function(){
+      
    },
 
    callMetodos: function () {
@@ -285,4 +303,4 @@ const eventos = {
    }
 
 }
-eventos.callMetodos()
+eventos.callMetodos();
