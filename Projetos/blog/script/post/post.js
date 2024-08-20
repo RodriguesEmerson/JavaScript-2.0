@@ -293,13 +293,46 @@ const eventos = {
       replyTextArea.focus();
       this.replyBoxAnterior = replyBox;
    },
-   buttonPublicarEventoBD: function(){
-      
+
+   ///******Ações do botão 'Publicar' de cada comentário******/
+   getFormsSubmit: function(){
+      const forms = document.querySelectorAll('.new-answer-form');
+      const self = this;
+
+      forms.forEach(form => {
+         form.addEventListener('submit', (event) =>{
+            event.preventDefault();
+            const comentario = form.closest('div');
+            const formData = new FormData(form);
+            const newAnswer = Object.fromEntries(formData)['new-coment'];
+            self.submitActions(comentario, newAnswer);
+         })
+      })
    },
+   submitActions: function(comentario, newAnswer){
+      //Verifica se é um comentário principal ou uma resposta;
+      let comentPaiId = false;
+      const comentId = comentario.getAttribute(['data-id'])
+      try {
+         comentPaiId = comentario.getAttribute(['data-parent-id'])
+      } catch (error) {
+         comentPaiId = false;
+      }
+      
+      if(!comentPaiId){
+         console.log(comentId);
+         carregaPost.post.getComentario()[`${comentId}`]
+            .setComentario(
+               'Usuário-4',
+            );
+      }
+   },
+
 
    callMetodos: function () {
       this.getButtonsLike();
       this.getButtonsReply();
+      this.getFormsSubmit();
    }
 
 }
