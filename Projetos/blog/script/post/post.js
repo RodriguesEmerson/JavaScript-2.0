@@ -109,6 +109,8 @@ const carregaPost = {
             const reply = criarRespostaComentario(answer)
             comentAnswers.appendChild(reply);
          }
+         htmlComent.appendChild(comentAnswers);
+
       }else{
          const answer = comentario;
          return criarRespostaComentario(answer);
@@ -165,7 +167,6 @@ const carregaPost = {
          comentAnswer.innerHTML += component;
          return comentAnswer
       }
-      htmlComent.appendChild(comentAnswers);
    }
 }
 
@@ -215,7 +216,8 @@ carregaPost.carregarArticle();
 
 const eventos = {
 
-   /******Ações do botão 'like' de cada comentário******/
+   /******************************Ações do botão 'like' de cada comentário**************************************/
+   //***********************************************************************************************************/
    getButtonsLike: function () {
       const btnLike = document.querySelectorAll('.like-icon');
       const self = this;
@@ -249,7 +251,7 @@ const eventos = {
       this.buttonLikeEventoBD(comentId, isComent, incrementarLikes)
    },
    buttonLikeEventoBD: function (comentId, isComent, incrementarLikes) {
-      //Se for um comentário principal**************
+      //***********Se for um comentário principal**************
       if (isComent) {
          if (incrementarLikes) {
             carregaPost.post.getComentario()[comentId]
@@ -261,7 +263,7 @@ const eventos = {
          return
       }
 
-      //Se for a resposta de um comentário;************
+      //*********Se for a resposta de um comentário;************
       const comentarios = carregaPost.post.getComentario();
       Object.setPrototypeOf(comentarios, Comentario.prototype);
       let reply;
@@ -281,7 +283,8 @@ const eventos = {
       };
    },
 
-   /******Ações do botão 'responder' de cada comentário******/
+    /*****************************Ações do botão 'responder' de cada comentário*********************************/
+   //***********************************************************************************************************/
    openReplyBox: false,
    getButtonsReply: function () {
       const btnReply = document.querySelectorAll('.reply-icon');
@@ -306,7 +309,8 @@ const eventos = {
       this.replyBoxAnterior = replyBox;
    },
 
-   ///******Ações do botão 'Publicar' de cada comentário******/
+   /*******************************Ações do botão 'publicar' de cada comentário*********************************/
+   //***********************************************************************************************************/
    getFormsSubmit: function(){
       const forms = document.querySelectorAll('.new-answer-form');
       const self = this;
@@ -327,14 +331,15 @@ const eventos = {
       //Pega o id do comentário em sí.
       const comentId = comentario.getAttribute(['data-id'])
       try {
-         //Tenta pegar o id co comentário Pai, se tiver.
+         //Tenta pegar o id do comentário Pai, se tiver.
          comentPaiId = comentario.getAttribute(['data-parent-id'])
       } catch (error) {
          comentPaiId = false;
       }
       
+      //Se não tiver o comentPaiId é um comentário principal.
       if(!comentPaiId){
-         const newComentario = new Comentario(
+         const newComentario = new RespostaComentario(
             './images/user-icon-2.png',
             'Usuário-4',
             false,
@@ -346,17 +351,19 @@ const eventos = {
             8,
             'Usuario-1',
          )
-         this.submitActionsBD(comentId, newComentario)
+
+         this.submitActionsRespBD(comentId, newComentario);
+         this.submitActionsRespDOM(comentId, newComentario)
+         return
       }
    },
-   submitActionsBD:function(comentId, newComentario, comentPaiId){
+   submitActionsRespBD:function(comentId, newComentario, comentPaiId){
       carregaPost.post.getComentario()[`${comentId}`].setComentario(newComentario);
-      this.submitActionsDOM(comentId, newComentario)
    },
-   submitActionsDOM: function(comentId, newComentario){
+   submitActionsRespDOM: function(comentId, newComentario){
       const comentAnswersDOM = document.querySelector(`#${comentId} .coment-answers`)
       const newComentDOM = carregaPost.carregaRespostaDoComentario(newComentario, comentAnswersDOM, comentId, true);
-      console.log(newComentDOM)
+      this.callMetodos()
    },
 
    callMetodos: function () {
