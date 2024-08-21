@@ -98,11 +98,23 @@ const carregaPost = {
 
    },
 
-   carregaRespostaDoComentario: function (comentario, htmlComent, dataParentId) {
+   carregaRespostaDoComentario: function (comentario, htmlComent, dataParentId, retornar) {
       const comentAnswers = utils.criarElemento('div', { class: 'coment-answers' }, false, false);
 
-      for (const key in comentario.getComentario()) {
-         const answer = comentario.getComentario()[key];
+      //retornar simplismente retorna o novo comentario criado para ser inserido
+      //pelo método eventos.submitActionsDOM na tela.
+      if(!retornar){
+         for (const key in comentario.getComentario()) {
+            const answer = comentario.getComentario()[key];
+            const reply = criarRespostaComentario(answer)
+            comentAnswers.appendChild(reply);
+         }
+      }else{
+         const answer = comentario;
+         return criarRespostaComentario(answer);
+      }
+
+      function criarRespostaComentario(answer){
          const comentAnswer = utils.criarElemento('div', 
             { class: 'coment-answer', 
               id: `${answer.getId()}` 
@@ -151,7 +163,7 @@ const carregaPost = {
          
          `
          comentAnswer.innerHTML += component;
-         comentAnswers.appendChild(comentAnswer);
+         return comentAnswer
       }
       htmlComent.appendChild(comentAnswers);
    }
@@ -210,11 +222,11 @@ const eventos = {
       btnLike.forEach(element => {
          element.addEventListener('click', function () {
             const comentId = (element.getAttribute('data-id'))
-            self.buttonLikeEventoHTML(comentId);
+            self.buttonLikeEventoDOM(comentId);
          })
       })
    },
-   buttonLikeEventoHTML: function (comentId) {
+   buttonLikeEventoDOM: function (comentId) {
       const comentario = (document.querySelector(`#${comentId}`))
       const likeNumber = document.querySelector(`[data-id="${comentId}"] .like-number`);
       const likeHeart = document.querySelector(`[data-id="${comentId}"] .like-heart`);
@@ -277,11 +289,11 @@ const eventos = {
       btnReply.forEach(element => {
          element.addEventListener('click', function () {
             const comentId = element.getAttribute(['data-id']);
-            self.buttonReplyEventoHTML(comentId);
+            self.buttonReplyEventoDOM(comentId);
          });
       });
    },
-   buttonReplyEventoHTML: function (comentId) {
+   buttonReplyEventoDOM: function (comentId) {
       //Fecha a caixa de resposta, se tiver, aberta ateriormente;
       if(this.replyBoxAnterior){
          this.replyBoxAnterior.classList.add('hidden');
@@ -312,28 +324,45 @@ const eventos = {
    submitActions: function(comentario, newAnswer){
       //Verifica se é um comentário principal ou uma resposta;
       let comentPaiId = false;
+      //Pega o id do comentário em sí.
       const comentId = comentario.getAttribute(['data-id'])
       try {
+         //Tenta pegar o id co comentário Pai, se tiver.
          comentPaiId = comentario.getAttribute(['data-parent-id'])
       } catch (error) {
          comentPaiId = false;
       }
       
       if(!comentPaiId){
-         console.log(comentId);
-         carregaPost.post.getComentario()[`${comentId}`]
-            .setComentario(
-               'Usuário-4',
-            );
+         const newComentario = new Comentario(
+            './images/user-icon-2.png',
+            'Usuário-4',
+            false,
+            `${newAnswer}`,
+            {},
+            `${utils.dataHoje()}`,
+            false,
+            `CC4${gerarUUID()}`,
+            8,
+            'Usuario-1',
+         )
+         this.submitActionsBD(comentId, newComentario)
       }
    },
-
+   submitActionsBD:function(comentId, newComentario, comentPaiId){
+      carregaPost.post.getComentario()[`${comentId}`].setComentario(newComentario);
+      this.submitActionsDOM(comentId, newComentario)
+   },
+   submitActionsDOM: function(comentId, newComentario){
+      const comentAnswersDOM = document.querySelector(`#${comentId} .coment-answers`)
+      const newComentDOM = carregaPost.carregaRespostaDoComentario(newComentario, comentAnswersDOM, comentId, true);
+      console.log(newComentDOM)
+   },
 
    callMetodos: function () {
       this.getButtonsLike();
       this.getButtonsReply();
       this.getFormsSubmit();
    }
-
 }
 eventos.callMetodos();

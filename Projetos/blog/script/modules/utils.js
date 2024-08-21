@@ -6,6 +6,11 @@ export const utils = {
       return date
    },
 
+   dataHoje: ()=>{
+      const hoje = new Date().toLocaleDateString('pt-br', {day: '2-digit', month: '2-digit', year: 'numeric'});
+      return hoje;
+   },
+
    criarElemento: (tipo, atributos, conteudo, elementoPai, returInnerHTML) => {
       const elemento = document.createElement(tipo);
 

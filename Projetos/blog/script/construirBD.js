@@ -30,7 +30,7 @@ const post1 = new NewPost(
     {},
     '12/08/2024',
     ['Filhotes', 'cachorros', 'dicas'],
-    '4b190d63-32cb-4807-a5ba-9b650d0953ce',
+    'P4b190d63-32cb-4807-a5ba-9b650d0953ce',
 )
 
 
@@ -75,7 +75,7 @@ Ter um gato é uma experiência única e gratificante. Eles oferecem companhia, 
     {},
     '14/08/2024',
     ['gatos', 'cuidados', 'pets'],
-    gerarUUID(),
+    'Pc9d78822-bf40-47a9-a772-1a0a725e9b9d',
 )
 
 SetPostBD.setPost(post1)
