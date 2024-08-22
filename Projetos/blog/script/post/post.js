@@ -164,7 +164,7 @@ const carregaPost = {
          </div>
          
          `
-         comentAnswer.innerHTML += component;
+         comentAnswer.innerHTML = component;
          return comentAnswer
       }
    }
@@ -285,7 +285,7 @@ const eventos = {
 
     /*****************************Ações do botão 'responder' de cada comentário*********************************/
    //***********************************************************************************************************/
-   openReplyBox: false,
+   replyBoxAberta: false,
    getButtonsReply: function () {
       const btnReply = document.querySelectorAll('.reply-icon');
       const self = this;
@@ -298,15 +298,15 @@ const eventos = {
    },
    buttonReplyEventoDOM: function (comentId) {
       //Fecha a caixa de resposta, se tiver, aberta ateriormente;
-      if(this.replyBoxAnterior){
-         this.replyBoxAnterior.classList.add('hidden');
+      if(this.replyBoxAberta){
+         this.replyBoxAberta.classList.add('hidden');
       }
       const replyBox = document.querySelector(`#${comentId} .reply-box`);
       replyBox.classList.toggle('hidden');
       const replyTextArea = document.querySelector(`#${comentId} .new-answer`);
       
       replyTextArea.focus();
-      this.replyBoxAnterior = replyBox;
+      this.replyBoxAberta = replyBox;
    },
 
    /*******************************Ações do botão 'publicar' de cada comentário*********************************/
@@ -314,18 +314,20 @@ const eventos = {
    getFormsSubmit: function(){
       const forms = document.querySelectorAll('.new-answer-form');
       const self = this;
-
+      console.log('/**************************/')
       forms.forEach(form => {
-         form.addEventListener('submit', (event) =>{
+         form.addEventListener('submit', function(event){
             event.preventDefault();
             const comentario = form.closest('div');
             const formData = new FormData(form);
-            const newAnswer = Object.fromEntries(formData)['new-coment'];
-            self.submitActions(comentario, newAnswer);
+            const resposta = Object.fromEntries(formData)['new-coment'];
+            self.submitActions(comentario, resposta);
+
          })
       })
    },
-   submitActions: function(comentario, newAnswer){
+   submitActions: function(comentario, resposta){
+
       //Verifica se é um comentário principal ou uma resposta;
       let comentPaiId = false;
       //Pega o id do comentário em sí.
@@ -336,34 +338,72 @@ const eventos = {
       } catch (error) {
          comentPaiId = false;
       }
-      
+
+      //Trás o autor do comentário respondido.
+      const usuarioRespondido = this.pegarAutordoComentarioRespondido(comentId, comentPaiId)
+
+      //Cria um novo comentário
+      const novaResposta = new RespostaComentario(
+         './images/user-icon-2.png',
+         'Usuário-4',
+         false,
+         `${resposta}`,
+         {},
+         `${utils.dataHoje()}`,
+         false,
+         `CC4${gerarUUID()}`,
+         8,
+         `${usuarioRespondido}`,
+      )
+
       //Se não tiver o comentPaiId é um comentário principal.
       if(!comentPaiId){
-         const newComentario = new RespostaComentario(
-            './images/user-icon-2.png',
-            'Usuário-4',
-            false,
-            `${newAnswer}`,
-            {},
-            `${utils.dataHoje()}`,
-            false,
-            `CC4${gerarUUID()}`,
-            8,
-            'Usuario-1',
-         )
-
-         this.submitActionsRespBD(comentId, newComentario);
-         this.submitActionsRespDOM(comentId, newComentario)
+         this.inserirComentarioNoBD(comentId, novaResposta);
+         this.inserirComentarioNoDOM(comentId, novaResposta)
          return
       }
+
+      //Se tiver o comentPaiId é a resposta de um comentário.
+      this.inserirComentarioNoBD(comentId, novaResposta, comentPaiId);
+      this.inserirComentarioNoDOM(comentId, novaResposta, comentPaiId);
+
    },
-   submitActionsRespBD:function(comentId, newComentario, comentPaiId){
-      carregaPost.post.getComentario()[`${comentId}`].setComentario(newComentario);
+
+   inserirComentarioNoBD:function(comentId, novaResposta, comentPaiId){
+      //Se tiver o comentPaiId insere o novo comentario na baseDeDados através desse id.
+      if(comentPaiId){
+         carregaPost.post.getComentario()[`${comentPaiId}`].setComentario(novaResposta);
+         return;
+      }
+      carregaPost.post.getComentario()[`${comentId}`].setComentario(novaResposta);
    },
-   submitActionsRespDOM: function(comentId, newComentario){
-      const comentAnswersDOM = document.querySelector(`#${comentId} .coment-answers`)
-      const newComentDOM = carregaPost.carregaRespostaDoComentario(newComentario, comentAnswersDOM, comentId, true);
-      this.callMetodos()
+
+   inserirComentarioNoDOM: function(comentId, novaResposta, comentPaiId){
+      let respostasDoComentarioDOM;
+      let HTMLdoNovoComentario;
+      
+      if(comentPaiId){
+         respostasDoComentarioDOM = document.querySelector(`#${comentPaiId} .coment-answers`);
+         HTMLdoNovoComentario = carregaPost.carregaRespostaDoComentario(novaResposta, respostasDoComentarioDOM, comentPaiId, true);
+         console.log('asdfa')
+         
+      }else{
+         respostasDoComentarioDOM = document.querySelector(`#${comentId} .coment-answers`);
+         HTMLdoNovoComentario = carregaPost.carregaRespostaDoComentario(novaResposta, respostasDoComentarioDOM, comentId, true);
+         console.log('HTMLdoNovoComentario')
+      }
+
+      respostasDoComentarioDOM.insertBefore(HTMLdoNovoComentario, respostasDoComentarioDOM.firstChild);
+      
+      this.callMetodos();
+   },
+
+   pegarAutordoComentarioRespondido: function(comentId, comentPaiId){
+     if(comentPaiId){
+        return carregaPost.post.getComentario()[`${comentPaiId}`].getComentario()[`${comentId}`].getAutor();
+      }
+
+      return carregaPost.post.getComentario()[`${comentId}`].getAutor();
    },
 
    callMetodos: function () {
