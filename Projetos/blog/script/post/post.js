@@ -222,10 +222,13 @@ const eventos = {
       const btnLike = document.querySelectorAll('.like-icon');
       const self = this;
       btnLike.forEach(element => {
-         element.addEventListener('click', function () {
-            const comentId = (element.getAttribute('data-id'))
-            self.buttonLikeEventoDOM(comentId);
-         })
+         if(!element.classList.contains('event-added')){
+            element.addEventListener('click', function () {
+               const comentId = (element.getAttribute('data-id'))
+               self.buttonLikeEventoDOM(comentId);
+            });
+            element.classList.add('event-added');
+         }
       })
    },
    buttonLikeEventoDOM: function (comentId) {
@@ -265,6 +268,7 @@ const eventos = {
 
       //*********Se for a resposta de um comentário;************
       const comentarios = carregaPost.post.getComentario();
+      //Seta os métodos de Comentario em comentarios.
       Object.setPrototypeOf(comentarios, Comentario.prototype);
       let reply;
       //procura qual foi a resposta de comentário clicada em cada comentário pelo id
@@ -290,10 +294,13 @@ const eventos = {
       const btnReply = document.querySelectorAll('.reply-icon');
       const self = this;
       btnReply.forEach(element => {
-         element.addEventListener('click', function () {
-            const comentId = element.getAttribute(['data-id']);
-            self.buttonReplyEventoDOM(comentId);
-         });
+         if(!element.classList.contains('event-added')){
+            element.addEventListener('click', function () {
+               const comentId = element.getAttribute(['data-id']);
+               self.buttonReplyEventoDOM(comentId);
+            });
+            element.classList.add('event-added');
+         }
       });
    },
    buttonReplyEventoDOM: function (comentId) {
@@ -314,17 +321,23 @@ const eventos = {
    getFormsSubmit: function(){
       const forms = document.querySelectorAll('.new-answer-form');
       const self = this;
-      console.log('/**************************/')
+      
       forms.forEach(form => {
-         form.addEventListener('submit', function(event){
-            event.preventDefault();
-            const comentario = form.closest('div');
-            const formData = new FormData(form);
-            const resposta = Object.fromEntries(formData)['new-coment'];
-            self.submitActions(comentario, resposta);
-
-         })
-      })
+         //Garente que o evento seja adicionado apenas uma vez em cada form.
+         if(!form.classList.contains('event-added')){
+            form.addEventListener('submit', function(event){
+               event.preventDefault();
+               console.log(form)
+               const comentario = form.closest('div');
+               const formData = new FormData(form);
+               const resposta = Object.fromEntries(formData)['new-coment'];
+      
+               self.submitActions(comentario, resposta);
+            });
+            form.classList.add('event-added');
+         }
+      });
+     
    },
    submitActions: function(comentario, resposta){
 
@@ -359,14 +372,13 @@ const eventos = {
       //Se não tiver o comentPaiId é um comentário principal.
       if(!comentPaiId){
          this.inserirComentarioNoBD(comentId, novaResposta);
-         this.inserirComentarioNoDOM(comentId, novaResposta)
+         this.inserirComentarioNoDOM(comentId, novaResposta);
          return
       }
 
       //Se tiver o comentPaiId é a resposta de um comentário.
       this.inserirComentarioNoBD(comentId, novaResposta, comentPaiId);
       this.inserirComentarioNoDOM(comentId, novaResposta, comentPaiId);
-
    },
 
    inserirComentarioNoBD:function(comentId, novaResposta, comentPaiId){
@@ -385,12 +397,10 @@ const eventos = {
       if(comentPaiId){
          respostasDoComentarioDOM = document.querySelector(`#${comentPaiId} .coment-answers`);
          HTMLdoNovoComentario = carregaPost.carregaRespostaDoComentario(novaResposta, respostasDoComentarioDOM, comentPaiId, true);
-         console.log('asdfa')
          
       }else{
          respostasDoComentarioDOM = document.querySelector(`#${comentId} .coment-answers`);
          HTMLdoNovoComentario = carregaPost.carregaRespostaDoComentario(novaResposta, respostasDoComentarioDOM, comentId, true);
-         console.log('HTMLdoNovoComentario')
       }
 
       respostasDoComentarioDOM.insertBefore(HTMLdoNovoComentario, respostasDoComentarioDOM.firstChild);
