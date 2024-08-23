@@ -290,6 +290,7 @@ const eventos = {
     /*****************************Ações do botão 'responder' de cada comentário*********************************/
    //***********************************************************************************************************/
    replyBoxAberta: false,
+   replyTextAreaAberta: false,
    getButtonsReply: function () {
       const btnReply = document.querySelectorAll('.reply-icon');
       const self = this;
@@ -314,6 +315,7 @@ const eventos = {
       
       replyTextArea.focus();
       this.replyBoxAberta = replyBox;
+      this.replyTextAreaAberta = replyTextArea;
    },
 
    /*******************************Ações do botão 'publicar' de cada comentário*********************************/
@@ -327,12 +329,16 @@ const eventos = {
          if(!form.classList.contains('event-added')){
             form.addEventListener('submit', function(event){
                event.preventDefault();
-               console.log(form)
                const comentario = form.closest('div');
-               const formData = new FormData(form);
+               const formData = new FormData(form);   
                const resposta = Object.fromEntries(formData)['new-coment'];
       
                self.submitActions(comentario, resposta);
+
+               //Formata o form.
+               const textarea = form.firstElementChild
+               textarea.value = '';
+               comentario.classList.add('hidden')
             });
             form.classList.add('event-added');
          }
@@ -416,10 +422,29 @@ const eventos = {
       return carregaPost.post.getComentario()[`${comentId}`].getAutor();
    },
 
+   /*******************************Ações do botão 'cancelar' de cada comentário*********************************/
+   //***********************************************************************************************************/
+   getCancelButtons: function(){
+      const btnCancel = document.querySelectorAll('.btn-new-coment-cancel');
+      const self = this;
+      btnCancel.forEach(element =>{
+         if(!element.classList.contains('event-added')){
+            element.addEventListener('click', () =>{
+               if(self.replyBoxAberta){
+                  self.replyBoxAberta.classList.add('hidden');
+                  self.replyTextAreaAberta.value = '';
+               }
+            })
+            element.classList.add('event-added')
+         }
+      })
+   },
+
    callMetodos: function () {
       this.getButtonsLike();
       this.getButtonsReply();
       this.getFormsSubmit();
+      this.getCancelButtons();
    }
 }
 eventos.callMetodos();
