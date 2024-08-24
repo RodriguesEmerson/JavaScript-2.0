@@ -11,7 +11,7 @@ export const utils = {
       return hoje;
    },
 
-   criarElemento: (tipo, atributos, conteudo, elementoPai, returInnerHTML) => {
+   criarElemento: (tipo, atributos, conteudo, elementoPai, returnInnerHTML) => {
       const elemento = document.createElement(tipo);
 
       for (const att in atributos) {
@@ -24,7 +24,7 @@ export const utils = {
          elementoPai.appendChild(elemento)
       }
 
-      if(returInnerHTML){
+      if(returnInnerHTML){
          const parent = document.createElement('span')
          parent.appendChild(elemento)
          return parent.innerHTML;

@@ -167,12 +167,17 @@ body {
   font-size: 18px;
 }
 
-.coment .new-answer-form {
+.coment {
   width: 100%;
+  margin-top: 10px;
+  border-bottom: 1px dotted rgb(197, 196, 196);
+}
+.coment .new-answer-form {
+  width: 90%;
   min-height: 90px;
   border: 1px solid rgb(28, 89, 169);
   padding: 5px;
-  margin-bottom: 5px;
+  margin: 0 0 5px 40px;
 }
 .coment .new-answer-form .new-answer {
   border: none;

@@ -134,12 +134,15 @@ $background-gradient: linear-gradient(90deg, rgba(47,130,205,1) 0%, rgba(34,34,1
 }
 
 .coment{
+   width: 100%;
+   margin-top: 10px;
+   border-bottom: 1px dotted rgb(197, 196, 196);
    .new-answer-form{
-      width: 100%;
+      width: 90%;
       min-height: 90px;
       border: 1px solid $cor-padrao;
       padding: 5px;
-      margin-bottom: 5px;
+      margin: 0 0 5px 40px;
 
       .new-answer{
          border: none;

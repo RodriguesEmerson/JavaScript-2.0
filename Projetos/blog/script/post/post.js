@@ -3,7 +3,7 @@ import { baseDeDados, SetPostBD } from "../modules/BD.js";
 import { utils } from "../modules/utils.js";
 const postView = document.querySelector('.post-view');
 const article = document.querySelector('.blog-post');
-const comentBox = document.querySelector('.coments-box');
+const comentsBox = document.querySelector('.coments-box');
 
 const carregaPost = {
    post: '',
@@ -47,79 +47,97 @@ const carregaPost = {
       this.carregarComentarios();
    },
 
-   carregarComentarios: function () {
+   carregarComentarios: function (novoComentario, retornar) {
       const comentarios = this.post.getComentario();
-      for (const key in comentarios) {
-         const comentario = comentarios[key];
-         const htmlComent = utils.criarElemento('div', { class: 'coment', id: `${comentario.getId()}` }, false, false);
+      let comentario;
+      if(!retornar){
+         for (const key in comentarios) {
+            comentario = comentarios[key];
+            const htmlDoComentario = criarComentario();
 
+            //Cria a resposta de cada comentário no DOM.
+            this.carregaRespostaDoComentario(comentario, htmlDoComentario, comentario.getId());
+            comentsBox.appendChild(htmlDoComentario);
+         };
+      }else{
+         comentario = novoComentario;
+         return criarComentario();
+      };
+
+      function criarComentario(){
+         const htmlDoComentario = utils.criarElemento(
+            'div', 
+            {  class: 'coment', 
+               id: `${comentario.getId()}` 
+            }, 
+            false, 
+            false
+         );
          const component = `
-            <div class="coment-content">
-               <div class="coment-header flex">
-                  <img class="coment-img" src="${comentario.getImagem()}" alt="">
-                  <div class="flex">
-                     <span class="coment-autor">${comentario.getAutor()}</span>
-                     <time datetime="${comentario.getData()}">${utils.dataPorExtenso(comentario.getData())}</time>
-                  </div>
-               </div>
-
-               <div class="coment-body">
-                  <p>${comentario.getConteudo()}</p>
-               </div>
-               
-               <div class="coment-footer flex">
-                   <div class="like-icon flex" data-id="${comentario.getId()}">
-                     <span class="material-symbols-outlined like-heart">favorite</span>
-                     <span class="like-number">${comentario.getLikes()}</span>
-                  </div>
-                  <div class="reply-icon flex" data-id="${comentario.getId()}">
-                     <span class="material-symbols-outlined">reply</span>
-                     <span>Responder</span>
-                  </div>
-               </div>
-
-               <div class="reply-box principal hidden" data-id="${comentario.getId()}">
-                  <form class="new-answer-form">
-                     <textarea name="new-coment" class="new-answer"placeholder="Insira um comentário..."></textarea>
-                     <div class="new-answer-buttons flex">
-                        <button class="btn-new-coment-cancel" type="button">Cancelar</button>
-                        <button class="btn-new-coment-submit" type="submit">Publicar</button>
-                     </div>
-                  </form>
+         <div class="coment-content">
+            <div class="coment-header flex">
+               <img class="coment-img" src="${comentario.getImagem()}" alt="">
+               <div class="flex">
+                  <span class="coment-autor">${comentario.getAutor()}</span>
+                  <time datetime="${comentario.getData()}">${utils.dataPorExtenso(comentario.getData())}</time>
                </div>
             </div>
-            
-            `
-         htmlComent.innerHTML = component;
-         this.carregaRespostaDoComentario(comentario, htmlComent, comentario.getId())
-         comentBox.appendChild(htmlComent);
 
+            <div class="coment-body">
+               <p>${comentario.getConteudo()}</p>
+            </div>
+            
+            <div class="coment-footer flex">
+                <div class="like-icon flex" data-id="${comentario.getId()}">
+                  <span class="material-symbols-outlined like-heart">favorite</span>
+                  <span class="like-number">${comentario.getLikes()}</span>
+               </div>
+               <div class="reply-icon flex" data-id="${comentario.getId()}">
+                  <span class="material-symbols-outlined">reply</span>
+                  <span>Responder</span>
+               </div>
+            </div>
+
+            <div class="reply-box principal hidden" data-id="${comentario.getId()}">
+               <form class="new-answer-form">
+                  <textarea name="new-coment" class="new-answer"placeholder="Insira um comentário..."></textarea>
+                  <div class="new-answer-buttons flex">
+                     <button class="btn-new-coment-cancel" type="button">Cancelar</button>
+                     <button class="btn-new-coment-submit" type="submit">Publicar</button>
+                  </div>
+               </form>
+            </div>
+         </div>
+         `
+         htmlDoComentario.innerHTML = component;
+         return htmlDoComentario;
       }
 
    },
 
-   carregaRespostaDoComentario: function (comentario, htmlComent, dataParentId, retornar) {
-      const comentAnswers = utils.criarElemento('div', { class: 'coment-answers' }, false, false);
-
-      //retornar simplismente retorna o novo comentario criado para ser inserido
-      //pelo método eventos.submitActionsDOM na tela.
+   carregaRespostaDoComentario: function (comentarios, htmlDoComentario, dataParentId, retornar) {
+      const caixaDeRespostasDoComentario = utils.criarElemento('div', { class: 'coment-answers' }, false, false);
+      //'retornar' = true, retorna o novo comentario criado para ser inserido
+      //pelo método eventos.submitActionsDOM() no DOM.
+      let comentario;
       if(!retornar){
-         for (const key in comentario.getComentario()) {
-            const answer = comentario.getComentario()[key];
-            const reply = criarRespostaComentario(answer)
-            comentAnswers.appendChild(reply);
+         for (const key in comentarios.getComentario()) {
+            comentario = comentarios.getComentario()[key];
+            const resposta = criarRespostaComentario(comentario);
+            caixaDeRespostasDoComentario.appendChild(resposta);
          }
-         htmlComent.appendChild(comentAnswers);
+         htmlDoComentario.appendChild(caixaDeRespostasDoComentario);
 
       }else{
-         const answer = comentario;
-         return criarRespostaComentario(answer);
+         comentario = comentarios;
+         return criarRespostaComentario(comentario);
       }
 
-      function criarRespostaComentario(answer){
-         const comentAnswer = utils.criarElemento('div', 
+      function criarRespostaComentario(comentario){
+         const respostaDoComentario = utils.criarElemento(
+            'div', 
             { class: 'coment-answer', 
-              id: `${answer.getId()}` 
+              id: `${comentario.getId()}` 
             }, 
             false, 
             false
@@ -127,32 +145,32 @@ const carregaPost = {
 
          const component = `
          <div class="coment-header flex">
-            <img class="coment-img" src="${answer.getImagem()}" alt="">
+            <img class="coment-img" src="${comentario.getImagem()}" alt="">
             <div class="flex">
-               <span class="coment-autor">${answer.getAutor()}</span>
-               <time datetime="${answer.getData()}">${utils.dataPorExtenso(answer.getData())}</time>
-               <span class="replying-to-name">Resposta à ${answer.getrespComentario()}</span>
+               <span class="coment-autor">${comentario.getAutor()}</span>
+               <time datetime="${comentario.getData()}">${utils.dataPorExtenso(comentario.getData())}</time>
+               <span class="replying-to-name">Resposta para:  ${comentario.getrespComentario()}</span>
             </div>
          </div>
          
          <div class="coment-body">
-         <p>${answer.getConteudo()}</p>
+         <p>${comentario.getConteudo()}</p>
          </div>
          
          <div class="coment-footer flex">
             <div class="buttons-answers flex">
-               <div class="like-icon flex" data-id="${answer.getId()}">
+               <div class="like-icon flex" data-id="${comentario.getId()}">
                   <span class="material-symbols-outlined like-heart">favorite</span>
-                  <span class="like-number">${answer.getLikes()}</span>
+                  <span class="like-number">${comentario.getLikes()}</span>
                </div>
-               <div class="reply-icon flex" data-id="${answer.getId()}">
+               <div class="reply-icon flex" data-id="${comentario.getId()}">
                   <span class="material-symbols-outlined">reply</span>
                   <span>Responder</span>
                </div>
             </div>
          </div>
          
-         <div class="reply-box hidden" data-id="${answer.getId()}" data-parent-id="${dataParentId}">
+         <div class="reply-box hidden" data-id="${comentario.getId()}" data-parent-id="${dataParentId}">
             <form class="new-answer-form">
                <textarea name="new-coment" class="new-answer"
                placeholder="Insira um comentário..."></textarea>
@@ -164,8 +182,8 @@ const carregaPost = {
          </div>
          
          `
-         comentAnswer.innerHTML = component;
-         return comentAnswer
+         respostaDoComentario.innerHTML = component;
+         return respostaDoComentario;
       }
    }
 }
@@ -336,9 +354,9 @@ const eventos = {
                self.submitActions(comentario, resposta);
 
                //Formata o form.
-               const textarea = form.firstElementChild
+               const textarea = form.firstElementChild;
                textarea.value = '';
-               comentario.classList.add('hidden')
+               comentario.classList.add('hidden');
             });
             form.classList.add('event-added');
          }
@@ -377,17 +395,17 @@ const eventos = {
 
       //Se não tiver o comentPaiId é um comentário principal.
       if(!comentPaiId){
-         this.inserirComentarioNoBD(comentId, novaResposta);
-         this.inserirComentarioNoDOM(comentId, novaResposta);
+         this.inserirRespostaNoBD(comentId, novaResposta);
+         this.inserirRespostaNoDOM(comentId, novaResposta);
          return
       }
 
       //Se tiver o comentPaiId é a resposta de um comentário.
-      this.inserirComentarioNoBD(comentId, novaResposta, comentPaiId);
-      this.inserirComentarioNoDOM(comentId, novaResposta, comentPaiId);
+      this.inserirRespostaNoBD(comentId, novaResposta, comentPaiId);
+      this.inserirRespostaNoDOM(comentId, novaResposta, comentPaiId);
    },
 
-   inserirComentarioNoBD:function(comentId, novaResposta, comentPaiId){
+   inserirRespostaNoBD:function(comentId, novaResposta, comentPaiId){
       //Se tiver o comentPaiId insere o novo comentario na baseDeDados através desse id.
       if(comentPaiId){
          carregaPost.post.getComentario()[`${comentPaiId}`].setComentario(novaResposta);
@@ -396,19 +414,20 @@ const eventos = {
       carregaPost.post.getComentario()[`${comentId}`].setComentario(novaResposta);
    },
 
-   inserirComentarioNoDOM: function(comentId, novaResposta, comentPaiId){
-      let respostasDoComentarioDOM;
-      let HTMLdoNovoComentario;
+   inserirRespostaNoDOM: function(comentId, novaResposta, comentPaiId){
+      let respostasDoComentarioDOM; //Caixa de comentários no DOM.
+      let HTMLdoNovoComentario;  //O HTML retornado da função  'carregaRespostaDoComentario'.
       
       if(comentPaiId){
          respostasDoComentarioDOM = document.querySelector(`#${comentPaiId} .coment-answers`);
-         HTMLdoNovoComentario = carregaPost.carregaRespostaDoComentario(novaResposta, respostasDoComentarioDOM, comentPaiId, true);
+         HTMLdoNovoComentario = carregaPost.carregaRespostaDoComentario(novaResposta, false, comentPaiId, true);
          
       }else{
          respostasDoComentarioDOM = document.querySelector(`#${comentId} .coment-answers`);
-         HTMLdoNovoComentario = carregaPost.carregaRespostaDoComentario(novaResposta, respostasDoComentarioDOM, comentId, true);
+         HTMLdoNovoComentario = carregaPost.carregaRespostaDoComentario(novaResposta, false, comentId, true);
       }
 
+      //Insere a nova Resposta no primeiro lugar da caixa de respostas de um comentário.
       respostasDoComentarioDOM.insertBefore(HTMLdoNovoComentario, respostasDoComentarioDOM.firstChild);
       
       this.callMetodos();
@@ -434,10 +453,56 @@ const eventos = {
                   self.replyBoxAberta.classList.add('hidden');
                   self.replyTextAreaAberta.value = '';
                }
-            })
-            element.classList.add('event-added')
+            });
+            element.classList.add('event-added');
          }
       })
+   },
+
+   /******************************Ações do botão 'publicar' do Comentário Principal*****************************/
+   //***********************************************************************************************************/
+   // principal-new-coment-form
+   getFormPrincipalSubmit: function(){
+      const form = document.querySelector('.principal-new-coment-form');
+      const self = this;
+      form.addEventListener('submit', (event) =>{
+         event.preventDefault();
+         const formData = new FormData(form);   
+         const comentario = Object.fromEntries(formData)['new-coment'];
+
+         self.formPrincipalSubmitActions(comentario);
+      })
+   },
+   formPrincipalSubmitActions: function(comentario){
+      //Instacia um novo Comentário.
+      const novoComentario = new Comentario(
+         './images/user-icon-1.png',
+         'Usuário-4',
+         false,
+         comentario,
+         {},
+         utils.dataHoje(),
+         false,
+         `C${gerarUUID()}`,
+         0
+      );
+
+      this.inserirComentarioNaBD(novoComentario);
+      this.inserirComentarioNoDOM(novoComentario);
+   },
+   inserirComentarioNoDOM: function(novoComentario){
+      //Cria a caixa de respostas do Comentário
+      const caixaDeRespostasDoComentario = utils.criarElemento('div', { class: 'coment-answers' }, false, false);
+      //Retorna o HTML do novo Comentário.
+      const htmlDoComentario = carregaPost.carregarComentarios(novoComentario, true);
+      //Insere a caixa de resposta dentro do comentário
+      htmlDoComentario.appendChild(caixaDeRespostasDoComentario);
+      comentsBox.appendChild(htmlDoComentario);
+
+      this.callMetodos()
+   },
+   inserirComentarioNaBD: function(novoComentario){
+      carregaPost.post.setComentario(novoComentario);
    },
 
    callMetodos: function () {
@@ -448,3 +513,4 @@ const eventos = {
    }
 }
 eventos.callMetodos();
+eventos.getFormPrincipalSubmit();
