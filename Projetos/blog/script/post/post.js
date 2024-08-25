@@ -1,6 +1,8 @@
 import { Comentario, gerarUUID, NewPost, RespostaComentario } from "../index/novoPost.js";
 import { baseDeDados, SetPostBD } from "../modules/BD.js";
 import { utils } from "../modules/utils.js";
+import { postsRelacionadosFunc } from "./relacionados.js";
+
 const postView = document.querySelector('.post-view');
 const article = document.querySelector('.blog-post');
 const comentsBox = document.querySelector('.coments-box');
@@ -45,6 +47,8 @@ const carregaPost = {
       article.innerHTML = '';
       article.innerHTML = component;
       this.carregarComentarios();
+      postsRelacionadosFunc.selecionarPostsRelacionados(this.post.getTags(), this.post.getId());
+
    },
 
    carregarComentarios: function (novoComentario, retornar) {

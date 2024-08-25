@@ -76,14 +76,14 @@ body{
    }
 } 
 
-// .aside{
-//    width: 29%;
-// }
 .posts-relacionados{
+   flex-direction: row !important;
+   justify-content: center;
    .blog-post{
       flex-direction: column !important;
-      min-width: 210px !important;
+      min-width: 250px !important;
       max-width: 250px;
+      min-height: 350px;
       
       .post-header{
          padding: 0 !important;
@@ -97,6 +97,7 @@ body{
          background-color: black;
          min-width: 100% !important;
          max-height: 150px !important;
+         min-height: 150px;
          img{
             width: 100% !important;
          }
@@ -104,6 +105,8 @@ body{
 
       .post-footer{
          flex-direction: row !important;
+         justify-content: space-between !important;
+         max-width: 100% !important;
       }
    }
 }

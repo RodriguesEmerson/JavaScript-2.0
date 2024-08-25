@@ -159,7 +159,7 @@ const post1 = new NewPost(
 );
 
 const post5 = new NewPost(
-    'images/post-2.jpg',
+    'images/post-5.jpg',
     'Emerson R.',
     'Cuidados com os Pelos de um Gato: Dicas para Mantê-los Saudáveis e Bonitos',
     `<p>
