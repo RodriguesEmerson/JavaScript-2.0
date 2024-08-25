@@ -2,7 +2,7 @@
 import { NewPost, Comentario, RespostaComentario, gerarUUID } from "./index/novoPost.js"
 import { SetPostBD } from "./modules/BD.js"
 
-const post4 = new NewPost(
+const post5 = new NewPost(
     'images/post-1.jpg',
     'Emerson R.',
     'A Alegria dos Filhotes de Cães',
@@ -36,7 +36,7 @@ const post4 = new NewPost(
 
 
 
-const post2 = new NewPost(
+const post4 = new NewPost(
     'images/post-2.jpg', 
     'Emerson R.',
     'O Belo Mundo dos Gatos',
@@ -158,7 +158,7 @@ const post1 = new NewPost(
     'Pu9d78822-bf40-47a4-a772-140a725e9b9d',
 );
 
-const post5 = new NewPost(
+const post2 = new NewPost(
     'images/post-5.jpg',
     'Emerson R.',
     'Cuidados com os Pelos de um Gato: Dicas para Mantê-los Saudáveis e Bonitos',

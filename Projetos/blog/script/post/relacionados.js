@@ -53,18 +53,6 @@ export const postsRelacionadosFunc = {
             </footer>
          `
          postsRelacionadosDOM.appendChild(article)
-      })
-   }
-   
-   
+      });
+   }  
 }
-
-//fazer um loop nos posts da base de dados ---------------------------[]
-//pegas as tags destes post ------------------------------------------[]
-//para cada tag fazer um forEach -------------------------------------[]
-//verificando quantas tags são iguais as tags do post aberto. --------[]
-//criar uma variavel que acumula a quantidade de matchs. -------------[]
-//se a quantidade de match for igual ou maior a 2. -------------------[]
-//armazena o ID desse post em um array com os IDS. -------------------[]
-
-//Carrega os posts na aba relacionados -------------------------------[]
