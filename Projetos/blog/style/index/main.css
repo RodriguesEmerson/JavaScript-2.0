@@ -124,6 +124,14 @@ main {
   max-width: 70%;
   min-height: 98vh;
   margin: auto;
+  /***********************************************************************************************************/
+  /***********************************************************************************************************/
+}
+#posts .posts-recents {
+  align-items: stretch;
+}
+#posts .posts-recents .blog-post {
+  min-height: 450px;
 }
 #posts .posts-recents, #posts .outros-posts, #posts .post-view {
   flex-direction: row;
@@ -133,8 +141,8 @@ main {
 #posts .posts-recents .blog-post, #posts .outros-posts .blog-post, #posts .post-view .blog-post {
   flex: 1;
   flex-direction: column;
+  justify-content: space-between;
   gap: 10px;
-  width: 350px;
   min-width: 345px;
   border-radius: 3px;
   box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.138);
@@ -155,12 +163,15 @@ main {
   width: 100%;
   padding-left: 15px;
 }
+#posts .posts-recents .blog-post .post-header h1, #posts .outros-posts .blog-post .post-header h1, #posts .post-view .blog-post .post-header h1 {
+  font-size: 25px;
+}
 #posts .posts-recents .blog-post .post-content, #posts .outros-posts .blog-post .post-content, #posts .post-view .blog-post .post-content {
   padding: 0 10px;
   text-indent: 20px;
   text-align: justify;
 }
-#posts .posts-recents .blog-post .post-content p, #posts .outros-posts .blog-post .post-content p, #posts .post-view .blog-post .post-content p {
+#posts .posts-recents .blog-post .post-content-index, #posts .outros-posts .blog-post .post-content-index, #posts .post-view .blog-post .post-content-index {
   display: -webkit-box; /* Flexbox unidimensional */
   -webkit-box-orient: vertical; /* Orientação vertical */
   overflow: hidden;
@@ -168,6 +179,9 @@ main {
   -webkit-line-clamp: 6; /* Limita a quantidade de linhas a ser mostrada */
   max-height: 120px;
   text-overflow: ellipsis;
+}
+#posts .posts-recents .blog-post .post-content-index h2, #posts .outros-posts .blog-post .post-content-index h2, #posts .post-view .blog-post .post-content-index h2 {
+  display: none;
 }
 #posts .posts-recents .blog-post .post-footer, #posts .outros-posts .blog-post .post-footer, #posts .post-view .blog-post .post-footer {
   margin-top: 20px;
@@ -194,7 +208,8 @@ main {
 #posts .outros-posts .blog-post {
   padding: 5px;
   width: 100%;
-  height: 17 0px;
+  align-self: center !important;
+  height: 170px !important;
   flex-direction: row;
 }
 #posts .outros-posts .blog-post .post-image {

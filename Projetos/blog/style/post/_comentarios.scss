@@ -136,6 +136,8 @@ $background-gradient: linear-gradient(90deg, rgba(47,130,205,1) 0%, rgba(34,34,1
 
       .material-symbols-outlined {
          font-size: 18px;
+         margin-right: 3px;
+         align-items: center;
       }
    }
 }
@@ -242,11 +244,11 @@ $background-gradient: linear-gradient(90deg, rgba(47,130,205,1) 0%, rgba(34,34,1
    'FILL' 1; 
 }
 
-.newComenteAnimation{
-   animation: newComenteAnimation 1.5s;
+.newComentAnimation{
+   animation: newComentAnimation 2.5s;
    border-radius: 5px;
 }
-@keyframes newComenteAnimation {
+@keyframes newComentAnimation {
    from{
       background-color: rgb(141, 141, 141);
    }

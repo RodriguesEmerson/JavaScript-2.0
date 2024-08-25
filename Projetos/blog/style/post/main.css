@@ -17,6 +17,8 @@ body {
 }
 .post-view .blog-post h1 {
   font-size: 30px;
+  color: black;
+  font-weight: 800;
 }
 .post-view .blog-post h2 {
   font-size: 20px;
@@ -26,6 +28,24 @@ body {
 .post-view .blog-post p {
   color: black;
   line-height: 25px;
+}
+.post-view .blog-post .post-content {
+  padding: 0 10px;
+  text-indent: 20px;
+  text-align: justify;
+}
+.post-view .blog-post .post-content h2 {
+  margin-left: -20px !important;
+  font-weight: 800;
+}
+.post-view .blog-post .post-content ul {
+  list-style-position: inside;
+}
+.post-view .blog-post .post-content ul li {
+  margin-top: 5px;
+}
+.post-view .blog-post .post-content ul li strong {
+  color: black;
 }
 .post-view .blog-post .post-header {
   color: rgb(68, 68, 68);
@@ -186,6 +206,8 @@ body {
 }
 .coments-box .coment-footer .material-symbols-outlined {
   font-size: 18px;
+  margin-right: 3px;
+  align-items: center;
 }
 
 .coment {
@@ -274,12 +296,12 @@ body {
   font-variation-settings: "FILL" 1;
 }
 
-.newComenteAnimation {
-  animation: newComenteAnimation 1.5s;
+.newComentAnimation {
+  animation: newComentAnimation 2.5s;
   border-radius: 5px;
 }
 
-@keyframes newComenteAnimation {
+@keyframes newComentAnimation {
   from {
     background-color: rgb(141, 141, 141);
   }

@@ -26,7 +26,7 @@ const carregaPost = {
    carregarArticle: function () {
       const component = `
          <header class="post-header">
-            <h2 class="post-title">${this.post.getTitulo()}</h2>
+            <h1 class="post-title">${this.post.getTitulo()}</h1>
             <p>Escrito por  <strong class="post-autor">${this.post.getAutor()}</strong>, 
                <time datetime="${this.post.getData()}">${utils.dataPorExtenso(this.post.getData())}.</time>
             </p>
@@ -49,6 +49,7 @@ const carregaPost = {
 
    carregarComentarios: function (novoComentario, retornar) {
       const comentarios = this.post.getComentario();
+      let newComentAnimation = '';
       let comentario;
       if(!retornar){
          for (const key in comentarios) {
@@ -61,6 +62,7 @@ const carregaPost = {
          };
       }else{
          comentario = novoComentario;
+         newComentAnimation = 'newComentAnimation'
          return criarComentario();
       };
 
@@ -74,7 +76,7 @@ const carregaPost = {
             false
          );
          const component = `
-         <div class="coment-content newComenteAnimation">
+         <div class="coment-content ${newComentAnimation}">
             <div class="coment-header flex">
                <img class="coment-img" src="${comentario.getImagem()}" alt="">
                <div class="flex">
@@ -117,6 +119,7 @@ const carregaPost = {
 
    carregaRespostaDoComentario: function (comentarios, htmlDoComentario, dataParentId, retornar) {
       const caixaDeRespostasDoComentario = utils.criarElemento('div', { class: 'coment-answers' }, false, false);
+      let newComentAnimation = '';
       //'retornar' = true, retorna o novo comentario criado para ser inserido
       //pelo método eventos.submitActionsDOM() no DOM.
       let comentario;
@@ -130,13 +133,14 @@ const carregaPost = {
 
       }else{
          comentario = comentarios;
+         newComentAnimation = 'newComentAnimation';
          return criarRespostaComentario(comentario);
       }
 
       function criarRespostaComentario(comentario){
          const respostaDoComentario = utils.criarElemento(
             'div', 
-            { class: 'coment-answer newComenteAnimation', 
+            { class: `coment-answer ${newComentAnimation} `, 
               id: `${comentario.getId()}` 
             }, 
             false, 

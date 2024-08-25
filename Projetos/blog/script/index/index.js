@@ -8,20 +8,26 @@ let article
 const carregaPosts = {
 
    carregaPostsRecents:()=>{
+      let postCount = 0;
       for (const post in baseDeDados.posts) {
+         if (postCount == 4) return;
          const blog = baseDeDados.posts[post];
-         console.log(blog)
-         article = utils.criarElemento('article', { class: 'blog-post flex' }, false, false);
+         //Impede que a descrição do post tenha mais que 300 carecteres
+         let conteudo = blog.getConteudo();
+         conteudo = conteudo.substring(0, 370);
+
+         console.log(conteudo)
+         article = utils.criarElemento('article', { class: `blog-post flex` }, false, false);
          article.innerHTML = `
             <figure class="post-image">
                <img src="${blog.getImagem()}" alt="">
             </figure>
             <header class="post-header">
-               <h2 class="post-title">${blog.getTitulo()}</h2>
+               <h1 class="post-title">${blog.getTitulo()}</h1>
             </header>
             <!--Conteúdo do Post-->
-            <div class="post-content">
-               <p>${blog.getConteudo()}</p>
+            <div class="post-content post-content-index" >
+               ${conteudo}
             </div>
             <!--Rodapé do Post-->
             <footer class="post-footer flex">
@@ -35,9 +41,12 @@ const carregaPosts = {
                </a>
             </footer>
          `
-         postsRecentes.appendChild(article)
+         postsRecentes.appendChild(article);
+         postCount++
       }
    }
+
+   //Criar função para gerar outros posts
 
 }
 

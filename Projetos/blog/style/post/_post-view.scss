@@ -19,6 +19,8 @@ body{
 
       h1{
          font-size: 30px;
+         color: black;
+         font-weight: 800;
       }
       h2{
          font-size: 20px;
@@ -28,6 +30,25 @@ body{
       p{
          color: black;
          line-height: 25px;
+      }
+      .post-content {
+         padding: 0 10px;
+         text-indent: 20px; 
+         text-align: justify;
+         h2{
+            margin-left: -20px !important;
+            font-weight: 800;
+         }
+          ul{
+            list-style-position: inside;
+            li{
+               margin-top: 5px;
+               strong{
+                  color: black
+               };
+            }
+          }
+         
       }
 
       .post-header{
