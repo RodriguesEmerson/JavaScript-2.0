@@ -60,7 +60,7 @@ $background-gradient: linear-gradient(90deg, rgba(47,130,205,1) 0%, rgba(34,34,1
             padding-left: 15px;
 
             h1{
-               font-size: 25px;
+               font-size: 20px;
             }
 
          }
@@ -114,10 +114,12 @@ $background-gradient: linear-gradient(90deg, rgba(47,130,205,1) 0%, rgba(34,34,1
 /***********************************************************************************************************/
 /***********************************************************************************************************/
    .outros-posts{
+      flex-direction: column;
+      gap: 5px;
+
       .blog-post{
          padding: 5px;
          width: 100%;
-         align-self: center !important;
          height: 170px !important;
          flex-direction: row;
 
@@ -136,30 +138,47 @@ $background-gradient: linear-gradient(90deg, rgba(47,130,205,1) 0%, rgba(34,34,1
             justify-content: center;
             .post-header{
                margin-bottom: 5px;
+               h2{
+                  font-size: 20px;
+               }
             }
    
             .post-content{
-               p{
-                  display: -webkit-box;        /* Flexbox unidimensional */
-                  -webkit-box-orient: vertical; /* Orientação vertical */
-                  overflow: hidden;            
-                  text-overflow: ellipsis;
-                  -webkit-line-clamp: 5;       /* Limita a quantidade de linhas a ser mostrada */
-                  max-height: 120px;
-                  text-overflow: ellipsis;
-               }
+               display: -webkit-box;        /* Flexbox unidimensional */
+               -webkit-box-orient: vertical; /* Orientação vertical */
+               overflow: hidden;            
+               text-overflow: ellipsis;
+               -webkit-line-clamp: 4;       /* Limita a quantidade de linhas a ser mostrada */
+               max-height: 120px;
+               text-overflow: ellipsis;
             }
          }
-         
 
          .post-footer{
             flex: 1;
             flex-direction: column;
             justify-content: space-between;
             height: 145px;
-
-
+            max-width: 150px;
          }
       }
+   }
+}
+
+/*/****************MediaQueries**********************/
+@media (max-width: 1020px) {
+   #posts{
+      max-width: 90%;
+   }
+}
+
+@media (max-width: 670px) {
+   #posts{
+      min-width: 450px;
+     .outros-posts{
+      .post-image{
+         display: none !important;
+      }
+     }
    }
 }

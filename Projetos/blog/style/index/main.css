@@ -54,7 +54,7 @@ main {
 #home {
   position: relative;
   background-color: black;
-  height: 100vh;
+  height: calc(100vh - 50px);
   max-width: 100%;
   overflow: hidden;
 }
@@ -164,7 +164,7 @@ main {
   padding-left: 15px;
 }
 #posts .posts-recents .blog-post .post-header h1, #posts .outros-posts .blog-post .post-header h1, #posts .post-view .blog-post .post-header h1 {
-  font-size: 25px;
+  font-size: 20px;
 }
 #posts .posts-recents .blog-post .post-content, #posts .outros-posts .blog-post .post-content, #posts .post-view .blog-post .post-content {
   padding: 0 10px;
@@ -205,10 +205,13 @@ main {
   background-color: rgb(28, 89, 169);
   color: white;
 }
+#posts .outros-posts {
+  flex-direction: column;
+  gap: 5px;
+}
 #posts .outros-posts .blog-post {
   padding: 5px;
   width: 100%;
-  align-self: center !important;
   height: 170px !important;
   flex-direction: row;
 }
@@ -228,12 +231,15 @@ main {
 #posts .outros-posts .blog-post .content-box .post-header {
   margin-bottom: 5px;
 }
-#posts .outros-posts .blog-post .content-box .post-content p {
+#posts .outros-posts .blog-post .content-box .post-header h2 {
+  font-size: 20px;
+}
+#posts .outros-posts .blog-post .content-box .post-content {
   display: -webkit-box; /* Flexbox unidimensional */
   -webkit-box-orient: vertical; /* Orientação vertical */
   overflow: hidden;
   text-overflow: ellipsis;
-  -webkit-line-clamp: 5; /* Limita a quantidade de linhas a ser mostrada */
+  -webkit-line-clamp: 4; /* Limita a quantidade de linhas a ser mostrada */
   max-height: 120px;
   text-overflow: ellipsis;
 }
@@ -242,8 +248,23 @@ main {
   flex-direction: column;
   justify-content: space-between;
   height: 145px;
+  max-width: 150px;
 }
 
+/*/****************MediaQueries**********************/
+@media (max-width: 1020px) {
+  #posts {
+    max-width: 90%;
+  }
+}
+@media (max-width: 670px) {
+  #posts {
+    min-width: 450px;
+  }
+  #posts .outros-posts .post-image {
+    display: none !important;
+  }
+}
 #footer {
   height: 50px;
   color: white;

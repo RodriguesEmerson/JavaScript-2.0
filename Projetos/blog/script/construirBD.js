@@ -2,7 +2,7 @@
 import { NewPost, Comentario, RespostaComentario, gerarUUID } from "./index/novoPost.js"
 import { SetPostBD } from "./modules/BD.js"
 
-const post1 = new NewPost(
+const post4 = new NewPost(
     'images/post-1.jpg',
     'Emerson R.',
     'A Alegria dos Filhotes de Cães',
@@ -113,9 +113,9 @@ const post3 = new NewPost(
     '25/08/2024',
     ['gatos', 'cuidados','caes', 'pets', 'curiosidades'],
     'Pv9d78822-bf40-47a9-a772-140a725e9b9d',
-)
+);
 
-const post4 = new NewPost(
+const post1 = new NewPost(
     'images/post-4.jpg',
     'Emerson R.',
     'Como surgiram os cães domésticos',
@@ -156,9 +156,54 @@ const post4 = new NewPost(
     '25/08/2024',
     ['caes', 'pets', 'curiosidades', 'historia'],
     'Pu9d78822-bf40-47a4-a772-140a725e9b9d',
+);
+
+const post5 = new NewPost(
+    'images/post-2.jpg',
+    'Emerson R.',
+    'Cuidados com os Pelos de um Gato: Dicas para Mantê-los Saudáveis e Bonitos',
+    `<p>
+        Os gatos são conhecidos por sua beleza, e um dos principais atributos que contribuem para essa imagem são seus pelos. Cuidar bem do pelo de um gato não é apenas uma questão estética, mas também de saúde. Um pelo saudável reflete um gato saudável, por isso, é essencial adotar alguns cuidados regulares para garantir que o seu felino esteja sempre com uma pelagem brilhante e sem problemas.
+    </p>
+
+    <h2>1. Escovação Regular</h2>
+    <p>
+        Escovar o pelo do seu gato é uma das melhores formas de manter sua pelagem saudável. A escovação ajuda a remover pelos mortos, evitando a formação de bolas de pelo que podem causar desconforto e até problemas de saúde. Gatos de pelo longo, como Persas e Maine Coons, devem ser escovados diariamente, enquanto gatos de pelo curto podem ser escovados algumas vezes por semana.
+    </p>
+
+    <h2>2. Alimentação Adequada</h2>
+    <p>
+        A saúde da pelagem de um gato está diretamente ligada à sua alimentação. Certifique-se de que o seu gato consuma uma dieta balanceada, rica em proteínas e ácidos graxos essenciais, como ômega-3 e ômega-6. Esses nutrientes são fundamentais para manter o pelo macio e brilhante.
+    </p>
+
+    <h2>3. Banhos Ocasionalmente</h2>
+    <p>
+        Ao contrário dos cães, os gatos não precisam de banhos frequentes. Eles são animais naturalmente limpos e se lavam sozinhos. No entanto, banhos ocasionais podem ser necessários, especialmente se o gato estiver muito sujo ou tiver uma condição de pele que requeira tratamento específico. Use sempre um shampoo específico para gatos e seque-o bem após o banho.
+    </p>
+
+    <h2>4. Cuidados com Parasitas</h2>
+    <p>
+        Pulgas, carrapatos e outros parasitas são inimigos da saúde da pele e do pelo do gato. Certifique-se de manter o tratamento antiparasitário em dia, conforme orientação do veterinário. A prevenção é a melhor forma de evitar problemas como dermatites e queda excessiva de pelo.
+    </p>
+
+    <h2>5. Visitas Regulares ao Veterinário</h2>
+    <p>
+        Consultas regulares ao veterinário são essenciais para monitorar a saúde do seu gato. Problemas como alergias, deficiências nutricionais e outras condições de saúde podem afetar diretamente a pelagem. O veterinário pode identificar qualquer problema precocemente e recomendar o melhor tratamento.
+    </p>
+
+    <h2>Conclusão</h2>
+    <p>
+        Manter o pelo do seu gato bonito e saudável requer um pouco de atenção e cuidados regulares. Com escovação frequente, uma boa alimentação e visitas ao veterinário, você garantirá que seu gato esteja sempre com uma pelagem brilhante e sem problemas. Esses cuidados não só melhoram a aparência do seu felino, mas também contribuem para seu bem-estar geral. Afinal, um gato com pelo saudável é um gato feliz!
+    </p>
+    `,
+    {},
+    '25/08/2024',
+    ['gatos', 'pets', 'curiosidades', 'cuidados'],
+    'Pl9d78g22-bf40-47a4-a732-140a725e9b9d',
 )
 
 SetPostBD.setPost(post1)
 SetPostBD.setPost(post2)
 SetPostBD.setPost(post3)
 SetPostBD.setPost(post4)
+SetPostBD.setPost(post5)
