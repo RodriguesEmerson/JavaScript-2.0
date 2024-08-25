@@ -29,7 +29,7 @@ const carregaPosts = {
             <div class="post-content post-content-index" >
                ${conteudo}
             </div>
-            <!--Rodapé do Post-->
+            <!--Rodapé do Post--> 
             <footer class="post-footer flex">
                <p>
                   Publicado em <time datetime="${blog.getData()}">
