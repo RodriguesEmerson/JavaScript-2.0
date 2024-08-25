@@ -27,8 +27,8 @@ const carregaPost = {
       const component = `
          <header class="post-header">
             <h2 class="post-title">${this.post.getTitulo()}</h2>
-            <p>Escrito por <strong class="post-autor">Emerson R</strong>, 
-               <time datetime="${this.post.getData()}">${utils.dataPorExtenso(this.post.getData())}</time>
+            <p>Escrito por  <strong class="post-autor">${this.post.getAutor()}</strong>, 
+               <time datetime="${this.post.getData()}">${utils.dataPorExtenso(this.post.getData())}.</time>
             </p>
          </header>
          <div class="post-body">
@@ -70,11 +70,11 @@ const carregaPost = {
             {  class: 'coment', 
                id: `${comentario.getId()}` 
             }, 
-            false, 
+            false,  
             false
          );
          const component = `
-         <div class="coment-content">
+         <div class="coment-content newComenteAnimation">
             <div class="coment-header flex">
                <img class="coment-img" src="${comentario.getImagem()}" alt="">
                <div class="flex">
@@ -136,7 +136,7 @@ const carregaPost = {
       function criarRespostaComentario(comentario){
          const respostaDoComentario = utils.criarElemento(
             'div', 
-            { class: 'coment-answer', 
+            { class: 'coment-answer newComenteAnimation', 
               id: `${comentario.getId()}` 
             }, 
             false, 
@@ -350,7 +350,10 @@ const eventos = {
                const comentario = form.closest('div');
                const formData = new FormData(form);   
                const resposta = Object.fromEntries(formData)['new-coment'];
-      
+               
+               //Valida a resposta.
+               if(resposta == '')return self.replyTextAreaAberta.focus();
+                  
                self.submitActions(comentario, resposta);
 
                //Formata o form.
@@ -364,6 +367,7 @@ const eventos = {
      
    },
    submitActions: function(comentario, resposta){
+
 
       //Verifica se é um comentário principal ou uma resposta;
       let comentPaiId = false;
@@ -389,7 +393,7 @@ const eventos = {
          `${utils.dataHoje()}`,
          false,
          `CC4${gerarUUID()}`,
-         8,
+         0,
          `${usuarioRespondido}`,
       )
 
@@ -464,13 +468,18 @@ const eventos = {
    // principal-new-coment-form
    getFormPrincipalSubmit: function(){
       const form = document.querySelector('.principal-new-coment-form');
+      const textareaPrincipal = document.querySelector('#new-coment');
       const self = this;
       form.addEventListener('submit', (event) =>{
          event.preventDefault();
          const formData = new FormData(form);   
          const comentario = Object.fromEntries(formData)['new-coment'];
 
+          //Valida a comentário.
+          if(comentario == '')return textareaPrincipal.focus();
          self.formPrincipalSubmitActions(comentario);
+         textareaPrincipal.value = '';
+         textareaPrincipal.focus();
       })
    },
    formPrincipalSubmitActions: function(comentario){
@@ -499,7 +508,7 @@ const eventos = {
       htmlDoComentario.appendChild(caixaDeRespostasDoComentario);
       comentsBox.appendChild(htmlDoComentario);
 
-      this.callMetodos()
+      this.callMetodos();
    },
    inserirComentarioNaBD: function(novoComentario){
       carregaPost.post.setComentario(novoComentario);

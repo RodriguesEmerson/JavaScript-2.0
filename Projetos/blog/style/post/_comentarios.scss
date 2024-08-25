@@ -36,6 +36,12 @@ $background-gradient: linear-gradient(90deg, rgba(47,130,205,1) 0%, rgba(34,34,1
                background-color: darken($cor-padrao, 9)
             }
       }
+      p{
+         border-bottom: 1px solid gray;
+         margin: 10px 0 7px 0;
+         font-size: 25px;
+         font-weight: 800;
+      }
       .principal-new-coment-form{
          width: 100%;
          min-height: 90px;
@@ -109,6 +115,7 @@ $background-gradient: linear-gradient(90deg, rgba(47,130,205,1) 0%, rgba(34,34,1
       margin-left: 40px;
       font-size: 15px;
       margin-bottom: 5px;
+      width: 92%;
    }
 
    .coment-footer{
@@ -137,6 +144,13 @@ $background-gradient: linear-gradient(90deg, rgba(47,130,205,1) 0%, rgba(34,34,1
    width: 100%;
    margin-top: 10px;
    border-bottom: 1px dotted rgb(197, 196, 196);
+   
+   .coment-content{
+      background-color: rgb(240, 240, 240);
+      padding: 5px;
+      margin-bottom: 5px;
+      
+   }
    .new-answer-form{
       width: 90%;
       min-height: 90px;
@@ -150,6 +164,7 @@ $background-gradient: linear-gradient(90deg, rgba(47,130,205,1) 0%, rgba(34,34,1
          min-height: 70px;
          resize: none;
          outline: none;
+         background-color:  rgb(240, 240, 240) ;
 
          &:focus-within{
             border: none !important; 
@@ -163,7 +178,7 @@ $background-gradient: linear-gradient(90deg, rgba(47,130,205,1) 0%, rgba(34,34,1
          .btn-new-coment-cancel{
             margin-right: 10px;
             border: none;
-            background-color: white;
+            background-color:  rgb(240, 240, 240) ;
             color: rgb(99, 1, 1);
             text-decoration: underline;
             cursor: pointer;
@@ -181,7 +196,7 @@ $background-gradient: linear-gradient(90deg, rgba(47,130,205,1) 0%, rgba(34,34,1
             &:hover{
                background-color: darken($cor-padrao, 9)
             }
-         }
+         } 
       } 
 
    }
@@ -192,24 +207,29 @@ $background-gradient: linear-gradient(90deg, rgba(47,130,205,1) 0%, rgba(34,34,1
    padding-left: 10px;
    border-left: 1px solid rgb(165, 165, 165);
 
-   .coment-header{
-      margin-bottom: 10px;
-
-      .replying-to-name{
-         color: gray;
+   .coment-answer{
+      background-color: rgb(240, 240, 240);
+      padding: 5px;
+      margin-bottom: 5px;
+      .coment-header{
+         margin-bottom: 10px;
+   
+         .replying-to-name{
+            color: gray;
+         }
       }
-   }
-   .coment-footer{
-      width: calc(100% - 40px);
-      flex-direction: column;
-
-      .buttons-answers{
-         margin-bottom: 5px;
-         width: 98%;
-      }
-
-      .reply-box{
-         width: 100%
+      .coment-footer{
+         width: calc(100% - 40px);
+         flex-direction: column;
+         height: 5px;
+         .buttons-answers{
+            margin-bottom: 5px;
+            width: 98%;
+         }
+   
+         .reply-box{
+            width: 100%
+         }
       }
    }
 
@@ -217,8 +237,20 @@ $background-gradient: linear-gradient(90deg, rgba(47,130,205,1) 0%, rgba(34,34,1
 
 
 }
-
 .liked{
    font-variation-settings:
    'FILL' 1; 
+}
+
+.newComenteAnimation{
+   animation: newComenteAnimation 1.5s;
+   border-radius: 5px;
+}
+@keyframes newComenteAnimation {
+   from{
+      background-color: rgb(141, 141, 141);
+   }
+   to{
+      background-color: rgb(240, 240, 240);
+   }
 }

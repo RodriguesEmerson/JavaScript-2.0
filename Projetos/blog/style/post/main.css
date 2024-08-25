@@ -13,11 +13,24 @@ body {
 .post-view .blog-post {
   width: 100% !important;
   box-shadow: none !important;
+  border-radius: 10px !important;
+}
+.post-view .blog-post h1 {
+  font-size: 30px;
+}
+.post-view .blog-post h2 {
+  font-size: 20px;
+  margin: 20px 0 5px 0;
+  color: rgb(28, 89, 169);
+}
+.post-view .blog-post p {
+  color: black;
+  line-height: 25px;
 }
 .post-view .blog-post .post-header {
-  color: gray;
+  color: rgb(68, 68, 68);
   padding-left: 0 !important;
-  margin-bottom: 10px;
+  margin: 10px 0 10px 0;
 }
 .post-view .blog-post .post-header p {
   font-size: 13px;
@@ -26,10 +39,11 @@ body {
   color: rgb(28, 89, 169);
 }
 .post-view .blog-post .post-body {
-  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.138);
+  border-bottom: 1px solid gray;
 }
 .post-view .blog-post .post-image {
   height: 370px !important;
+  margin-bottom: 10px;
 }
 .post-view .blog-post .post-content {
   padding: 10px !important;
@@ -84,6 +98,12 @@ body {
 }
 .coments-box .new-coment-box .btn-new-coment-open:hover {
   background-color: #154482;
+}
+.coments-box .new-coment-box p {
+  border-bottom: 1px solid gray;
+  margin: 10px 0 7px 0;
+  font-size: 25px;
+  font-weight: 800;
 }
 .coments-box .new-coment-box .principal-new-coment-form {
   width: 100%;
@@ -147,6 +167,7 @@ body {
   margin-left: 40px;
   font-size: 15px;
   margin-bottom: 5px;
+  width: 92%;
 }
 .coments-box .coment-footer {
   font-size: 12px;
@@ -172,6 +193,11 @@ body {
   margin-top: 10px;
   border-bottom: 1px dotted rgb(197, 196, 196);
 }
+.coment .coment-content {
+  background-color: rgb(240, 240, 240);
+  padding: 5px;
+  margin-bottom: 5px;
+}
 .coment .new-answer-form {
   width: 90%;
   min-height: 90px;
@@ -185,6 +211,7 @@ body {
   min-height: 70px;
   resize: none;
   outline: none;
+  background-color: rgb(240, 240, 240);
 }
 .coment .new-answer-form .new-answer:focus-within {
   border: none !important;
@@ -196,7 +223,7 @@ body {
 .coment .new-answer-form .new-answer-buttons .btn-new-coment-cancel {
   margin-right: 10px;
   border: none;
-  background-color: white;
+  background-color: rgb(240, 240, 240);
   color: rgb(99, 1, 1);
   text-decoration: underline;
   cursor: pointer;
@@ -219,21 +246,27 @@ body {
   padding-left: 10px;
   border-left: 1px solid rgb(165, 165, 165);
 }
-.coment-answers .coment-header {
+.coment-answers .coment-answer {
+  background-color: rgb(240, 240, 240);
+  padding: 5px;
+  margin-bottom: 5px;
+}
+.coment-answers .coment-answer .coment-header {
   margin-bottom: 10px;
 }
-.coment-answers .coment-header .replying-to-name {
+.coment-answers .coment-answer .coment-header .replying-to-name {
   color: gray;
 }
-.coment-answers .coment-footer {
+.coment-answers .coment-answer .coment-footer {
   width: calc(100% - 40px);
   flex-direction: column;
+  height: 5px;
 }
-.coment-answers .coment-footer .buttons-answers {
+.coment-answers .coment-answer .coment-footer .buttons-answers {
   margin-bottom: 5px;
   width: 98%;
 }
-.coment-answers .coment-footer .reply-box {
+.coment-answers .coment-answer .coment-footer .reply-box {
   width: 100%;
 }
 
@@ -241,6 +274,19 @@ body {
   font-variation-settings: "FILL" 1;
 }
 
+.newComenteAnimation {
+  animation: newComenteAnimation 1.5s;
+  border-radius: 5px;
+}
+
+@keyframes newComenteAnimation {
+  from {
+    background-color: rgb(141, 141, 141);
+  }
+  to {
+    background-color: rgb(240, 240, 240);
+  }
+}
 .hidden {
   display: none;
 }

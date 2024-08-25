@@ -11,16 +11,29 @@ body{
    width: 75% !important;
    padding: 0 20px;
    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.066);
-
    
    .blog-post{
       width: 100% !important;
       box-shadow: none !important;
+      border-radius: 10px !important;
+
+      h1{
+         font-size: 30px;
+      }
+      h2{
+         font-size: 20px;
+         margin: 20px 0 5px 0;
+         color: $cor-padrao;
+      }
+      p{
+         color: black;
+         line-height: 25px;
+      }
 
       .post-header{
-         color: gray;
+         color: rgb(68, 68, 68);
          padding-left: 0 !important;
-         margin-bottom: 10px;
+         margin: 10px 0 10px 0;
          p{
             font-size: 13px;
             .post-autor{
@@ -29,10 +42,11 @@ body{
          }
       }
       .post-body{
-         box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.138);
+         border-bottom: 1px solid gray;
       }
       .post-image{   
          height: 370px !important;
+         margin-bottom: 10px;
       }
       .post-content{
          padding: 10px !important;
@@ -70,7 +84,5 @@ body{
       .post-footer{
          flex-direction: row !important;
       }
-
-
    }
 }
