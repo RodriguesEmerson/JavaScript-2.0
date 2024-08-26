@@ -18,7 +18,7 @@ $background-gradient: linear-gradient(90deg, rgba(47,130,205,1) 0%, rgba(34,34,1
    width: 100%;
    padding: 10px;
    flex-direction: column;
-
+   scroll-margin-top: 53px;
    //caixa de comentário principal 
    .new-coment-box{
       width: 100%;
@@ -146,12 +146,12 @@ $background-gradient: linear-gradient(90deg, rgba(47,130,205,1) 0%, rgba(34,34,1
    width: 100%;
    margin-top: 10px;
    border-bottom: 1px dotted rgb(197, 196, 196);
-   
+   padding-bottom: 5px;
    .coment-content{
       background-color: rgb(240, 240, 240);
       padding: 5px;
       margin-bottom: 5px;
-      
+      border-radius: 5px;
    }
    .new-answer-form{
       width: 90%;
@@ -213,6 +213,7 @@ $background-gradient: linear-gradient(90deg, rgba(47,130,205,1) 0%, rgba(34,34,1
       background-color: rgb(240, 240, 240);
       padding: 5px;
       margin-bottom: 5px;
+      border-radius: 5px;
       .coment-header{
          margin-bottom: 10px;
    
@@ -246,7 +247,6 @@ $background-gradient: linear-gradient(90deg, rgba(47,130,205,1) 0%, rgba(34,34,1
 
 .newComentAnimation{
    animation: newComentAnimation 2.5s;
-   border-radius: 5px;
 }
 @keyframes newComentAnimation {
    from{

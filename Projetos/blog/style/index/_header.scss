@@ -1,3 +1,6 @@
+
+$background-gradient: linear-gradient(90deg, rgb(20, 15, 131) 0%, rgb(41, 41, 197) 50%, rgb(20, 15, 131) 100%);
+
 .header{
    position: fixed;
    top: 0 !important;
@@ -8,7 +11,7 @@
    z-index: 10;
    justify-content: space-around;
    border-bottom: 1px solid  rgb(28, 89, 169);
-   background-color:  rgb(28, 89, 169);
+   background: $background-gradient;
    
    .logo{
       font-weight: 600;
@@ -32,5 +35,10 @@
          }
       }
 
+   }
+   .rs-link{
+      img{
+         max-width: 30px;
+      }
    }
 }

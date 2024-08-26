@@ -3,6 +3,7 @@
    margin: 0;
    padding: 0;
    box-sizing: border-box;
+   scroll-behavior: smooth;
 }
 
 // sass --watch Projetos/blog/style/index/main.scss:Projetos/blog/style/index/main.css
@@ -11,9 +12,7 @@
    align-items: center;
 }
 
-main{
-   margin-top: 50px
-}
+
 
 @import "./header";
 @import "./home";

@@ -6,13 +6,16 @@
    'opsz' 48
  }
  
+ main{
+}
 
 #home{
    position: relative;
    background-color: black;
-   height: calc( 100vh - 50px);
+   height: 100vh;
    max-width: 100%;
    overflow: hidden;
+   scroll-margin-top: 1163px;
    
    .home-backgroundimage{
       width: 100vw;
@@ -48,10 +51,11 @@
       gap: 5px;
       left: 50%;
       top: 85%;
-      color: white;
       transform: translate(-50%);
       cursor: pointer;
-
+      a{
+         color: white;
+      }
       .arrow{
          font-size: 60px;
          animation: buttonScrollAnimation 1.5s infinite;
