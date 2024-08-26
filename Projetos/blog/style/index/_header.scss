@@ -1,6 +1,8 @@
 
 $background-gradient: linear-gradient(90deg, rgb(20, 15, 131) 0%, rgb(41, 41, 197) 50%, rgb(20, 15, 131) 100%);
-
+#open-menu{
+   display: none;
+}
 .header{
    position: fixed;
    top: 0 !important;
@@ -39,6 +41,79 @@ $background-gradient: linear-gradient(90deg, rgb(20, 15, 131) 0%, rgb(41, 41, 19
    .rs-link{
       img{
          max-width: 30px;
+      }
+   }
+}
+
+/*/****************MediaQueries**********************/
+
+
+@media (max-width: 670px) {
+   .header{
+      height: 100vh;
+      flex-direction: column;
+      width: 400px;
+      .logo{
+         font-weight: 800;
+         font-size: 30px;
+      }
+
+      .nav-bar{
+         ul{
+            flex-direction: column;
+            li{
+               width: 390px;
+               border-bottom: 1px solid gray;
+               margin-right: 0 !important;
+               a{
+                  display: block;
+                  padding: 10px;
+                  font-size: 20px;
+                  text-align: center;
+               }
+            }
+            li:first-child{
+               border-top: 1px solid gray;
+            }
+         }
+      }
+      .rs-link{
+         img{
+            max-width: 50px !important;
+         }
+      }
+      .menu-icon{
+         position: absolute;
+         flex-direction: column;
+         overflow: hidden;
+         gap: 8px;
+         width: 40px;
+         height: 40px;
+         top: 10px;
+         right: 10px;
+         z-index: 11;
+         cursor: pointer;
+
+         .line-menu{
+            justify-content: center;
+            width: 40px;
+            height: 4px;
+            border-radius: 5px;
+            background-color: white !important;
+            transition: 0.3s;
+         }
+      }
+
+      #open-menu:checked ~ .menu-icon > span:nth-child(1){
+         
+         transform: rotate(45deg) translateX(6.5px) translateY(13.5px);
+      }
+      #open-menu:checked ~ .menu-icon > span:nth-child(2){
+         
+         margin-left: - 80px;
+      }
+      #open-menu:checked ~ .menu-icon > span:nth-child(3){
+         transform: rotate(-45deg) translateX(4px) translateY(-10px);
       }
    }
 }
