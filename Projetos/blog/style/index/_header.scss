@@ -44,6 +44,9 @@ $background-gradient: linear-gradient(90deg, rgb(20, 15, 131) 0%, rgb(41, 41, 19
       }
    }
 }
+.menu-icon{
+   display: none;
+}
 
 /*/****************MediaQueries**********************/
 
@@ -53,6 +56,8 @@ $background-gradient: linear-gradient(90deg, rgb(20, 15, 131) 0%, rgb(41, 41, 19
       height: 100vh;
       flex-direction: column;
       width: 400px;
+      margin-left: -400px;
+      transition: 0.4s;
       .logo{
          font-weight: 800;
          font-size: 30px;
@@ -85,12 +90,13 @@ $background-gradient: linear-gradient(90deg, rgb(20, 15, 131) 0%, rgb(41, 41, 19
       .menu-icon{
          position: absolute;
          flex-direction: column;
+         display: flex !important;
          overflow: hidden;
          gap: 8px;
          width: 40px;
          height: 40px;
-         top: 10px;
-         right: 10px;
+         top: 15px;
+         right: -50px;
          z-index: 11;
          cursor: pointer;
 
@@ -99,7 +105,7 @@ $background-gradient: linear-gradient(90deg, rgb(20, 15, 131) 0%, rgb(41, 41, 19
             width: 40px;
             height: 4px;
             border-radius: 5px;
-            background-color: white !important;
+            background-color: rgb(34, 0, 185) !important;
             transition: 0.3s;
          }
       }
@@ -110,10 +116,19 @@ $background-gradient: linear-gradient(90deg, rgb(20, 15, 131) 0%, rgb(41, 41, 19
       }
       #open-menu:checked ~ .menu-icon > span:nth-child(2){
          
-         margin-left: - 80px;
+         margin-left: - 100px;
       }
       #open-menu:checked ~ .menu-icon > span:nth-child(3){
          transform: rotate(-45deg) translateX(4px) translateY(-10px);
       }
+
+      #open-menu:checked ~ .header{
+         margin-left: 0;
+      }
+   }
+
+   .open-menu{
+      margin-left: 0;
    }
 }
+

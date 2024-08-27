@@ -14,8 +14,8 @@
 </head>
 <body>
    <header class="header flex">
-      <input type="checkbox" id="open-menu">
-      <label for="open-menu" class="menu-icon flex"> 
+      <input type="checkbox" id="open-menu" class="hidden">
+      <label for="open-menu" class="menu-icon flex" onclick="abrirMenuMobile()"> 
          <span class="line-menu"></span>
          <span class="line-menu"></span>
          <span class="line-menu"></span>
@@ -127,6 +127,13 @@
 
    <script src="script/construirBD.js" type="module"></script>
    <script src="script/index/index.js" type="module"></script>
+
+   <script>
+      function abrirMenuMobile(){
+      const header = document.querySelector('.header');
+      header.classList.toggle('open-menu');
+   }
+   </script>
 </body>
 
 </html>

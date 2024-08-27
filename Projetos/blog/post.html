@@ -18,6 +18,12 @@
 
 <body>
    <header class="header flex">
+      <input type="checkbox" id="open-menu">
+      <label for="open-menu" class="menu-icon flex" onclick="abrirMenuMobile()"> 
+         <span class="line-menu"></span>
+         <span class="line-menu"></span>
+         <span class="line-menu"></span>
+      </label>
       <div class="logo">Petlovers Corner</div>
       <nav class="nav-bar">
          <ul class="flex">
@@ -186,6 +192,12 @@
    <script src="script/construirBD.js" type="module"></script>
    <script src="script/post/post.js" type="module"></script>
    <script src="script/post/relacionados.js" type="module"></script>
+   <script>
+      function abrirMenuMobile(){
+      const header = document.querySelector('.header');
+      header.classList.toggle('open-menu');
+   }
+   </script>
 </body>
 
 </html>
