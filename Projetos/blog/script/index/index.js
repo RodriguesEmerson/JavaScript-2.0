@@ -39,7 +39,7 @@ const carregaPosts = {
                      ${utils.dataPorExtenso(blog.getData())}</time>
                   </p>
                   <a class="read-more" 
-                     href="http://127.0.0.1:5500/Projetos/blog/post.html?id=${post}" 
+                     href="https://rodriguesemerson.github.io/JavaScript-2.0/Projetos/blog/post.html?id=${post}" 
                      target="_blank" rel="noopener noreferrer">Ler Mais
                   </a>
                </footer>
@@ -70,7 +70,7 @@ const carregaPosts = {
          <!--Rodapé do Post-->
          <footer class="post-footer flex">
             <p>Publicado em <time datetime="${blog.getData()}">${utils.dataPorExtenso(blog.getData())}</time></p>
-            <a class="read-more" href="http://127.0.0.1:5500/Projetos/blog/post.html?id=${post}" 
+            <a class="read-more" href="https://rodriguesemerson.github.io/JavaScript-2.0/Projetos/blog/post.html?id=${post}" 
             target="_blank" rel="noopener noreferrer">Ler Mais</a>
          </footer>
       `

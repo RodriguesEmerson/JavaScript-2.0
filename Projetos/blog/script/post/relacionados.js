@@ -48,7 +48,7 @@ export const postsRelacionadosFunc = {
             </header>
             <footer class="post-footer flex">
                <p><time datetime="${post.getData()}">${utils.dataPorExtenso(post.getData())}</time></p>
-               <a class="read-more" href="http://127.0.0.1:5500/Projetos/blog/post.html?id=${key}" 
+               <a class="read-more" href="https://rodriguesemerson.github.io/JavaScript-2.0/Projetos/blog/post.html?id=${key}" 
                   target="_self" rel="noopener noreferrer">Ler Mais</a>
             </footer>
          `
