@@ -1,0 +1,21 @@
+*{
+   font-family: Arial, Helvetica, sans-serif;
+   margin: 0;
+   box-sizing: border-box;
+}
+@mixin flex ($flex, $aling, $justfy){
+   display: $flex;
+   align-items: $aling;
+   justify-content: $justfy;
+}
+body{
+   background-color: rgb(245, 245, 245);
+}
+$cor-padrao: rgb(43, 0, 108);
+
+@import "./header";
+@import "./list";
+
+.hidden{
+   display: none;
+}

@@ -1,0 +1,113 @@
+.list{
+   margin: auto;
+   width: 600px;
+}
+.item{
+   @include flex(flex, center, space-between);
+   flex-direction: row;
+   min-height: 70px;
+   gap: 15px;
+   padding: 10px;
+   box-shadow: 0 0 7px rgba(0, 0, 0, 0.125);
+   border-radius: 4px;
+   background-color: white;
+   &-checkbox{
+      input{
+         position: relative;
+         &:hover{
+            cursor: pointer;
+         }
+      }
+      .checkbox-label{
+         margin-right: 15px;
+         cursor: pointer;
+      }
+      .checkbox-label::before{
+         position: absolute;
+         content: '';
+         height: 20px;
+         width: 20px;
+         color: white;
+         border: 1px solid $cor-padrao;
+         border-radius: 2px;
+      }
+      input:checked ~ .checkbox-label::after{
+         position:absolute;
+         content: '✔';
+         @include flex(flex, start, center);
+         line-height: 20px;
+         height: 20px;
+         padding-top: 1px;
+         padding-left: 1px;
+         color: white;
+         width: 20px;
+         border-radius: 2px;
+         background-color: $cor-padrao;
+      }
+   }
+   &-content{
+      flex: 1;
+      .item-texto{
+
+      }
+      .item-form{
+         @include flex(flex, center, space-between);
+         border: 1px solid $cor-padrao;
+         padding: 5px;
+         border-radius: 2px;
+         &-texto{
+            flex: 1;
+            border: none;
+            outline: none;
+         }
+         .item-submit-form{
+            height: 30px;
+            width: 70px;
+            border: none;
+            color: white;
+            background-color: lighten($cor-padrao, 7);
+            border-radius: 3px;
+            cursor: pointer;
+            transition: 0.4s;
+            &:hover{
+               background-color: darken($cor-padrao, 5);
+            }
+         }
+      }
+   }
+   &-options{
+      span{
+         padding-top: 4px;
+         cursor: pointer;
+      }
+   }
+}
+
+
+
+
+
+
+
+// <div class="item">
+//    <div class="item-checkbox">
+//       <input type="checkbox">
+//    </div>
+//    <div class="item-content">
+//       <p>Conteúdo do item será colocado aqui.</p>
+//       <form action="" name="texto" class="item-form">
+
+//          <button type="submit" class="item-submit-form">
+//             Adicionar
+//          </button>
+//       </form>
+//    </div>
+//    <div class="item-options">
+//       <span class="material-symbols-outlined">
+//          delete
+//       </span>
+//       <span class="material-symbols-outlined">
+//          edit_note
+//       </span>
+//    </div>
+// </div>

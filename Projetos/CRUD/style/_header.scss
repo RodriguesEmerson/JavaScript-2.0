@@ -1,0 +1,8 @@
+
+.header{
+   @include flex(flex, center, center);
+   height: 50px;
+   text-align: center;
+   color: white;
+   background-color: $cor-padrao;
+}

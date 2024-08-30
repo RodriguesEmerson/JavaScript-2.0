@@ -1,0 +1,109 @@
+@charset "UTF-8";
+* {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: rgb(245, 245, 245);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  text-align: center;
+  color: white;
+  background-color: rgb(43, 0, 108);
+}
+
+.list {
+  margin: auto;
+  width: 600px;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+  min-height: 70px;
+  gap: 15px;
+  padding: 10px;
+  box-shadow: 0 0 7px rgba(0, 0, 0, 0.125);
+  border-radius: 4px;
+  background-color: white;
+}
+.item-checkbox input {
+  position: relative;
+}
+.item-checkbox input:hover {
+  cursor: pointer;
+}
+.item-checkbox .checkbox-label {
+  margin-right: 15px;
+  cursor: pointer;
+}
+.item-checkbox .checkbox-label::before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  color: white;
+  border: 1px solid rgb(43, 0, 108);
+  border-radius: 2px;
+}
+.item-checkbox input:checked ~ .checkbox-label::after {
+  position: absolute;
+  content: "✔";
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  line-height: 20px;
+  height: 20px;
+  padding-top: 1px;
+  padding-left: 1px;
+  color: white;
+  width: 20px;
+  border-radius: 2px;
+  background-color: rgb(43, 0, 108);
+}
+.item-content {
+  flex: 1;
+}
+.item-content .item-form {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid rgb(43, 0, 108);
+  padding: 5px;
+  border-radius: 2px;
+}
+.item-content .item-form-texto {
+  flex: 1;
+  border: none;
+  outline: none;
+}
+.item-content .item-form .item-submit-form {
+  height: 30px;
+  width: 70px;
+  border: none;
+  color: white;
+  background-color: #390090;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: 0.4s;
+}
+.item-content .item-form .item-submit-form:hover {
+  background-color: #210053;
+}
+.item-options span {
+  padding-top: 4px;
+  cursor: pointer;
+}
+
+.hidden {
+  display: none;
+}/*# sourceMappingURL=main.css.map */
