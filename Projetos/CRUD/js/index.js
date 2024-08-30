@@ -1,25 +1,25 @@
 
 // //*******************************GET********************* */
 const id = 5;
-function pegaDados(){
-   return fetch(`http://localhost:3000/list/${id}`)
-            .then(response => response.json())
-            .catch(error => console.log(error))
-} 
-let dados;
-async function teste() {
-   dados = await pegaDados();
+// function pegaDados(){
+//    return fetch(`http://localhost:3000/list/${id}`)
+//             .then(response => response.json())
+//             .catch(error => console.log(error))
+// } 
+// let dados;
+// async function teste() {
+//    dados = await pegaDados();
 
-   console.log(dados)
-}
-async function teste() {
+//    console.log(dados)
+// }
+async function buscar() {
    const data = await fetch(`http://localhost:3000/list/${id}`)
       .then(response => response.json())
       .catch(error => console.log('Nenhum item encontrado!'));
 
    console.log(data)
 }
-// teste()
+// buscar()
 
 //*******************************POST********************* */
 async function criar() {
@@ -44,7 +44,6 @@ async function criar() {
 
 //*******************************PUT********************* */
 async function atualizar() {
-   did = true;
    await fetch("http://localhost:3000/list/5",
       {
          method: 'PUT',
@@ -59,5 +58,20 @@ async function atualizar() {
       .then(data => console.log(data))
       .catch(error => console.log(error))
 }
-
 // atualizar()
+
+
+
+//*******************************DELETE********************* */
+async function deletar() {
+   await fetch('http://localhost:3000/list/31',
+      {
+         method: 'DELETE'
+      }
+   )
+   .then(() => console.log('Item deletado'))
+   .catch(error => console.log('ERRO: ' + error))
+}
+// deletar();
+//        (URL)              (EndPoint)      (id)
+//http://localhost:3000_______/list___________/5

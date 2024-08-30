@@ -3,9 +3,54 @@
 <head>
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Document</title>
+   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+   <title>ToDo List</title>
 </head>
 <body>
+   <header class="header">
+      <h1>ToDo List</h1>
+   </header>
+   <main class="container">
+      <section class="novo-item">
+         <div class="novo-item-options">
+            <span class="abrir-novo-item-form"></span>
+         </div>
+         <form action="" name="texto" class="novo-item-form">
+            <input type="text">
+            <input type="submit">
+         </form>
+         <div class="novo-item-form-emojis">
+            
+         </div>
+      </section>
+      <section class="list">
+         <div class="item">
+            <div class="item-checkbox">
+               <input type="checkbox">
+            </div>
+            <div class="item-content">
+               <p>Conteúdo do item será colocado aqui.</p>
+               <form action="" name="texto" class="item-form">
+
+                  <button type="submit" class="-item-submit-form">
+                     Adicionar
+                  </button>
+               </form>
+            </div>
+            <div class="item-options">
+               <span class="material-symbols-outlined">
+                  delete
+               </span>
+               <span class="material-symbols-outlined">
+                  edit_note
+               </span>
+            </div>
+         </div>
+      </section>
+   </main>
+   <footer>
+      
+   </footer>
    <script src="../js/index.js"></script>
 </body>
 </html>
