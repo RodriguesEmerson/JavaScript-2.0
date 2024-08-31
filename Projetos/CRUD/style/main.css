@@ -104,6 +104,107 @@ body {
   cursor: pointer;
 }
 
+.novo-item {
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  flex-direction: column;
+  margin: auto;
+  width: 600px;
+  height: 130px;
+  padding: 5px;
+  background-color: white;
+  margin-bottom: 10px;
+  box-shadow: 0 0 7px rgba(0, 0, 0, 0.125);
+  border-radius: 3px;
+}
+.novo-item .titulo-novo-item-form {
+  font-size: 20px;
+  font-weight: 600;
+}
+.novo-item .criar-item {
+  height: 30px !important;
+  width: 100px;
+  font-size: 15px;
+  margin-bottom: 5px;
+  border-radius: 3px;
+  border: none;
+  color: white;
+  background-color: rgb(43, 0, 108);
+  cursor: pointer;
+}
+.novo-item .novo-item-form {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  flex-direction: row;
+  gap: 5px;
+  height: 50px;
+  width: 100%;
+  padding: 5px;
+  border: 1px solid rgb(43, 0, 108);
+}
+.novo-item .novo-item-form .novo-item-texto {
+  flex: 1;
+  height: 100%;
+  border: none;
+  outline: none;
+  resize: none;
+}
+.novo-item .novo-item-form-emojis {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  width: 330px;
+  margin-top: 5px;
+  overflow: hidden;
+}
+.novo-item .novo-item-form-emojis label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 5px;
+  height: 30px;
+  border-radius: 3px;
+  color: rgb(255, 255, 255);
+  background-color: rgb(45, 0, 122);
+  cursor: pointer;
+  z-index: 10;
+}
+.novo-item .novo-item-form-emojis .emojis-list {
+  display: flex;
+  padding: 0;
+  list-style-type: none;
+  margin-left: -300px;
+  transition: 0.4s;
+}
+.novo-item .novo-item-form-emojis .emojis-list .emoji {
+  cursor: pointer;
+  font-size: 20px;
+}
+.novo-item .novo-item-form-emojis .emojis-list .emoji:hover {
+  animation: emojisAnimation 0.4s;
+}
+.novo-item .novo-item-form-emojis .material-symbols-outlined {
+  transition: 0.4s;
+}
+.novo-item .novo-item-form-emojis #emojis-checkbox:checked ~ .emojis-list {
+  margin-left: 0;
+}
+.novo-item .novo-item-form-emojis #emojis-checkbox:checked ~ label > .material-symbols-outlined {
+  transform: rotate(180deg);
+}
+
+@keyframes emojisAnimation {
+  0% {
+    margin-top: -3px;
+    transform: rotate(40deg);
+  }
+  50% {
+    margin-top: -6px;
+    transform: rotate(0deg);
+  }
+}
 .hidden {
   display: none;
 }/*# sourceMappingURL=main.css.map */

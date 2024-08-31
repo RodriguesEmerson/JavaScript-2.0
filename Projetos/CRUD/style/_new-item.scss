@@ -1,0 +1,100 @@
+.novo-item{
+   @include flex(flex, start, center);
+   flex-direction: column;
+   margin: auto;
+   width: 600px;
+   height: 130px;
+   padding: 5px;
+   background-color: white;
+   margin-bottom: 10px;
+   box-shadow: 0 0 7px rgba(0, 0, 0, 0.125);
+   border-radius: 3px;
+
+   .titulo-novo-item-form{
+      font-size: 20px;
+      font-weight: 600;
+   }
+   
+   .criar-item{
+      height: 30px !important;
+      width: 100px;
+      font-size: 15px;
+      margin-bottom: 5px;
+      border-radius: 3px;
+      border: none;
+      color: white;
+      background-color: $cor-padrao;
+      cursor: pointer;
+   }
+   
+   .novo-item-form{
+      @include flex(flex, end, space-between);
+      flex-direction: row;
+      gap: 5px;
+      height: 50px;
+      width: 100%;
+      padding: 5px;
+      border: 1px solid $cor-padrao;
+
+      .novo-item-texto{
+         flex: 1;
+         height: 100%;
+         border: none;
+         outline: none;
+         resize: none;
+      }
+   }
+
+   .novo-item-form-emojis{
+      @include flex(flex, center, start);
+      width: 330px;
+      margin-top: 5px;
+      overflow: hidden;
+      label{
+         @include flex(flex, center, center);
+         padding-left: 5px;
+         height: 30px;
+         border-radius: 3px;
+         color: rgb(255, 255, 255);
+         background-color: rgb(45, 0, 122);
+         cursor: pointer;
+         z-index: 10;
+      }
+      .emojis-list{
+         display: flex;
+         padding: 0; 
+         list-style-type: none;
+         margin-left: -300px;
+         transition: 0.4s;
+
+         .emoji{
+            cursor: pointer;
+            font-size: 20px;
+            &:hover{
+               animation: emojisAnimation 0.4s;
+            }
+         }
+      }
+      .material-symbols-outlined{
+         transition: 0.4s;
+      }
+
+      #emojis-checkbox:checked ~ .emojis-list{
+         margin-left: 0;
+      }
+      #emojis-checkbox:checked ~ label > .material-symbols-outlined{
+         transform: rotate(180deg);
+      }
+   }
+}
+
+@keyframes emojisAnimation {
+   0%{
+      margin-top: -3px;
+      transform: rotate(40deg);
+   }
+   50%{
+      margin-top: -6px;
+      transform: rotate(0deg);
+   }
+}

@@ -14,14 +14,33 @@
    <main class="container">
       <section class="novo-item">
          <div class="novo-item-options">
-            <span class="abrir-novo-item-form"></span>
+            <span class="titulo-novo-item-form">
+              Criar ToDo
+            </span>
          </div>
-         <form action="" name="texto" class="novo-item-form">
-            <input type="text">
-            <input type="submit" value="Adicionar">
+         <form action=""  class="novo-item-form">
+            <textarea name="texto" class="novo-item-texto" placeholder="Insira uma nova ToDo..."></textarea>
+            <input type="submit" value="Adicionar" class="criar-item">
          </form>
          <div class="novo-item-form-emojis">
-
+            <input type="checkbox" id="emojis-checkbox" class="hidden">
+            <label for="emojis-checkbox">
+                  <span>Emojis</span>
+                  <span class="material-symbols-outlined">
+                     keyboard_arrow_right
+                  </span>
+            </label>
+            <ul class="emojis-list">
+               <li class="emoji">&#128512</li>
+               <li class="emoji">&#128513</li>
+               <li class="emoji">&#128514</li>
+               <li class="emoji">&#128515</li>
+               <li class="emoji">&#128516</li>
+               <li class="emoji">&#128517</li>
+               <li class="emoji">&#128663</li>
+               <li class="emoji">&#128692</li>
+               <li class="emoji">&#128694</li>
+            </ul>
          </div>
       </section>
       <section class="list">
