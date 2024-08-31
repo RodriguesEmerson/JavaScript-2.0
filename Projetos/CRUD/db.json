@@ -1,5 +1,22 @@
 {
   "list": [
-    
+    {
+      "id": "26cc",
+      "texto": "Novo Item da Lista",
+      "data": "31 de agosto de 2024",
+      "status": ""
+    },
+    {
+      "id": "3e9f",
+      "texto": "Teste",
+      "data": "31 de agosto de 2024",
+      "status": "checked"
+    },
+    {
+      "id": "f336",
+      "texto": "Ola Mundo",
+      "data": "31 de agosto de 2024",
+      "status": false
+    }
   ]
 }

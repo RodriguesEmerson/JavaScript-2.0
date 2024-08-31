@@ -17,7 +17,7 @@ export class NovaToDo {
       return this._status;
    }
    getId(){
-      this._id;
+      return this._id;
    }
 
    //Setters

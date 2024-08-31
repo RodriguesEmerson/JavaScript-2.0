@@ -18,5 +18,5 @@ $cor-padrao: rgb(43, 0, 108);
 @import "./new-item";
 
 .hidden{
-   display: none;
+   display: none !important;
 }
