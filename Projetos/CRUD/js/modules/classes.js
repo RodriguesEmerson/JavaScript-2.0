@@ -1,8 +1,8 @@
 export class NovaToDo {
-   constructor(texto, data, status, id) {
+   constructor(texto, data, checked, id) {
       this._texto = texto;
       this._data = data;
-      this._status = status;
+      this._checked = checked;
       this._id = id;
    }
 
@@ -13,8 +13,8 @@ export class NovaToDo {
    getData(){
       return this._data;
    }
-   getStatus(){
-      return this._status;
+   getChecked(){
+      return this._checked;
    }
    getId(){
       return this._id;
@@ -27,7 +27,7 @@ export class NovaToDo {
    setData(novaData){
       this._data = novaData;
    }
-   setStatus(novoSatatus){
-      this._status = novoSatatus;
+   setChecked(novaChecked){
+      this._checked = novaChecked;
    }
 }

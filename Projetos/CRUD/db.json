@@ -1,22 +1,22 @@
 {
   "list": [
     {
-      "texto": "Novo Item da Lista",
-      "id": "26cc"
-    },
-    {
-      "texto": "Teste Edited",
-      "id": "3e9f"
-    },
-    {
-      "texto": "Ola Mundo Edited",
-      "id": "f336"
-    },
-    {
-      "id": "96f4",
-      "texto": "New ToDo",
+      "texto": "Novo item Editado! 😄",
       "data": "01 de setembro de 2024",
-      "status": false
+      "checked": "checked",
+      "id": "cddb"
+    },
+    {
+      "texto": "Novo",
+      "data": "01 de setembro de 2024",
+      "checked": "",
+      "id": "cad7"
+    },
+    {
+      "texto": "Novo Item",
+      "data": "01 de setembro de 2024",
+      "checked": "checked",
+      "id": "e579"
     }
   ]
 }

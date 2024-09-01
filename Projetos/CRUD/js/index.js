@@ -1,5 +1,6 @@
 import { NovaToDo } from "./modules/classes.js";
-const list = document.querySelector('.list')
+const list = document.querySelector('.list');
+const novoItemTexto = document.querySelector('.novo-item-texto');
 
 const events = {
    formNovaToDoSubmit: function(){
@@ -9,7 +10,7 @@ const events = {
          const formData = new FormData(formNewTodo);
          const data = Object.fromEntries(formData)['texto'];
          createTodo.instanciarToDo(data);
-      })
+      });
    },
    editFormClick: function(){
       const editBtns = document.querySelectorAll('.edit-item');
@@ -17,10 +18,9 @@ const events = {
          if(btn.classList.contains('event-added')) return;
          btn.addEventListener('click', (e) =>{
             const parentId = e.target.getAttribute(['data-parent-id']);
-            const parentElement = document.querySelector(`#${parentId}`);
             const itemTexto = document.querySelector(`#${parentId} .item-texto`);
             const itemForm = document.querySelector(`#${parentId} .item-form`);
-            const formTexto = document.querySelector(`#${parentId} .item-form input`)
+            const formTexto = document.querySelector(`#${parentId} .item-form input`);
 
             itemTexto.classList.toggle('hidden');
             itemForm.classList.toggle('hidden');
@@ -41,17 +41,46 @@ const events = {
             const texto = Object.fromEntries(formData)['texto'];
             
             //pega apenas o id do item sem o "P".
-            updateToDo.update(texto, parentId.slice(1,));
+            updateToDo.updateText(texto, parentId.slice(1,));
 
          });   
       });
    },
    checkboxClick: function(){
+      const checkboxs = document.querySelectorAll('.checkbox');
+      checkboxs.forEach(checkbox =>{
+         checkbox.addEventListener('click', (e)=>{
+            const parentId = e.target.getAttribute(['data-parent-id']);
+            updateToDo.updateStatus(parentId.slice(1,));
+         })
+      })
+   },
+   deleteItemClick: function(){
+      const deleteBtns = document.querySelectorAll('.delete-item');
+      deleteBtns.forEach(btn => {
+         btn.addEventListener('click', (e) =>{
+            e.preventDefault();
+            const parentId = e.target.getAttribute(['data-parent-id']);
+            //pega apenas o id do item sem o "P".
+            updateToDo.delteItem(parentId.slice(1,));
+         });   
+      });
+   },
+   emojisClick: function(){
+      const emojis = document.querySelectorAll('.emoji');
 
+      emojis.forEach(emoji => {
+         emoji.addEventListener('click', ()=>{
+            novoItemTexto.value = `${novoItemTexto.value} ${emoji.innerHTML}`;
+         })
+      })
    },
    callAddEvents: function(){
       this.editFormClick();
       this.formsEditSubmit();
+      this.checkboxClick();
+      this.deleteItemClick();
+      this.emojisClick();
    }
 }
 events.formNovaToDoSubmit();
@@ -59,13 +88,13 @@ events.formNovaToDoSubmit();
 
 const createTodo = {
    instanciarToDo: function(texto){
-      const ToDo = new NovaToDo(texto, this.dataHoje(), false);
+      const ToDo = new NovaToDo(texto, this.dataHoje(), '');
       this.inserirTodoNaDB(ToDo);
    },
    dataHoje: function(){
       return new Date().toLocaleDateString(
          'pt-br', {day: '2-digit', month: 'long', year: 'numeric'}
-      )
+      );
    },
    inserirTodoNaDB: async function(ToDo){
       await fetch('http://localhost:3000/list',
@@ -80,7 +109,7 @@ const createTodo = {
                   id: ToDo.getId(),
                   texto: ToDo.getTexto(),
                   data: ToDo.getData(),
-                  status: ToDo.getStatus(),
+                  checked: ToDo.getChecked(),
                }
             )
          }
@@ -104,8 +133,13 @@ const loadToDos = {
       //Instacia cada item da lista para que tenham os getters e setters
       //de NovaTodo
       let ToDos = data.map(item => 
-            new NovaToDo(item.texto, item.data, item.status, item.id)
+            new NovaToDo(item.texto, item.data, item.checked, item.id)
          );
+
+      //Eu iria usar isso para criar novos elementosno DOM,  MASSS
+      //quando é lançado uma nova ToDo pelo 'json-server' e o conteúdo
+      //de db.json é alterado, o live-server reatualiza a página.
+      //Não seria assim com uma API real!!!
       if(ToDo){
          ToDos = ToDo;
       }
@@ -115,7 +149,7 @@ const loadToDos = {
          novoItem.setAttribute('id', `P${item.getId()}`)
          const compontent = `
             <div class="item-checkbox">
-               <input type="checkbox" ${item.getStatus()} id="check-C${item.getId()}" class="hidden" data-parent-id="P${item.getId()}">
+               <input type="checkbox" ${item.getChecked()} id="check-C${item.getId()}" class="hidden checkbox" data-parent-id="P${item.getId()}">
                <label for="check-C${item.getId()}" class="checkbox-label"></label>
             </div>
             <div class="item-content">
@@ -146,7 +180,10 @@ const loadToDos = {
 }
 
 const updateToDo = {
-   update: async function(texto, parentId){
+   updateText: async function(texto, parentId){
+
+      let dados = await( fetch(`http://localhost:3000/list/${parentId}`));
+      dados = await dados.json();
       await fetch(`http://localhost:3000/list/${parentId}`,
          {
             method: 'PUT',
@@ -155,7 +192,9 @@ const updateToDo = {
             },
             body: JSON.stringify(
                {
-                  texto: `${texto}`
+                  texto: `${texto}`,
+                  data: dados.data,
+                  checked: dados.checked
                }
             )
          }
@@ -163,10 +202,45 @@ const updateToDo = {
       .then(response => response.json())
       .then(data => console.log(data))
       .catch(error => console.log(error))
+   },
+   updateStatus: async function(parentId){
+      let dados = await( fetch(`http://localhost:3000/list/${parentId}`));
+      dados = await dados.json();
+
+      let obj = "";
+      if(dados.checked == ""){
+         obj = "checked"
+      }
+
+      await fetch(`http://localhost:3000/list/${parentId}`,
+         {
+            method: 'PUT',
+            headers:{
+               'Content-Type': 'application/json; charst=UTF-8'
+            },
+            body: JSON.stringify({
+               texto: dados.texto,
+               data: dados.data,
+               checked: `${obj}`
+            })
+         }
+      )
+      .then(response => response.json())
+      .then(data => console.log(data))
+      .catch(error => console.log(error));
+   },
+   delteItem: async function(parentId){
+      await fetch(`http://localhost:3000/list/${parentId}`,
+         {
+            method: 'DELETE'
+         }
+      )
+      .then(response => response.json())
+      .catch(error => console.log(error))
    }
 }
 
-loadToDos.inserirNoDOM()
+loadToDos.inserirNoDOM();
 
 
 
